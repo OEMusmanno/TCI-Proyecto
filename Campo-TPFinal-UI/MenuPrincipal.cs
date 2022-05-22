@@ -18,7 +18,7 @@ namespace Campo_TPFinal_UI
         private void button1_Click(object sender, EventArgs e)
         {
             var form1 = _registrarAlquiler;
-            bitacoraService.GuardarBitacoraDefault("ingreso a registrar alquiler");
+            bitacoraService.GuardarBitacoraDefault("Ingreso a registrar alquiler");
             form1.ShowDialog();
         }
 

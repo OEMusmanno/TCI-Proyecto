@@ -7,7 +7,6 @@ namespace Campo_TPFinal_DALContracts
         public DataSet ExecuteDataSet(string pCommandText);
 
         public int ExecuteNonQuery(string pCommandText);
-
-
+        object ExecuteScalar(string pCommandText);
     }
 }

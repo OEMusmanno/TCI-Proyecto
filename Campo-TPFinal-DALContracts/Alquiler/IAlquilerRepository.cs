@@ -9,6 +9,7 @@ namespace Campo_TPFinal_DALContracts.Alquiler
 {
     public interface IAlquilerRepository
     {
-        void RegistrarReserva(int id);
+       public void RegistrarReserva(int id);
+       public bool ValidarReservasAnteriores();
     }
 }

@@ -55,5 +55,24 @@ namespace Campo_TPFinal_DAL
                     mCon.Close();
             }
         }
+        
+        public object ExecuteScalar(string pCommandText)
+        {
+            try
+            {
+                SqlCommand mCom = new SqlCommand(pCommandText, mCon);
+                mCon.Open();
+                return mCom.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                if (mCon.State != ConnectionState.Closed)
+                    mCon.Close();
+            }
+        }
     }
 }

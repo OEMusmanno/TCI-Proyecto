@@ -26,6 +26,25 @@ namespace Campo_TPFinal_DAL.Alquiler
             string _commandText = "INSERT INTO [dbo].[Reserva] ([id_auto] ,[id_usuario] ,[fechaInicio]) VALUES (" + id+ ", " + Session.GetInstance().usuario.Id + ",'"+ fechaHora.ToString(format) +  "')";
             dataAccess.ExecuteNonQuery(_commandText);
         }
+
+        public bool ValidarReservasAnteriores()
+        {
+            var value = dataAccess.ExecuteScalar(
+                    "SELECT "+
+                    " CASE WHEN Fechafin  IS NULL AND [id_usuario] = " + Session.GetInstance().usuario.Id +
+                    " THEN CAST(1 AS BIT) " +
+                    " ELSE CAST(0 AS BIT) END AS TieneReserva " +
+                    " FROM [Reserva] ORDER BY  ID DESC");
+                
+            if (value == null)
+            {
+                return false;
+            }
+            else
+            {
+                return (bool)value;
+            }
+        }
     }
 
 

@@ -9,6 +9,6 @@ namespace Campo_TPFinal_BLLContracts.Alquiler
 {
     public interface IAlquilerService
     {
-        void RegistrarReserva(int id);
+        void RegistrarReserva(int id, string marca, string modelo);
     }
 }

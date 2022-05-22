@@ -10,14 +10,12 @@ namespace Campo_TPFinal_UI
     {
         private readonly IAutoService autoService;
         private readonly IAlquilerService alquilerService;
-        private readonly IBitacoraService bitacoraService;
 
-        public RegistrarAlquiler(IAutoService autoBLL, IAlquilerService alquilerService, IBitacoraService bitacoraService)
+        public RegistrarAlquiler(IAutoService autoBLL, IAlquilerService alquilerService)
         {
             this.autoService = autoBLL;
             InitializeComponent();
             this.alquilerService = alquilerService;
-            this.bitacoraService = bitacoraService;
         }
 
         private void Actualizar()
@@ -42,13 +40,19 @@ namespace Campo_TPFinal_UI
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            int Id = int.Parse(grdListadoAutos.SelectedRows[0].Cells[0].Value.ToString());
-            var Marca = grdListadoAutos.SelectedRows[0].Cells[1].Value.ToString();
-            var Modelo = grdListadoAutos.SelectedRows[0].Cells[2].Value.ToString();
-            bitacoraService.GuardarBitacoraDefault("Se registro la reserva con el auto: " + Marca +" "+Modelo);
-
-            alquilerService.RegistrarReserva(Id);
-            MessageBox.Show("Se registro correctamente la reserva", "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                int Id = int.Parse(grdListadoAutos.SelectedRows[0].Cells[0].Value.ToString());
+                var Marca = grdListadoAutos.SelectedRows[0].Cells[1].Value.ToString();
+                var Modelo = grdListadoAutos.SelectedRows[0].Cells[2].Value.ToString();
+                alquilerService.RegistrarReserva(Id, Marca, Modelo);
+                MessageBox.Show("Se registro correctamente la reserva", "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+         
         }
 
         private void RegistrarAlquiler_Load(object sender, EventArgs e)

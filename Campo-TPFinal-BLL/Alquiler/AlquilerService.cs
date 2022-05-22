@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Campo_TPFinal_BLL.Alquiler
 {
-    public class AlquilerService: IAlquilerService
+    public class AlquilerService : IAlquilerService
     {
         private readonly IAlquilerRepository alquilerRepository;
         private readonly IBitacoraService bitacoraService;
@@ -21,10 +21,25 @@ namespace Campo_TPFinal_BLL.Alquiler
             this.bitacoraService = bitacoraService;
         }
 
-        public void RegistrarReserva(int id) {
-            alquilerRepository.RegistrarReserva(id);
+        public void RegistrarReserva(int id, string marca, string modelo)
+        {
+            if (!validarReservasAnteriores())
+            {
+                alquilerRepository.RegistrarReserva(id);
+                bitacoraService.GuardarBitacoraDefault("Se registro la reserva con el auto: " + marca + " " + modelo);
+            }
+            else
+            {
+                bitacoraService.GuardarBitacoraDefault("Error de Validacion de reserva: Reserva Activa");
+                throw new Exception("Se encuentra una reserva activa");
+            }
+
         }
 
 
+        private bool validarReservasAnteriores()
+        {
+            return alquilerRepository.ValidarReservasAnteriores();         
+        }
     }
 }
