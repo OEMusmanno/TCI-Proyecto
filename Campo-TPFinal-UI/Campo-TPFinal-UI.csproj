@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Campo_TPFinal_UI</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Campo-TPFinal-BE\Campo-TPFinal-BE.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-BLLContracts\Campo-TPFinal-BLLContracts.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-BLL\Campo-TPFinal-BLL.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-DALContracts\Campo-TPFinal-DALContracts.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-DAL\Campo-TPFinal-DAL.csproj" />
+  </ItemGroup>
+
+</Project>

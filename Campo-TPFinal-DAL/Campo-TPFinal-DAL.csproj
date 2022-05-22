@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Campo_TPFinal_DAL</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Campo-TPFinal-BLLContracts\Campo-TPFinal-BLLContracts.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-BLL\Campo-TPFinal-BLL.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-DALContracts\Campo-TPFinal-DALContracts.csproj" />
+  </ItemGroup>
+
+</Project>

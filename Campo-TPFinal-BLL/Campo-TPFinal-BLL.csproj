@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Campo_TPFinal_BLL</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Campo-TPFinal-BE\Campo-TPFinal-BE.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-BLLContracts\Campo-TPFinal-BLLContracts.csproj" />
+    <ProjectReference Include="..\Campo-TPFinal-DALContracts\Campo-TPFinal-DALContracts.csproj" />
+  </ItemGroup>
+
+</Project>
