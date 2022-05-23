@@ -1,9 +1,13 @@
 using Campo_TPFinal_BLL;
 using Campo_TPFinal_BLL.Alquiler;
+using Campo_TPFinal_BLL.Penalidades;
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLL.Vehiculo;
+using Campo_TPFinal_BLL.Vehiculo.Estados;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Alquiler;
+using Campo_TPFinal_BLLContracts.Penalidad;
+using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
 using Campo_TPFinal_DAL;
 using Campo_TPFinal_DAL.Alquiler;
 using Campo_TPFinal_DAL.Vehiculo;
@@ -46,6 +50,7 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IAutoService, AutoService>()
               .AddSingleton<IEstacionamientoService, EstacionamientoService>()
               .AddSingleton<ITipoVehiculoService, TipoVehiculoService>()
+              .AddSingleton<IUsuarioService, UsuarioService>()
               .AddSingleton<IUsuarioRepository, UsuarioRepository>()
               .AddSingleton<IAutoRepository, AutoRepository>()
               .AddSingleton<IEstacionamientoRepository, EstacionamientoRepository>()
@@ -53,8 +58,13 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IBitacoraService, BitacoraService>()
               .AddSingleton<IBitacoraRepository, BitacoraRepository>()
               .AddSingleton<IAlquilerService, AlquilerService>()
-              .AddSingleton<IAlquilerRepository, AlquilerRepository>()
+              .AddSingleton<IAlquilerRepository, AlquilerRepository>() 
+              .AddSingleton<IPenalidadRepository, PenalidadRepository>()
+              .AddSingleton<IPenalidadService, PenalidadService>()              
+              .AddSingleton<IEstadoService, DisponibleService>()              
+              .AddSingleton<IEstadoService, ReservadoService>()              
               .AddSingleton<LogManager>()
+              .AddSingleton<AplicarPenalidad>()
               .AddSingleton<RegistrarAlquiler>()
               .AddSingleton<MenuPrincipal>()
               .AddSingleton<Login>()

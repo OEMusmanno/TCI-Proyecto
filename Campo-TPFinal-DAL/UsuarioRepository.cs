@@ -18,6 +18,18 @@ namespace Campo_TPFinal_DAL
             _dataAccess = dataAccess;
         }
 
+        public List<Usuario> Listar()
+        {
+            var list = _dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[Usuario]");
+            var _list = new List<Usuario>();
+            foreach (DataRow item in list.Tables[0].Rows)
+            {
+                Usuario user = new Usuario();
+                ValorizarEntidad(user, item);
+                _list.Add(user);
+            }
+            return _list;
+        }
         public Usuario ObtenerPorAlias(string alias)
         {
             var list = _dataAccess.ExecuteDataSet("SELECT * FROM[Campo].[dbo].[Usuario] WHERE usuario = '" + alias + "'");

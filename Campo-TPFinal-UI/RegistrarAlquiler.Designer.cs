@@ -40,7 +40,7 @@
             this.grdListadoAutos.Location = new System.Drawing.Point(40, 83);
             this.grdListadoAutos.Name = "grdListadoAutos";
             this.grdListadoAutos.RowTemplate.Height = 25;
-            this.grdListadoAutos.Size = new System.Drawing.Size(1154, 299);
+            this.grdListadoAutos.Size = new System.Drawing.Size(1013, 299);
             this.grdListadoAutos.TabIndex = 0;
             // 
             // label1
@@ -57,7 +57,7 @@
             // 
             this.Alquilar.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Alquilar.ForeColor = System.Drawing.Color.LimeGreen;
-            this.Alquilar.Location = new System.Drawing.Point(40, 421);
+            this.Alquilar.Location = new System.Drawing.Point(490, 452);
             this.Alquilar.Name = "Alquilar";
             this.Alquilar.Size = new System.Drawing.Size(152, 55);
             this.Alquilar.TabIndex = 2;
@@ -70,7 +70,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1274, 519);
+            this.ClientSize = new System.Drawing.Size(1066, 519);
             this.Controls.Add(this.Alquilar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grdListadoAutos);

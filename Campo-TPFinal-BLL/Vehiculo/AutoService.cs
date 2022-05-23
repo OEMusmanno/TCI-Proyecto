@@ -1,33 +1,30 @@
-﻿using Campo_TPFinal_BE;
-using Campo_TPFinal_BE.Vehiculo;
+﻿using Campo_TPFinal_BE.Vehiculo;
+using Campo_TPFinal_BE.Vehiculo.Estado;
 using Campo_TPFinal_BLLContracts;
+using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
 using Campo_TPFinal_DALContracts;
-using System.Data;
 
 namespace Campo_TPFinal_BLL.Vehiculo
 {
     public class AutoService:IAutoService
     {
-        private readonly IDataAccess _dataAccess;
         private readonly IAutoRepository _autoRepository;
-        private readonly ITipoVehiculoService _tipoVehiculoService;
-        private readonly IEstacionamientoService _estacionamiento;
+        private readonly IEstadoService estadoService;
 
         public AutoService(
-            IDataAccess dataAccess
-            , ITipoVehiculoService tipoVehiculoService
-            , IEstacionamientoService estacionamiento
-            , IAutoRepository autoRepository)
+            IAutoRepository autoRepository, IEstadoService estadoService)
         {
-            this._dataAccess = dataAccess;
-            this._tipoVehiculoService = tipoVehiculoService;
-            this._estacionamiento = estacionamiento;
             _autoRepository = autoRepository;
+            this.estadoService = estadoService;
         }
 
         public List<Auto> Listar() 
         {
             return _autoRepository.Listar();
-        }        
+        }
+
+        public void CambioDeEstadoAReservado(Auto auto) {
+            estadoService.cambioDeEstado(new Reservado(),auto);
+        }
     }
 }

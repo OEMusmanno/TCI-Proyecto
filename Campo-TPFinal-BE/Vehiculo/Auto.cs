@@ -30,6 +30,7 @@ namespace Campo_TPFinal_BE.Vehiculo
         }
 
         public Estacionamiento Estacionamiento { get; set; }
+        public Estado.Estado Estado{ get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public int Id { get; set; }

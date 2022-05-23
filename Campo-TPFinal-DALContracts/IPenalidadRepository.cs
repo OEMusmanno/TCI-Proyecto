@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Campo_TPFinal_DALContracts
 {
-    public interface IUsuarioRepository
+    public interface IPenalidadRepository
     {
-        public Usuario ObtenerPorAlias(string alias);
-        List<Usuario> Listar();
+        List<Penalidad> Listar();
+        void AplicarPenalidad(int idPenalidad, int idUsuario);
+        int ObtenerPenalidad(string penalidad);
     }
 }

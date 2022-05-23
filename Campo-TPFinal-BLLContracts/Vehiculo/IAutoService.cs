@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_BE.Vehiculo;
+using Campo_TPFinal_BE.Vehiculo.Estado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Campo_TPFinal_BLLContracts
 {
     public interface IAutoService
     {
+        void CambioDeEstadoAReservado(Auto auto);
         public List<Auto> Listar();
     }
 }
