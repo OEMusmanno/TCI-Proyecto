@@ -1,12 +1,13 @@
-
+using Campo_TPFinal_BE.Sistema;
 using Campo_TPFinal_BE.Vehiculo;
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Alquiler;
+using Campo_TPFinal_BLLContracts.Sistema;
 
 namespace Campo_TPFinal_UI
 {
-    public partial class RegistrarAlquiler : Form
+    public partial class RegistrarAlquiler : Form, IIdiomaService
     {
         private readonly IAutoService autoService;
         private readonly IAlquilerService alquilerService;
@@ -16,6 +17,11 @@ namespace Campo_TPFinal_UI
             this.autoService = autoBLL;
             InitializeComponent();
             this.alquilerService = alquilerService;
+        }
+
+        public void ActualizarLenguaje(Lenguaje idioma)
+        {
+            throw new NotImplementedException();
         }
 
         private void Actualizar()

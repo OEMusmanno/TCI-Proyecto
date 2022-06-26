@@ -1,47 +1,43 @@
 ﻿using Campo_TPFinal_BE.Sistema;
 using Campo_TPFinal_BE.Usuario;
 using Campo_TPFinal_BLLContracts.Sistema;
-using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campo_TPFinal_BLL.Seguridad
+namespace Campo_TPFinal_BLL.Sistema
 {
-    public class Session
+    public static class ManejadorDeSesion
     {
-        private Session() { }
-        public Usuario usuario { get; set; }
+        static Usuario _session;
 
         static IList<IIdiomaService> _observers = new List<IIdiomaService>();
-
-        private static Session instance;
-
-        public static Session GetInstance()
+        public static Usuario Session
         {
-            if (instance == null)
+            get
             {
-                instance = new Session();
+                return _session;
             }
-            return instance;
-        }
 
-        public static void CloseSession()
-        {
-            instance = null;
         }
 
         public static bool IsLogged()
         {
-            return instance != null;
+            return _session != null;
         }
+        public static void Login(Usuario usuario)
+        {
+            _session = usuario;
+        }
+
         public static void Logout()
         {
-            instance = null;
-            Notificar(new Lenguaje() { Nombre="Español", id=1});
+            _session = null;
+            //Notificar(Traductor.ObtenerIdiomaDefault());
         }
+
 
         public static void SuscribirObservador(IIdiomaService o)
         {
@@ -61,9 +57,9 @@ namespace Campo_TPFinal_BLL.Seguridad
         }
         public static void CambiarIdioma(Lenguaje idioma)
         {
-            if (instance != null)
+            if (_session != null)
             {
-                instance.usuario.idioma = idioma;
+                //_session.Idioma = idioma;
                 Notificar(idioma);
             }
         }

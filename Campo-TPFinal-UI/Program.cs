@@ -2,17 +2,21 @@ using Campo_TPFinal_BLL;
 using Campo_TPFinal_BLL.Alquiler;
 using Campo_TPFinal_BLL.Penalidades;
 using Campo_TPFinal_BLL.Seguridad;
+using Campo_TPFinal_BLL.Sistema;
+using Campo_TPFinal_BLL.Sistema.Idioma;
 using Campo_TPFinal_BLL.Vehiculo;
 using Campo_TPFinal_BLL.Vehiculo.Estados;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Alquiler;
 using Campo_TPFinal_BLLContracts.Penalidad;
+using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
 using Campo_TPFinal_DAL;
 using Campo_TPFinal_DAL.Alquiler;
 using Campo_TPFinal_DAL.Vehiculo;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Alquiler;
+using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Vehiculo;
 using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,9 +64,12 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IAlquilerService, AlquilerService>()
               .AddSingleton<IAlquilerRepository, AlquilerRepository>() 
               .AddSingleton<IPenalidadRepository, PenalidadRepository>()
+              .AddSingleton<ITraductorRepository, TraductorRepository>()
               .AddSingleton<IPenalidadService, PenalidadService>()              
               .AddSingleton<IEstadoService, DisponibleService>()              
-              .AddSingleton<IEstadoService, ReservadoService>()              
+              .AddSingleton<IEstadoService, ReservadoService>()
+              .AddSingleton<ILoginService, LoginService>()              
+              .AddSingleton<ITraductorService, TraductorService>()              
               .AddSingleton<LogManager>()
               .AddSingleton<AplicarPenalidad>()
               .AddSingleton<RegistrarAlquiler>()
