@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campo_TPFinal_BE.Sistema
+namespace Campo_TPFinal_BE.Sistema.Idioma
 {
     public class Traduccion
     {
         public string Etiqueta { get; set; }
         public string Texto { get; set; }
-    }    
+    }
 }

@@ -37,7 +37,7 @@
             // grdListadoAutos
             // 
             this.grdListadoAutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdListadoAutos.Location = new System.Drawing.Point(40, 83);
+            this.grdListadoAutos.Location = new System.Drawing.Point(41, 53);
             this.grdListadoAutos.Name = "grdListadoAutos";
             this.grdListadoAutos.RowTemplate.Height = 25;
             this.grdListadoAutos.Size = new System.Drawing.Size(1013, 299);
@@ -57,7 +57,7 @@
             // 
             this.Alquilar.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Alquilar.ForeColor = System.Drawing.Color.LimeGreen;
-            this.Alquilar.Location = new System.Drawing.Point(490, 452);
+            this.Alquilar.Location = new System.Drawing.Point(902, 358);
             this.Alquilar.Name = "Alquilar";
             this.Alquilar.Size = new System.Drawing.Size(152, 55);
             this.Alquilar.TabIndex = 2;

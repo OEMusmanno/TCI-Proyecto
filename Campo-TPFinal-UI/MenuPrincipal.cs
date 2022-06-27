@@ -1,7 +1,7 @@
-﻿using Campo_TPFinal_BE.Sistema;
+﻿using Campo_TPFinal_BE.Sistema.Idioma;
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
-using Campo_TPFinal_BLLContracts.Sistema;
+using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 
 namespace Campo_TPFinal_UI
 {
@@ -9,15 +9,25 @@ namespace Campo_TPFinal_UI
     {
         private readonly RegistrarAlquiler registrarAlquiler;
         private readonly AplicarPenalidad aplicarPenalidad;
+        private readonly AdministracionDeUsuarios administrarUsuarios;
+        private readonly AdministracionPerfiles administracionPerfiles;
         private readonly IBitacoraService bitacoraService;
         private readonly ITraductorService traductorService;
 
-        public MenuPrincipal(IBitacoraService bitacoraService, RegistrarAlquiler registrarAlquiler, AplicarPenalidad aplicarPenalidad, ITraductorService traductorService)
+        public MenuPrincipal(
+            IBitacoraService bitacoraService,
+            RegistrarAlquiler registrarAlquiler,
+            AplicarPenalidad aplicarPenalidad,
+            ITraductorService traductorService,
+            AdministracionDeUsuarios administrarUsuarios,
+            AdministracionPerfiles administracionPerfiles)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
             this.aplicarPenalidad = aplicarPenalidad;
             this.traductorService = traductorService;
+            this.administrarUsuarios = administrarUsuarios;
+            this.administracionPerfiles = administracionPerfiles;
             InitializeComponent();
 
             if (Session.IsLogged())
@@ -63,6 +73,7 @@ namespace Campo_TPFinal_UI
             btnAlquilar.Text = traducciones[btnAlquilar.Tag.ToString()].Texto;
             btnPerfil.Text = traducciones[btnPerfil.Tag.ToString()].Texto;
             btnSalir.Text = traducciones[btnSalir.Tag.ToString()].Texto;
+            btnUsuarios.Text = traducciones[btnUsuarios.Tag.ToString()].Texto;
 
         }
 
@@ -72,6 +83,20 @@ namespace Campo_TPFinal_UI
                 Traducir(Session.GetInstance().usuario.idioma);
             else
                 Traducir(); //trae el idioma por default
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            var form1 = administrarUsuarios;
+            bitacoraService.GuardarBitacoraDefault("Ingreso a administracion de Usuarios");
+            form1.ShowDialog();
+        }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            var form1 = administracionPerfiles;
+            bitacoraService.GuardarBitacoraDefault("Ingreso a administracion de Usuarios");
+            form1.ShowDialog();
         }
     }
 }

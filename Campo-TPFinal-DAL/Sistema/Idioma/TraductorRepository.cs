@@ -1,4 +1,5 @@
-﻿using Campo_TPFinal_BE.Sistema;
+﻿using Campo_TPFinal_BE.Sistema.Idioma;
+using Campo_TPFinal_DALContracts.Sistema.DB;
 using System.Data;
 
 namespace Campo_TPFinal_DALContracts.Sistema.Idioma

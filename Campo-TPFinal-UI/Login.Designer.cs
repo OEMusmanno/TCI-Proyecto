@@ -44,9 +44,9 @@
             // 
             this.btnLogIn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnLogIn.ForeColor = System.Drawing.Color.Black;
-            this.btnLogIn.Location = new System.Drawing.Point(69, 265);
+            this.btnLogIn.Location = new System.Drawing.Point(53, 265);
             this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(100, 50);
+            this.btnLogIn.Size = new System.Drawing.Size(134, 50);
             this.btnLogIn.TabIndex = 0;
             this.btnLogIn.Tag = "btnLogIn";
             this.btnLogIn.Text = "Login";

@@ -1,6 +1,6 @@
-﻿using Campo_TPFinal_BE.Sistema;
+﻿using Campo_TPFinal_BE.Sistema.Idioma;
 using Campo_TPFinal_BE.Usuario;
-using Campo_TPFinal_BLLContracts.Sistema;
+using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using System;
 using System.Collections.Generic;
 using System.Linq;

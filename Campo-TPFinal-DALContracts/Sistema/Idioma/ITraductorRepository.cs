@@ -1,4 +1,4 @@
-﻿using Campo_TPFinal_BE.Sistema;
+﻿using Campo_TPFinal_BE.Sistema.Idioma;
 using System;
 using System.Collections.Generic;
 using System.Linq;

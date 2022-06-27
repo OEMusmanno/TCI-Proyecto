@@ -1,14 +1,13 @@
-﻿using Campo_TPFinal_BE.Sistema;
+﻿using Campo_TPFinal_BE.Sistema.Idioma;
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
-using Campo_TPFinal_BLLContracts.Sistema;
+using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
 
 namespace Campo_TPFinal_UI
 {
     public partial class Login : Form, IIdiomaService
     {
-        private readonly LogManager logManager;
         private readonly MenuPrincipal MenuPrincipal;
         private readonly IBitacoraService bitacoraService;
         private readonly ILoginService loginService;
@@ -16,9 +15,8 @@ namespace Campo_TPFinal_UI
         static Lenguaje lenguaje;
 
 
-        public Login(LogManager logManager, MenuPrincipal menuPrincipal, IBitacoraService bitacoraService, ILoginService loginService, ITraductorService traductorService)
+        public Login( MenuPrincipal menuPrincipal, IBitacoraService bitacoraService, ILoginService loginService, ITraductorService traductorService)
         {
-            this.logManager = logManager;
             this.MenuPrincipal = menuPrincipal;
             this.bitacoraService = bitacoraService;
             this.loginService = loginService;

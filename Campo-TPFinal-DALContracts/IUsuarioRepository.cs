@@ -11,5 +11,13 @@ namespace Campo_TPFinal_DALContracts
     {
         public Usuario ObtenerPorAlias(string alias);
         List<Usuario> Listar();
+     
+        void ActualizarUsuario(Usuario user);
+        void AgregarUsuario(Usuario user);
+     
+        void BorrarUsuario(int userId);
+        void bloquear(int userId);
+        void desbloquear(int userId);
+        List<Usuario> ListarBloqueados();
     }
 }

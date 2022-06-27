@@ -1,4 +1,4 @@
-﻿using Campo_TPFinal_DALContracts;
+﻿using Campo_TPFinal_DALContracts.Sistema.DB;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campo_TPFinal_DAL
+namespace Campo_TPFinal_DAL.Sistema.DB
 {
-    public class DataAccess: IDataAccess
+    public class DataAccess : IDataAccess
     {
         SqlConnection mCon = new SqlConnection(ConfigurationManager.ConnectionStrings["StringConexion"].ConnectionString);
 
@@ -47,7 +47,7 @@ namespace Campo_TPFinal_DAL
             }
             catch (Exception ex)
             {
-                throw (ex);
+                throw ex;
             }
             finally
             {
@@ -55,7 +55,7 @@ namespace Campo_TPFinal_DAL
                     mCon.Close();
             }
         }
-        
+
         public object ExecuteScalar(string pCommandText)
         {
             try
@@ -66,7 +66,7 @@ namespace Campo_TPFinal_DAL
             }
             catch (Exception ex)
             {
-                throw (ex);
+                throw ex;
             }
             finally
             {

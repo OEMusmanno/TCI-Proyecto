@@ -1,5 +1,5 @@
-﻿using Campo_TPFinal_BE.Sistema;
-using Campo_TPFinal_BLLContracts.Sistema;
+﻿using Campo_TPFinal_BE.Sistema.Idioma;
+using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using System;
 using System.Collections.Generic;

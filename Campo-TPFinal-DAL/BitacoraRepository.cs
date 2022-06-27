@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_DALContracts;
+using Campo_TPFinal_DALContracts.Sistema.DB;
 
 namespace Campo_TPFinal_DAL
 {

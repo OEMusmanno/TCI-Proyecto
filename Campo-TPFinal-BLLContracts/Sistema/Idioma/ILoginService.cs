@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campo_TPFinal_BLLContracts.Sistema
+namespace Campo_TPFinal_BLLContracts.Sistema.Idioma
 {
     public interface ILoginService
     {
