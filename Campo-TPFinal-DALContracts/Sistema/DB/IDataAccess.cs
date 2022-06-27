@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Campo_TPFinal_DALContracts
+namespace Campo_TPFinal_DALContracts.Sistema.DB
 {
     public interface IDataAccess
     {

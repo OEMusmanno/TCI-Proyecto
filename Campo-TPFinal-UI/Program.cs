@@ -4,19 +4,25 @@ using Campo_TPFinal_BLL.Penalidades;
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLL.Sistema;
 using Campo_TPFinal_BLL.Sistema.Idioma;
+using Campo_TPFinal_BLL.Sistema.Perfil;
 using Campo_TPFinal_BLL.Vehiculo;
 using Campo_TPFinal_BLL.Vehiculo.Estados;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Alquiler;
 using Campo_TPFinal_BLLContracts.Penalidad;
-using Campo_TPFinal_BLLContracts.Sistema;
+using Campo_TPFinal_BLLContracts.Sistema.Idioma;
+using Campo_TPFinal_BLLContracts.Sistema.Perfil;
 using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
 using Campo_TPFinal_DAL;
 using Campo_TPFinal_DAL.Alquiler;
+using Campo_TPFinal_DAL.Sistema.DB;
+using Campo_TPFinal_DAL.Sistema.Perfiles;
 using Campo_TPFinal_DAL.Vehiculo;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Alquiler;
+using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
+using Campo_TPFinal_DALContracts.Sistema.Perfiles;
 using Campo_TPFinal_DALContracts.Vehiculo;
 using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,8 +70,10 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IAlquilerService, AlquilerService>()
               .AddSingleton<IAlquilerRepository, AlquilerRepository>() 
               .AddSingleton<IPenalidadRepository, PenalidadRepository>()
+              .AddSingleton<IPerfilRepository, PerfilRepository>()
               .AddSingleton<ITraductorRepository, TraductorRepository>()
               .AddSingleton<IPenalidadService, PenalidadService>()              
+              .AddSingleton<IPerfilService, PerfilService>()              
               .AddSingleton<IEstadoService, DisponibleService>()              
               .AddSingleton<IEstadoService, ReservadoService>()
               .AddSingleton<ILoginService, LoginService>()              
@@ -74,6 +82,8 @@ namespace Campo_TPFinal_UI
               .AddSingleton<AplicarPenalidad>()
               .AddSingleton<RegistrarAlquiler>()
               .AddSingleton<MenuPrincipal>()
+              .AddSingleton<AdministracionDeUsuarios>()
+              .AddSingleton<AdministracionPerfiles>()
               .AddSingleton<Login>()
               .BuildServiceProvider();
 

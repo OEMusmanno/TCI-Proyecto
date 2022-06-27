@@ -1,6 +1,7 @@
 ﻿using Campo_TPFinal_BE.Usuario;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Penalidad;
+using Campo_TPFinal_BLLContracts.Sistema.Perfil;
 
 namespace Campo_TPFinal_UI
 {
