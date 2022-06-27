@@ -27,7 +27,7 @@ namespace Campo_TPFinal_DAL
 
         public List<Auto> Listar()
         {
-            var list = dataAccess.ExecuteDataSet("SELECT * FROM[Campo].[dbo].[Auto]");
+            var list = dataAccess.ExecuteDataSet("SELECT * FROM [dbo].[Auto]");
             var _list = new List<Auto>();
             foreach (DataRow item in list.Tables[0].Rows)
             {
@@ -37,6 +37,20 @@ namespace Campo_TPFinal_DAL
             }
             return _list;
         }
+        public Auto ObtenerAuto(int idAuto)
+        {
+            var list = dataAccess.ExecuteDataSet("SELECT * FROM [dbo].[Auto] where id= "+ idAuto);
+            var _list = new List<Auto>();
+            foreach (DataRow item in list.Tables[0].Rows)
+            {
+                Auto _auto = new Auto();
+                ValorizarEntidad(_auto, item);
+                _list.Add(_auto);
+            }
+            return _list.FirstOrDefault();
+        }
+
+
         void ValorizarEntidad(Auto auto, DataRow pDataRow)
         {
             auto.Marca = pDataRow["Marca"].ToString();

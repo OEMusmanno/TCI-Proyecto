@@ -39,6 +39,7 @@
             this.lblTipo = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
             this.lblRoles = new System.Windows.Forms.Label();
+            this.treeConfigurarFamilia = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // lstFamilia
@@ -47,8 +48,9 @@
             this.lstFamilia.ItemHeight = 15;
             this.lstFamilia.Location = new System.Drawing.Point(12, 41);
             this.lstFamilia.Name = "lstFamilia";
-            this.lstFamilia.Size = new System.Drawing.Size(120, 319);
+            this.lstFamilia.Size = new System.Drawing.Size(120, 154);
             this.lstFamilia.TabIndex = 0;
+            this.lstFamilia.SelectedIndexChanged += new System.EventHandler(this.lstFamilia_SelectedIndexChanged);
             // 
             // lblFamilia
             // 
@@ -63,14 +65,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(138, 71);
+            this.textBox1.Location = new System.Drawing.Point(18, 245);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(123, 23);
             this.textBox1.TabIndex = 3;
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(138, 344);
+            this.btnCrear.Location = new System.Drawing.Point(8, 380);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(75, 23);
             this.btnCrear.TabIndex = 4;
@@ -81,7 +83,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(262, 344);
+            this.btnEditar.Location = new System.Drawing.Point(132, 380);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 5;
@@ -91,7 +93,7 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(383, 344);
+            this.btnBorrar.Location = new System.Drawing.Point(253, 380);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 6;
@@ -104,16 +106,17 @@
             // 
             this.lstPatente.FormattingEnabled = true;
             this.lstPatente.ItemHeight = 15;
-            this.lstPatente.Location = new System.Drawing.Point(138, 154);
+            this.lstPatente.Location = new System.Drawing.Point(163, 235);
             this.lstPatente.Name = "lstPatente";
             this.lstPatente.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstPatente.Size = new System.Drawing.Size(318, 184);
+            this.lstPatente.Size = new System.Drawing.Size(200, 139);
             this.lstPatente.TabIndex = 7;
+            this.lstPatente.SelectedIndexChanged += new System.EventHandler(this.lstPatente_SelectedIndexChanged);
             // 
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(337, 71);
+            this.cmbTipo.Location = new System.Drawing.Point(18, 306);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(121, 23);
             this.cmbTipo.TabIndex = 9;
@@ -122,7 +125,7 @@
             // 
             this.lblTipo.AutoSize = true;
             this.lblTipo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTipo.Location = new System.Drawing.Point(337, 43);
+            this.lblTipo.Location = new System.Drawing.Point(18, 278);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblTipo.Size = new System.Drawing.Size(65, 25);
@@ -134,7 +137,7 @@
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelNombre.Location = new System.Drawing.Point(138, 43);
+            this.labelNombre.Location = new System.Drawing.Point(18, 207);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelNombre.Size = new System.Drawing.Size(65, 25);
@@ -146,7 +149,7 @@
             // 
             this.lblRoles.AutoSize = true;
             this.lblRoles.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRoles.Location = new System.Drawing.Point(138, 126);
+            this.lblRoles.Location = new System.Drawing.Point(163, 207);
             this.lblRoles.Name = "lblRoles";
             this.lblRoles.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblRoles.Size = new System.Drawing.Size(65, 25);
@@ -154,11 +157,19 @@
             this.lblRoles.Tag = "lblRoles";
             this.lblRoles.Text = "label2";
             // 
+            // treeConfigurarFamilia
+            // 
+            this.treeConfigurarFamilia.Location = new System.Drawing.Point(138, 41);
+            this.treeConfigurarFamilia.Name = "treeConfigurarFamilia";
+            this.treeConfigurarFamilia.Size = new System.Drawing.Size(220, 154);
+            this.treeConfigurarFamilia.TabIndex = 14;
+            // 
             // AdministracionPerfiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 416);
+            this.ClientSize = new System.Drawing.Size(375, 416);
+            this.Controls.Add(this.treeConfigurarFamilia);
             this.Controls.Add(this.lblRoles);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.cmbTipo);
@@ -192,5 +203,6 @@
         private Label lblTipo;
         private Label labelNombre;
         private Label lblRoles;
+        private TreeView treeConfigurarFamilia;
     }
 }

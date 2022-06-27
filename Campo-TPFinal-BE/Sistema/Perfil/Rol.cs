@@ -10,10 +10,12 @@ namespace Campo_TPFinal_BE.Sistema.Perfil
     {
         public string name { get; set; }
         public int id { get; set; }
+
+        public abstract IList<Rol> Hijos { get; }
         public abstract bool tienePermiso(string permiso);
         public override string ToString()
         {
-            return name;
+            return name + " - " + this.GetType().Name;
         }
     }
 }

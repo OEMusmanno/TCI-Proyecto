@@ -11,5 +11,6 @@ namespace Campo_TPFinal_DALContracts
     public interface IAutoRepository
     {
         List<Auto> Listar();
+        Auto ObtenerAuto(int idAuto);
     }
 }

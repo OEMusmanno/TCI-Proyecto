@@ -39,6 +39,25 @@ namespace Campo_TPFinal_DAL.Sistema.Perfiles
             return _list;
         }
 
+        private List<Rol> getRolesPorFamilia(int familiaId)
+        {
+
+            var list = _dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[Patente_Familia] where id_familia =" + familiaId);
+            var _list = new List<Rol>();
+            foreach (DataRow item in list.Tables[0].Rows)
+            {
+                if (item["tipo"].ToString() == "patente")
+                {
+                    _list.Add(getPatente((int)item["id_patente"]));
+                }
+                else
+                {
+                    _list.Add(getFamilia((int)item["id_patente"]));
+                }
+            }
+            return _list;
+        }
+
         public List<Rol> getAllRoles()
         {
             var listRol = new List<Rol>();
@@ -55,7 +74,7 @@ namespace Campo_TPFinal_DAL.Sistema.Perfiles
             var _list = new List<Familia>();
             foreach (DataRow item in list.Tables[0].Rows)
             {
-                _list.Add(new Familia() { name = item["nombre"].ToString(), id = (int)item["id"], patentes = getRoles((int)item["id"]) });
+                _list.Add(new Familia() { name = item["nombre"].ToString(), id = (int)item["id"], patentes = getRolesPorFamilia((int)item["id"]) });
             }
             return _list;
         }

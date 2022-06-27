@@ -20,13 +20,12 @@ namespace Campo_TPFinal_UI
         private readonly ITraductorService traductorService;
         private readonly IPerfilService perfilService;
 
-
         public AdministracionPerfiles(ITraductorService traductorService, IPerfilService perfilService)
         {
             InitializeComponent();
             this.traductorService = traductorService;
             this.perfilService = perfilService;
-           
+
         }
 
         private void AdministracionPerfiles_Load(object sender, EventArgs e)
@@ -64,6 +63,7 @@ namespace Campo_TPFinal_UI
             cmbTipo.Items.Clear();
             cmbTipo.Items.Add("Familia");
             cmbTipo.Items.Add("Patente");
+            MostrarFamilia();
             cmbTipo.SelectedIndex = 0;
         }
 
@@ -92,6 +92,47 @@ namespace Campo_TPFinal_UI
         {
             perfilService.borrarPerfil((Rol)lstPatente.SelectedItem);
             limpiar();
+        }
+
+
+        void MostrarEnTreeView(TreeNode tn, Rol familia)
+        {
+            TreeNode n = new TreeNode(familia.name);
+            tn.Tag = familia;
+            tn.Nodes.Add(n);
+            if (familia.Hijos != null)
+                foreach (var item in familia.Hijos)
+                {
+                    MostrarEnTreeView(n, item);
+                }
+        }
+
+        void MostrarFamilia()
+        {
+            if ((Familia)lstFamilia.SelectedItem == null) return;
+            
+            this.treeConfigurarFamilia.Nodes.Clear();
+
+            TreeNode root = new TreeNode(((Familia)lstFamilia.SelectedItem).name);
+            root.Tag = (Familia)lstFamilia.SelectedItem;
+            this.treeConfigurarFamilia.Nodes.Add(root);
+
+            foreach (var item in ((Familia)lstFamilia.SelectedItem).patentes)
+            {
+                MostrarEnTreeView(root, item);
+            }
+
+            treeConfigurarFamilia.ExpandAll();
+        }
+
+        private void lstPatente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void lstFamilia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MostrarFamilia();
         }
     }
 }

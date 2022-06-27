@@ -1,4 +1,5 @@
-﻿using Campo_TPFinal_BE.Vehiculo;
+﻿using Campo_TPFinal_BE.Alquiler;
+using Campo_TPFinal_BE.Vehiculo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Campo_TPFinal_DALContracts.Alquiler
     {
        public void RegistrarReserva(int id);
        public bool ValidarReservasAnteriores();
+       Reserva ObtenerReserva(int idReserva);
+        void FinalizarReserva();
     }
 }
