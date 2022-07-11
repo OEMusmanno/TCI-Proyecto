@@ -31,7 +31,7 @@ namespace Campo_TPFinal_BLL.Sistema
             {
                 intentos += 1;
                 bitacoraService.GuardarBitacora("Numero de intentos de login: " + intentos + " del usuario: " + user);
-                throw new Exception("Usuario o contraseña incorrecta");
+                throw new Exception(Session.traducciones["ErrorLogin"].Texto);
             }
 
         }

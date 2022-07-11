@@ -16,7 +16,6 @@ namespace Campo_TPFinal_UI
         private readonly ITraductorService traductorService;
         private readonly CambioIdioma cambioIdioma;
         private readonly GestionIdioma gestionIdioma;
-        private readonly Login login;
 
 
         public MenuPrincipal(

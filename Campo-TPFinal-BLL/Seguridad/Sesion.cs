@@ -63,7 +63,7 @@ namespace Campo_TPFinal_BLL.Seguridad
         }
         public static void CambiarIdioma(Lenguaje idioma)
         {
-            if (instance != null)
+            if (instance != null && instance.usuario != null)
             {
                 instance.usuario.idioma = idioma;
             }

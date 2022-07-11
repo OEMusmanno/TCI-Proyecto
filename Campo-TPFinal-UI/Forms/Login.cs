@@ -46,9 +46,10 @@ namespace Campo_TPFinal_UI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bitacoraService.GuardarBitacora(ex.Message);
-                if (ex.Message == "Se realizaron muchos intentos. Se cerrara el sistema")
+                if (ex.Message == Session.traducciones["Error3Intento"].Texto)
                 {
                     this.Close();
+                    Application.Exit();
                 }
             }
         }
@@ -60,8 +61,7 @@ namespace Campo_TPFinal_UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cambioIdioma.ShowDialog();
-           
+            cambioIdioma.ShowDialog();           
         }
 
         public void ActualizarLenguaje(Lenguaje idioma)

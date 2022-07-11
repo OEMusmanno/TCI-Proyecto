@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_BLLContracts;
+using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
 using Campo_TPFinal_DALContracts;
 using System;
@@ -12,7 +13,6 @@ namespace Campo_TPFinal_BLL.Seguridad
     public class LogManager
     {
         private readonly IUsuarioService usuarioService;
-
         private readonly IBitacoraService bitacoraService;
         public LogManager(IUsuarioService usuarioService, IBitacoraService bitacoraService)
         {
@@ -23,18 +23,18 @@ namespace Campo_TPFinal_BLL.Seguridad
         public bool log(string name, string pass, int intentos)
         {
             var sesion = Session.GetInstance();
-            if (name == "" || pass == "") { throw new Exception("Debe Ingresar todos los campos"); }
+            if (name == "" || pass == "") { throw new Exception(Session.traducciones["ErrorCampoVacio"].Texto); }
             var bdUser = usuarioService.ObtenerPorAlias(name);
 
-            if (bdUser == null) { throw new Exception("No existe el usuario"); }
-            if (bdUser.bloqueado) { throw new Exception("el usuario se encuentra bloqueado"); }
+            if (bdUser == null) { throw new Exception(Session.traducciones["ErrorLogin"].Texto); }
+            if (bdUser.bloqueado) { throw new Exception(Session.traducciones["ErrorUsuarioBloqueado"].Texto); }
 
             if (intentos == 3)
             {
-                throw new Exception("Se realizaron muchos intentos. Se bloqueo el usuario. Se cerrara el sistema");
                 usuarioService.bloquear(bdUser.Id);
-                bitacoraService.GuardarBitacoraDefault("El usuario: " + name + " ingreso 3 veces mal la contraseña");
-                bitacoraService.GuardarBitacoraDefault("El usuario: " + name + " ha sido bloqueado");
+                bitacoraService.GuardarBitacora("El usuario: " + name + " ingreso 3 veces mal la contraseña");
+                bitacoraService.GuardarBitacora("El usuario: " + name + " ha sido bloqueado");
+                throw new Exception(Session.traducciones["Error3Intento"].Texto);
             }
 
             if (bdUser != null ? bdUser.password == CryptographyHelper.encrypt(pass) : false)
