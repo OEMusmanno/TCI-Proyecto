@@ -13,6 +13,7 @@ namespace Campo_TPFinal_DALContracts.Sistema.Perfiles
         void AddRol(Rol rol);
         void DeleteRol(Rol rol);
         List<Familia> getAllFamilia();
+        Rol getAllFamiliaPorId(int familiaId);
         List<Patente> getAllPatente();
         List<Rol> getAllRoles();
         Familia getFamilia(int familiaId);

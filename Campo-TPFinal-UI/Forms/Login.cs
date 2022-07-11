@@ -3,6 +3,7 @@ using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
+using Campo_TPFinal_UI.Forms.Idioma;
 
 namespace Campo_TPFinal_UI
 {
@@ -12,21 +13,23 @@ namespace Campo_TPFinal_UI
         private readonly IBitacoraService bitacoraService;
         private readonly ILoginService loginService;
         private readonly ITraductorService traductorService;
+        private readonly CambioIdioma cambioIdioma;
         static Lenguaje lenguaje;
 
 
-        public Login( MenuPrincipal menuPrincipal, IBitacoraService bitacoraService, ILoginService loginService, ITraductorService traductorService)
+        public Login(MenuPrincipal menuPrincipal, IBitacoraService bitacoraService, ILoginService loginService, ITraductorService traductorService, CambioIdioma cambioIdioma)
         {
             this.MenuPrincipal = menuPrincipal;
             this.bitacoraService = bitacoraService;
             this.loginService = loginService;
             this.traductorService = traductorService;
             InitializeComponent();
-
             if (Session.IsLogged())
                 Traducir(Session.GetInstance().usuario.idioma);
             else
                 Traducir(); //trae el idioma por default
+            Session.SuscribirObservador(this);
+            this.cambioIdioma = cambioIdioma;
         }
 
         private void btnLogIn_Click_1(object sender, EventArgs e)
@@ -57,15 +60,8 @@ namespace Campo_TPFinal_UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            lenguaje = new Lenguaje { Nombre = "Español", id = 1 };
-            bitacoraService.GuardarBitacora("se cambio el lenguaje a : " + lenguaje.Nombre);
-            ActualizarLenguaje(lenguaje);
-        }
-        private void botonLenguaje1_Click(object sender, EventArgs e)
-        {
-            lenguaje = new Lenguaje { Nombre = "English", id = 2 };
-            bitacoraService.GuardarBitacora("se cambio el lenguaje a : " + lenguaje.Nombre);
-            ActualizarLenguaje(lenguaje);
+            cambioIdioma.ShowDialog();
+           
         }
 
         public void ActualizarLenguaje(Lenguaje idioma)
@@ -74,13 +70,11 @@ namespace Campo_TPFinal_UI
         }
 
         private void Traducir(Lenguaje idioma = null)
-        {           
-            var traducciones = traductorService.ObtenerTraducciones(idioma);          
-                     
-            LenguajeLabel.Text = traducciones[LenguajeLabel.Tag.ToString()].Texto;
-            passwordLabel.Text = traducciones[passwordLabel.Tag.ToString()].Texto;
-            userLabel.Text = traducciones[userLabel.Tag.ToString()].Texto;
-            btnLogIn.Text = traducciones[btnLogIn.Tag.ToString()].Texto;
+        {
+            LenguajeLabel.Text = Session.traducciones[LenguajeLabel.Tag.ToString()].Texto;
+            passwordLabel.Text = Session.traducciones[passwordLabel.Tag.ToString()].Texto;
+            userLabel.Text = Session.traducciones[userLabel.Tag.ToString()].Texto;
+            btnLogIn.Text = Session.traducciones[btnLogIn.Tag.ToString()].Texto;
 
         }
 

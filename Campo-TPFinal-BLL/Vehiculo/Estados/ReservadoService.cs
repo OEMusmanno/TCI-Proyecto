@@ -17,13 +17,19 @@ namespace Campo_TPFinal_BLL.Vehiculo.Estados
 
         public void cambioDeEstado(Reservado estado, Auto auto)
         {
-            bitacoraService.GuardarBitacoraDefault("Cambio de estado a " + estado.nombre);
-            auto.Estado = estado;
+            throw new NotImplementedException();
         }
 
         public void cambioDeEstado(Disponible estado, Auto auto)
         {
             throw new NotImplementedException();
+        }
+
+        public void cambioDeEstado(bool estado, Auto auto)
+        {
+            bitacoraService.GuardarBitacoraDefault(String.Format("Cambio de estado a {0}", (estado == false ? "Disponible" : "Ocupado")));
+            auto.Estado = estado;
+            
         }
     }
 }

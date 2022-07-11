@@ -53,9 +53,9 @@ namespace Campo_TPFinal_BLL.Alquiler
             return alquilerRepository.ValidarReservasAnteriores();         
         }
 
-        public void FinalizarReserva()
+        public void FinalizarReserva(int id_auto)
         {
-            alquilerRepository.FinalizarReserva();
+            alquilerRepository.FinalizarReserva(id_auto);
         }
     }
 }

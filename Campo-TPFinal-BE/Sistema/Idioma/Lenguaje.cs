@@ -11,5 +11,10 @@ namespace Campo_TPFinal_BE.Sistema.Idioma
         public int id { get; set; }
         public string Nombre { get; set; }
         public bool Default { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

@@ -13,6 +13,6 @@ namespace Campo_TPFinal_BLLContracts.Alquiler
         Reserva obtenerAlquiler();
         void RegistrarReserva(int id, string marca, string modelo);
         bool validarReservasAnteriores();
-        void FinalizarReserva();
+        void FinalizarReserva(int id_auto);
     }
 }

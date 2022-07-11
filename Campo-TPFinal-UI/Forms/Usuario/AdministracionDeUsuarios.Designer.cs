@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministracionDeUsuarios));
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.lblUsuarios = new System.Windows.Forms.Label();
@@ -75,10 +76,11 @@
             // lblUsuarios
             // 
             this.lblUsuarios.AutoSize = true;
-            this.lblUsuarios.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblUsuarios.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblUsuarios.ForeColor = System.Drawing.SystemColors.Control;
             this.lblUsuarios.Location = new System.Drawing.Point(12, 4);
             this.lblUsuarios.Name = "lblUsuarios";
-            this.lblUsuarios.Size = new System.Drawing.Size(52, 21);
+            this.lblUsuarios.Size = new System.Drawing.Size(57, 21);
             this.lblUsuarios.TabIndex = 24;
             this.lblUsuarios.Tag = "lblUsuarios";
             this.lblUsuarios.Text = "label5";
@@ -86,10 +88,11 @@
             // lblBloqueados
             // 
             this.lblBloqueados.AutoSize = true;
-            this.lblBloqueados.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBloqueados.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblBloqueados.ForeColor = System.Drawing.SystemColors.Control;
             this.lblBloqueados.Location = new System.Drawing.Point(291, 1);
             this.lblBloqueados.Name = "lblBloqueados";
-            this.lblBloqueados.Size = new System.Drawing.Size(52, 21);
+            this.lblBloqueados.Size = new System.Drawing.Size(57, 21);
             this.lblBloqueados.TabIndex = 23;
             this.lblBloqueados.Tag = "lblBloqueados";
             this.lblBloqueados.Text = "label4";
@@ -119,10 +122,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
             this.label3.Location = new System.Drawing.Point(146, 178);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 21);
+            this.label3.Size = new System.Drawing.Size(35, 21);
             this.label3.TabIndex = 20;
             this.label3.Text = "Rol";
             // 
@@ -154,10 +158,11 @@
             // lblContraseña
             // 
             this.lblContraseña.AutoSize = true;
-            this.lblContraseña.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblContraseña.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblContraseña.ForeColor = System.Drawing.SystemColors.Control;
             this.lblContraseña.Location = new System.Drawing.Point(146, 122);
             this.lblContraseña.Name = "lblContraseña";
-            this.lblContraseña.Size = new System.Drawing.Size(52, 21);
+            this.lblContraseña.Size = new System.Drawing.Size(57, 21);
             this.lblContraseña.TabIndex = 16;
             this.lblContraseña.Tag = "lblContraseña";
             this.lblContraseña.Text = "label2";
@@ -165,10 +170,11 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblNombre.ForeColor = System.Drawing.SystemColors.Control;
             this.lblNombre.Location = new System.Drawing.Point(146, 71);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(52, 21);
+            this.lblNombre.Size = new System.Drawing.Size(57, 21);
             this.lblNombre.TabIndex = 15;
             this.lblNombre.Tag = "lblNombre";
             this.lblNombre.Text = "label1";
@@ -202,10 +208,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(146, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 21);
+            this.label1.Size = new System.Drawing.Size(25, 21);
             this.label1.TabIndex = 28;
             this.label1.Tag = "lblNombre";
             this.label1.Text = "Id";
@@ -213,7 +220,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(146, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(16, 21);
@@ -249,6 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(421, 445);
             this.Controls.Add(this.btnDesbloquear);
             this.Controls.Add(this.btnBloquear);
@@ -268,9 +277,10 @@
             this.Controls.Add(this.lblContraseña);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.listBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdministracionDeUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User Management";
+            this.Text = "Tutú Carsharing";
             this.Load += new System.EventHandler(this.AdministracionDeUsuarios_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

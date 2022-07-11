@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministracionPerfiles));
             this.lstFamilia = new System.Windows.Forms.ListBox();
             this.lblFamilia = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -40,6 +41,8 @@
             this.labelNombre = new System.Windows.Forms.Label();
             this.lblRoles = new System.Windows.Forms.Label();
             this.treeConfigurarFamilia = new System.Windows.Forms.TreeView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lstFamilia
@@ -56,6 +59,7 @@
             // 
             this.lblFamilia.AutoSize = true;
             this.lblFamilia.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblFamilia.ForeColor = System.Drawing.SystemColors.Control;
             this.lblFamilia.Location = new System.Drawing.Point(12, 9);
             this.lblFamilia.Name = "lblFamilia";
             this.lblFamilia.Size = new System.Drawing.Size(48, 25);
@@ -83,17 +87,18 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(132, 380);
+            this.btnEditar.Location = new System.Drawing.Point(138, 380);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 5;
             this.btnEditar.Tag = "btnEditar";
             this.btnEditar.Text = "button2";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(253, 380);
+            this.btnBorrar.Location = new System.Drawing.Point(283, 380);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 6;
@@ -125,6 +130,7 @@
             // 
             this.lblTipo.AutoSize = true;
             this.lblTipo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTipo.ForeColor = System.Drawing.SystemColors.Control;
             this.lblTipo.Location = new System.Drawing.Point(18, 278);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -137,6 +143,7 @@
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelNombre.ForeColor = System.Drawing.SystemColors.Control;
             this.labelNombre.Location = new System.Drawing.Point(18, 207);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -149,6 +156,7 @@
             // 
             this.lblRoles.AutoSize = true;
             this.lblRoles.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblRoles.ForeColor = System.Drawing.SystemColors.Control;
             this.lblRoles.Location = new System.Drawing.Point(163, 207);
             this.lblRoles.Name = "lblRoles";
             this.lblRoles.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -164,11 +172,23 @@
             this.treeConfigurarFamilia.Size = new System.Drawing.Size(220, 154);
             this.treeConfigurarFamilia.TabIndex = 14;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(138, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(41, 37);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // AdministracionPerfiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(375, 416);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.treeConfigurarFamilia);
             this.Controls.Add(this.lblRoles);
             this.Controls.Add(this.labelNombre);
@@ -181,10 +201,12 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblFamilia);
             this.Controls.Add(this.lstFamilia);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdministracionPerfiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Profile Management";
+            this.Text = "Tutú Carsharing";
             this.Load += new System.EventHandler(this.AdministracionPerfiles_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +226,6 @@
         private Label labelNombre;
         private Label lblRoles;
         private TreeView treeConfigurarFamilia;
+        private PictureBox pictureBox1;
     }
 }

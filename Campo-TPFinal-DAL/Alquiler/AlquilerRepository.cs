@@ -21,16 +21,18 @@ namespace Campo_TPFinal_DAL.Alquiler
             this.dataAccess = dataAccess;
         }
 
-        public void FinalizarReserva()
+        public void FinalizarReserva(int id_auto)
         {
             var fechaHora = DateTime.Now;
             string format = "yyyy-MM-dd HH:mm:ss.FFF";
-            dataAccess.ExecuteNonQuery("UPDATE [dbo].[Reserva] SET [fechaFin] = '" + fechaHora.ToString(format)+"'");
+            var query  = string.Format("UPDATE [dbo].[Reserva] SET [fechaFin] = '{0}' where id_auto = {1} and [fechaFin] IS NULL ", fechaHora.ToString(format), id_auto);
+            dataAccess.ExecuteNonQuery(query);
+            CambiarEstado(id_auto, 0);
         }
 
         public Reserva ObtenerReserva(int id_usuario)
         {
-            var list = dataAccess.ExecuteDataSet("SELECT * FROM [Reserva] where [id_usuario] = " + id_usuario);
+            var list = dataAccess.ExecuteDataSet(String.Format("SELECT * FROM [Reserva] where [id_usuario]  = {0} and [fechaFin] IS NULL " , id_usuario));
             var _list = new List<Reserva>();
             foreach (DataRow item in list.Tables[0].Rows)
             {
@@ -41,7 +43,12 @@ namespace Campo_TPFinal_DAL.Alquiler
             }
             return _list.FirstOrDefault();
         }
-    
+
+        public void CambiarEstado(int id, int estado)
+        {
+            string _commandText = String.Format("UPDATE Auto SET Estado = {0} where id = {1}",estado, id);
+            dataAccess.ExecuteNonQuery(_commandText);
+        }
 
         public void RegistrarReserva(int id)
         {
@@ -49,6 +56,7 @@ namespace Campo_TPFinal_DAL.Alquiler
             string format = "yyyy-MM-dd HH:mm:ss.FFF";
             string _commandText = "INSERT INTO [dbo].[Reserva] ([id_auto] ,[id_usuario] ,[fechaInicio]) VALUES (" + id+ ", " + Session.GetInstance().usuario.Id + ",'"+ fechaHora.ToString(format) +  "')";
             dataAccess.ExecuteNonQuery(_commandText);
+            CambiarEstado(id,1);
         }
 
         public bool ValidarReservasAnteriores()

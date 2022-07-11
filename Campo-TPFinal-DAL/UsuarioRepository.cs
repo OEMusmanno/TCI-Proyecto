@@ -1,6 +1,8 @@
-﻿using Campo_TPFinal_BE.Usuario;
+﻿using Campo_TPFinal_BE.Sistema.Perfil;
+using Campo_TPFinal_BE.Usuario;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Sistema.DB;
+using Campo_TPFinal_DALContracts.Sistema.Perfiles;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,10 +15,12 @@ namespace Campo_TPFinal_DAL
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly IDataAccess _dataAccess;
+        private readonly IPerfilRepository perfilRepository;        
 
-        public UsuarioRepository(IDataAccess dataAccess)
+        public UsuarioRepository(IDataAccess dataAccess, IPerfilRepository perfilRepository)
         {
             _dataAccess = dataAccess;
+            this.perfilRepository = perfilRepository;
         }
 
         public List<Usuario> Listar()
@@ -46,7 +50,7 @@ namespace Campo_TPFinal_DAL
         }
         public Usuario ObtenerPorAlias(string alias)
         {
-            var list = _dataAccess.ExecuteDataSet("SELECT * FROM[Campo].[dbo].[Usuario] WHERE usuario = '" + alias + "'");
+            var list = _dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[Usuario] WHERE usuario = '" + alias + "'");
             Usuario usuario = new Usuario();
             ValorizarEntidad(usuario, list.Tables[0].Rows[0]);
             return usuario;
@@ -57,6 +61,8 @@ namespace Campo_TPFinal_DAL
             _usuario.alias = pDataRow["usuario"].ToString();
             _usuario.password = pDataRow["contraseña"].ToString();
             _usuario.Id = int.Parse(pDataRow["Id"].ToString()); 
+            _usuario.bloqueado = bool.Parse(pDataRow["bloqueado"].ToString()); 
+            _usuario.rol = perfilRepository.getAllFamiliaPorId(int.Parse(pDataRow["id_rol"].ToString()));
         }
 
 

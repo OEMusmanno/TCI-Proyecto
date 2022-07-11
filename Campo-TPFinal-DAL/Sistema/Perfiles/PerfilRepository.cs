@@ -79,6 +79,19 @@ namespace Campo_TPFinal_DAL.Sistema.Perfiles
             return _list;
         }
 
+        public Rol getAllFamiliaPorId(int familiaId)
+        {
+
+            var list = _dataAccess.ExecuteDataSet(string.Format("SELECT * FROM [Familia] WHERE id = {0}", familiaId));
+            var _list = new List<Familia>();
+            foreach (DataRow item in list.Tables[0].Rows)
+            {
+                _list.Add(new Familia() { name = item["nombre"].ToString(), id = (int)item["id"], patentes = getRolesPorFamilia((int)item["id"]) });
+            }
+            return _list.FirstOrDefault();
+        }
+
+
         public Familia getFamilia(int familiaId)
         {
             var list = _dataAccess.ExecuteDataSet("SELECT * FROM [Familia] where [id] = "+  familiaId);

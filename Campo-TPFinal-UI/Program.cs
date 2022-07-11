@@ -24,6 +24,7 @@ using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.Perfiles;
 using Campo_TPFinal_DALContracts.Vehiculo;
+using Campo_TPFinal_UI.Forms.Idioma;
 using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -78,13 +79,15 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IEstadoService, ReservadoService>()
               .AddSingleton<ILoginService, LoginService>()              
               .AddSingleton<ITraductorService, TraductorService>()              
+              .AddSingleton<Login>()
+              .AddSingleton<MenuPrincipal>()
               .AddSingleton<LogManager>()
               .AddSingleton<AplicarPenalidad>()
               .AddSingleton<RegistrarAlquiler>()
-              .AddSingleton<MenuPrincipal>()
+              .AddSingleton<CambioIdioma>()
+              .AddSingleton<GestionIdioma>()
               .AddSingleton<AdministracionDeUsuarios>()
               .AddSingleton<AdministracionPerfiles>()
-              .AddSingleton<Login>()
               .BuildServiceProvider();
 
         }

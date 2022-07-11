@@ -29,7 +29,7 @@ namespace Campo_TPFinal_UI
         }
 
         private void AdministracionPerfiles_Load(object sender, EventArgs e)
-        {
+        {          
             if (Session.IsLogged())
                 Traducir(Session.GetInstance().usuario.idioma);
             else
@@ -133,6 +133,11 @@ namespace Campo_TPFinal_UI
         private void lstFamilia_SelectedIndexChanged(object sender, EventArgs e)
         {
             MostrarFamilia();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

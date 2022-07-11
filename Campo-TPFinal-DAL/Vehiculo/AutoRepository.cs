@@ -27,7 +27,7 @@ namespace Campo_TPFinal_DAL
 
         public List<Auto> Listar()
         {
-            var list = dataAccess.ExecuteDataSet("SELECT * FROM [dbo].[Auto]");
+            var list = dataAccess.ExecuteDataSet("SELECT * FROM [dbo].[Auto] WHERE ESTADO = 0");
             var _list = new List<Auto>();
             foreach (DataRow item in list.Tables[0].Rows)
             {
@@ -57,6 +57,7 @@ namespace Campo_TPFinal_DAL
             auto.Modelo = pDataRow["Modelo"].ToString();
             auto.Id = int.Parse(pDataRow["Id"].ToString());
             auto.tipoVehiculo = _tipoVehiculoService.ObtenerPorId(int.Parse(pDataRow["id_TipoVehiculo"].ToString()));
+            auto.Estado = (bool)pDataRow["Estado"];
             auto.Estacionamiento = _estacionamiento.ObtenerPorId(int.Parse(pDataRow["id_Estacionamiento"].ToString()));
         }
 

@@ -13,8 +13,7 @@ namespace Campo_TPFinal_BE.Sistema.Perfil
             get
             {
                 return new List<Rol>();
-            }
-
+            }            
         }
 
         public override bool tienePermiso(string permiso)

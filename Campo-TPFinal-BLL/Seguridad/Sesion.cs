@@ -19,6 +19,8 @@ namespace Campo_TPFinal_BLL.Seguridad
 
         private static Session instance;
 
+        public static IDictionary<string, Traduccion> traducciones;
+
         public static Session GetInstance()
         {
             if (instance == null)
@@ -40,7 +42,7 @@ namespace Campo_TPFinal_BLL.Seguridad
         public static void Logout()
         {
             instance = null;
-            Notificar(new Lenguaje() { Nombre="Español", id=1});
+            Notificar(new Lenguaje() { Nombre = "Español", id = 1 });
         }
 
         public static void SuscribirObservador(IIdiomaService o)
@@ -64,8 +66,8 @@ namespace Campo_TPFinal_BLL.Seguridad
             if (instance != null)
             {
                 instance.usuario.idioma = idioma;
-                Notificar(idioma);
             }
+            Notificar(idioma);
         }
     }
 }

@@ -32,5 +32,19 @@ namespace Campo_TPFinal_BLL.Sistema.Idioma
         {
             return traductorRepository.ObtenerTraducciones(idioma);
         }
+
+        public void CrearNuevoIdioma(string Nombre) {
+            traductorRepository.CrearIdioma(Nombre);
+            var idioma = traductorRepository.ObtenerIdioma(Nombre);
+            traductorRepository.CrearTraduccionesVaciasParaNuevoIdioma(idioma.id);
+        }
+
+        public void BorrarIdioma(int id) => traductorRepository.BorrarIdioma(id);
+
+        public void EditarTraduccion(string texto, int id) 
+        {
+            traductorRepository.EditarTraduccion(texto , id);
+        }
+
     }
 }

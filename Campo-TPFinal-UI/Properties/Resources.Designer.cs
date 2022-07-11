@@ -59,5 +59,25 @@ namespace Campo_TPFinal_UI.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car_g65f27bfe8_1280 {
+            get {
+                object obj = ResourceManager.GetObject("car-g65f27bfe8_1280", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap male_g152347c63_1280 {
+            get {
+                object obj = ResourceManager.GetObject("male-g152347c63_1280", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

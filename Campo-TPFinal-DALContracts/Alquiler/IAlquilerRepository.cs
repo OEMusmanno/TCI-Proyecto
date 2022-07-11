@@ -13,6 +13,6 @@ namespace Campo_TPFinal_DALContracts.Alquiler
        public void RegistrarReserva(int id);
        public bool ValidarReservasAnteriores();
        Reserva ObtenerReserva(int idReserva);
-        void FinalizarReserva();
+        void FinalizarReserva(int id_auto);
     }
 }

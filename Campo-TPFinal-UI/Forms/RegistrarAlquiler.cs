@@ -11,14 +11,15 @@ namespace Campo_TPFinal_UI
     {
         private readonly IAutoService autoService;
         private readonly IAlquilerService alquilerService;
-
         private readonly ITraductorService traductorService;
+        IDictionary<string, Traduccion> traducciones;
+
         public RegistrarAlquiler(IAutoService autoBLL, IAlquilerService alquilerService, ITraductorService traductorService)
         {
             this.autoService = autoBLL;
-            InitializeComponent();
             this.alquilerService = alquilerService;
             this.traductorService = traductorService;
+            InitializeComponent();
         }
 
         public void ActualizarLenguaje(Lenguaje idioma)
@@ -27,7 +28,7 @@ namespace Campo_TPFinal_UI
         }
         private void Traducir(Lenguaje idioma = null)
         {
-            var traducciones = traductorService.ObtenerTraducciones(idioma);
+            traducciones = traductorService.ObtenerTraducciones(idioma);
 
             btnAlquilar.Text = traducciones[btnAlquilar.Tag.ToString()].Texto;
             lblAlquiler.Text = traducciones[lblAlquiler.Tag.ToString()].Texto;
@@ -59,7 +60,17 @@ namespace Campo_TPFinal_UI
 
             if (alquilerService.validarReservasAnteriores())
             {
-                brnFinalizar.Enabled = true; btnAlquilar.Enabled = false;
+                grdListadoAutos.Visible = false;
+                btnAlquilar.Visible = false;
+                lblAlquiler.Visible = false;
+
+                grpAlquiler.Visible = true;
+                brnFinalizar.Visible = true; 
+                lblMarca.Visible = true;
+                lblMarca1.Visible = true;
+                lblModelo1.Visible = true;
+                lblTipoVehiculo.Visible = true;
+                lblTipoVehiculo1.Visible = true;
                 var reserva = alquilerService.obtenerAlquiler();
                 lblMarca1.Text = reserva.auto.Marca;
                 lblModelo1.Text = reserva.auto.Modelo;
@@ -67,11 +78,16 @@ namespace Campo_TPFinal_UI
             }
             else
             {
-                lblMarca1.Text = "-";
-                lblModelo1.Text = "-";
-                lblTipoVehiculo1.Text = "-";
-                brnFinalizar.Enabled = false;
-                btnAlquilar.Enabled = true;
+                grpAlquiler.Visible = false;
+                lblMarca1.Visible = false;
+                lblModelo1.Visible = false;
+                lblTipoVehiculo1.Visible = false;
+                lblMarca.Visible = false;
+                lblTipoVehiculo.Visible = false;
+                brnFinalizar.Visible = false;
+                btnAlquilar.Visible = true;
+                lblAlquiler.Visible = true;
+                grdListadoAutos.Visible = true;
             }
 
         }
@@ -84,7 +100,7 @@ namespace Campo_TPFinal_UI
                 var Modelo = grdListadoAutos.SelectedRows[0].Cells[2].Value.ToString();
                 alquilerService.RegistrarReserva(Id, Marca, Modelo);
                 Actualizar();
-                MessageBox.Show("Se registro correctamente la reserva", "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(traducciones["ReservaRegistrada"].Texto, "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -95,29 +111,27 @@ namespace Campo_TPFinal_UI
 
         private void RegistrarAlquiler_Load(object sender, EventArgs e)
         {
+            if (Session.IsLogged())
+                Traducir(Session.GetInstance().usuario.idioma);
+            else
+                Traducir(); //trae el idioma por default
             grdListadoAutos.Columns.Clear();
             grdListadoAutos.Columns.Add("id", "id");
             grdListadoAutos.Columns["Id"].Visible = false;
-            grdListadoAutos.Columns.Add("Marca", "Marca");
-            grdListadoAutos.Columns["Marca"].Tag = "lblMarca";
-            grdListadoAutos.Columns.Add("Modelo", "Modelo");
-            grdListadoAutos.Columns["Modelo"].Tag = "lblModelo";
-            grdListadoAutos.Columns.Add("Ubicacion", "Ubicacion");
-            grdListadoAutos.Columns["Ubicacion"].Tag = "lblUbicacion";
+            grdListadoAutos.Columns.Add("Marca", traducciones["lblMarca"].Texto);
+            grdListadoAutos.Columns.Add("Modelo", traducciones["lblModelo"].Texto);
+            grdListadoAutos.Columns.Add("Ubicacion", traducciones["lblUbicacion"].Texto);
             grdListadoAutos.Columns["Ubicacion"].Width = 200;
-            grdListadoAutos.Columns.Add("TipoVehiculo", "Tipo Vehiculo");
-            grdListadoAutos.Columns["TipoVehiculo"].Tag = "lblTipoVehiculo";
-            grdListadoAutos.Columns.Add("MinutoRecorrido", "Minuto Recorrido");
-            grdListadoAutos.Columns["MinutoRecorrido"].Tag = "lblMinuto";
+            grdListadoAutos.Columns.Add("TipoVehiculo", traducciones["lblTipoVehiculo"].Texto);
+            grdListadoAutos.Columns.Add("MinutoRecorrido", traducciones["lblMinuto"].Texto);
             grdListadoAutos.Columns["MinutoRecorrido"].DefaultCellStyle.Format = "c";
-            grdListadoAutos.Columns.Add("MinutoDetenido", "Minuto Detenido");
-            grdListadoAutos.Columns["MinutoDetenido"].Tag = "lblMinutoDetenido";
+            grdListadoAutos.Columns.Add("MinutoDetenido", traducciones["lblMinutoDetenido"].Texto);
             grdListadoAutos.Columns["MinutoDetenido"].DefaultCellStyle.Format = "c";
-            grdListadoAutos.Columns.Add("PrecioDia", "Precio Dia");
+            grdListadoAutos.Columns.Add("PrecioDia", traducciones["lblPrecioDia"].Texto);
             grdListadoAutos.Columns["PrecioDia"].DefaultCellStyle.Format = "c";
-            grdListadoAutos.Columns.Add("PrecioHora", "Precio Hora");
+            grdListadoAutos.Columns.Add("PrecioHora", traducciones["lblPrecioHora"].Texto);
             grdListadoAutos.Columns["PrecioHora"].DefaultCellStyle.Format = "c";
-            grdListadoAutos.Columns.Add("PrecioKmExtra", "Precio Km Extra");
+            grdListadoAutos.Columns.Add("PrecioKmExtra", traducciones["lblPrecioKm"].Texto);
             grdListadoAutos.Columns["PrecioKmExtra"].DefaultCellStyle.Format = "c";
             grdListadoAutos.RowHeadersVisible = false;
             grdListadoAutos.AllowUserToAddRows = false;
@@ -126,11 +140,8 @@ namespace Campo_TPFinal_UI
             grdListadoAutos.MultiSelect = false;
             grdListadoAutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            if (Session.IsLogged())
-                Traducir(Session.GetInstance().usuario.idioma);
-            else
-                Traducir(); //trae el idioma por default
-
+         
+            Session.SuscribirObservador(this);
             Actualizar();
         }
 
@@ -138,10 +149,10 @@ namespace Campo_TPFinal_UI
         {
             try
             {
-
-                alquilerService.FinalizarReserva();
+                int Id = alquilerService.obtenerAlquiler().auto.Id; 
+                alquilerService.FinalizarReserva(Id);
                 Actualizar();
-                MessageBox.Show("Finalizo la Reserva", "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(traducciones["ReservaFinalizada"].Texto, "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)

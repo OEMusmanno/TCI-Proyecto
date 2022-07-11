@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.btnLogIn = new System.Windows.Forms.Button();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
@@ -35,18 +36,20 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.botonLenguaje = new System.Windows.Forms.Button();
-            this.LenguajeLabel = new System.Windows.Forms.Label();
-            this.botonLenguaje1 = new System.Windows.Forms.Button();
+            this.LenguajeLabel = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogIn
             // 
-            this.btnLogIn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnLogIn.ForeColor = System.Drawing.Color.Black;
-            this.btnLogIn.Location = new System.Drawing.Point(53, 265);
+            this.btnLogIn.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogIn.ForeColor = System.Drawing.Color.White;
+            this.btnLogIn.Image = ((System.Drawing.Image)(resources.GetObject("btnLogIn.Image")));
+            this.btnLogIn.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnLogIn.Location = new System.Drawing.Point(15, 310);
             this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(134, 50);
+            this.btnLogIn.Size = new System.Drawing.Size(113, 50);
             this.btnLogIn.TabIndex = 0;
             this.btnLogIn.Tag = "btnLogIn";
             this.btnLogIn.Text = "Login";
@@ -55,24 +58,24 @@
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(69, 144);
+            this.txtUser.Location = new System.Drawing.Point(15, 195);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(100, 23);
+            this.txtUser.Size = new System.Drawing.Size(113, 23);
             this.txtUser.TabIndex = 1;
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(69, 225);
+            this.txtPass.Location = new System.Drawing.Point(15, 268);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(100, 23);
+            this.txtPass.Size = new System.Drawing.Size(113, 23);
             this.txtPass.TabIndex = 2;
             // 
             // userLabel
             // 
             this.userLabel.AutoSize = true;
             this.userLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.userLabel.Location = new System.Drawing.Point(72, 116);
+            this.userLabel.Location = new System.Drawing.Point(12, 167);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(81, 25);
             this.userLabel.TabIndex = 3;
@@ -83,7 +86,7 @@
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.passwordLabel.Location = new System.Drawing.Point(72, 197);
+            this.passwordLabel.Location = new System.Drawing.Point(12, 240);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(97, 25);
             this.passwordLabel.TabIndex = 4;
@@ -94,66 +97,59 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(51, 9);
+            this.label3.Location = new System.Drawing.Point(12, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(136, 65);
             this.label3.TabIndex = 5;
             this.label3.Text = "Tutú ";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(69, 74);
+            this.label4.Location = new System.Drawing.Point(28, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Carsharing";
             // 
-            // botonLenguaje
-            // 
-            this.botonLenguaje.ForeColor = System.Drawing.Color.Black;
-            this.botonLenguaje.Location = new System.Drawing.Point(12, 362);
-            this.botonLenguaje.Name = "botonLenguaje";
-            this.botonLenguaje.Size = new System.Drawing.Size(94, 36);
-            this.botonLenguaje.TabIndex = 7;
-            this.botonLenguaje.Tag = "";
-            this.botonLenguaje.Text = "Español";
-            this.botonLenguaje.UseVisualStyleBackColor = true;
-            this.botonLenguaje.Click += new System.EventHandler(this.button1_Click);
-            // 
             // LenguajeLabel
             // 
-            this.LenguajeLabel.AutoSize = true;
-            this.LenguajeLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LenguajeLabel.Location = new System.Drawing.Point(69, 334);
+            this.LenguajeLabel.BackColor = System.Drawing.Color.SeaGreen;
+            this.LenguajeLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LenguajeLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LenguajeLabel.ForeColor = System.Drawing.Color.White;
+            this.LenguajeLabel.Image = ((System.Drawing.Image)(resources.GetObject("LenguajeLabel.Image")));
+            this.LenguajeLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LenguajeLabel.Location = new System.Drawing.Point(0, 382);
             this.LenguajeLabel.Name = "LenguajeLabel";
-            this.LenguajeLabel.Size = new System.Drawing.Size(98, 25);
-            this.LenguajeLabel.TabIndex = 8;
+            this.LenguajeLabel.Size = new System.Drawing.Size(140, 53);
+            this.LenguajeLabel.TabIndex = 7;
             this.LenguajeLabel.Tag = "LenguajeLabel";
-            this.LenguajeLabel.Text = "Lenguaje:";
+            this.LenguajeLabel.Text = "Español";
+            this.LenguajeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LenguajeLabel.UseVisualStyleBackColor = false;
+            this.LenguajeLabel.Click += new System.EventHandler(this.button1_Click);
             // 
-            // botonLenguaje1
+            // pictureBox1
             // 
-            this.botonLenguaje1.ForeColor = System.Drawing.Color.Black;
-            this.botonLenguaje1.Location = new System.Drawing.Point(127, 362);
-            this.botonLenguaje1.Name = "botonLenguaje1";
-            this.botonLenguaje1.Size = new System.Drawing.Size(100, 36);
-            this.botonLenguaje1.TabIndex = 9;
-            this.botonLenguaje1.Tag = "";
-            this.botonLenguaje1.Text = "English";
-            this.botonLenguaje1.UseVisualStyleBackColor = true;
-            this.botonLenguaje1.Click += new System.EventHandler(this.botonLenguaje1_Click);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(38, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 77);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LimeGreen;
-            this.ClientSize = new System.Drawing.Size(248, 399);
-            this.Controls.Add(this.botonLenguaje1);
+            this.BackColor = System.Drawing.Color.SeaGreen;
+            this.ClientSize = new System.Drawing.Size(140, 435);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.LenguajeLabel);
-            this.Controls.Add(this.botonLenguaje);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.passwordLabel);
@@ -162,10 +158,12 @@
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.btnLogIn);
             this.ForeColor = System.Drawing.Color.Transparent;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Tutú Carsharing";
             this.Load += new System.EventHandler(this.Login_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,8 +178,7 @@
         private Label passwordLabel;
         private Label label3;
         private Label label4;
-        private Button botonLenguaje;
-        private Label LenguajeLabel;
-        private Button botonLenguaje1;
+        private Button LenguajeLabel;
+        private PictureBox pictureBox1;
     }
 }

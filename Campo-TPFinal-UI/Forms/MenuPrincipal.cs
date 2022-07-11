@@ -2,6 +2,7 @@
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
+using Campo_TPFinal_UI.Forms.Idioma;
 
 namespace Campo_TPFinal_UI
 {
@@ -13,6 +14,10 @@ namespace Campo_TPFinal_UI
         private readonly AdministracionPerfiles administracionPerfiles;
         private readonly IBitacoraService bitacoraService;
         private readonly ITraductorService traductorService;
+        private readonly CambioIdioma cambioIdioma;
+        private readonly GestionIdioma gestionIdioma;
+        private readonly Login login;
+
 
         public MenuPrincipal(
             IBitacoraService bitacoraService,
@@ -20,7 +25,9 @@ namespace Campo_TPFinal_UI
             AplicarPenalidad aplicarPenalidad,
             ITraductorService traductorService,
             AdministracionDeUsuarios administrarUsuarios,
-            AdministracionPerfiles administracionPerfiles)
+            AdministracionPerfiles administracionPerfiles,
+            CambioIdioma cambioIdioma,
+            GestionIdioma gestionIdioma)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
@@ -28,12 +35,15 @@ namespace Campo_TPFinal_UI
             this.traductorService = traductorService;
             this.administrarUsuarios = administrarUsuarios;
             this.administracionPerfiles = administracionPerfiles;
-            InitializeComponent();
 
+            InitializeComponent();
             if (Session.IsLogged())
                 Traducir(Session.GetInstance().usuario.idioma);
             else
                 Traducir(); //trae el idioma por default
+            this.cambioIdioma = cambioIdioma;
+            this.gestionIdioma = gestionIdioma;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,6 +63,7 @@ namespace Campo_TPFinal_UI
             bitacoraService.GuardarBitacoraDefault("Log out");
             Session.CloseSession();
             this.Close();
+            Application.Exit();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -68,21 +79,32 @@ namespace Campo_TPFinal_UI
         }
         private void Traducir(Lenguaje idioma = null)
         {
-            var traducciones = traductorService.ObtenerTraducciones(idioma);
 
-            btnAlquilar.Text = traducciones[btnAlquilar.Tag.ToString()].Texto;
-            btnPerfil.Text = traducciones[btnPerfil.Tag.ToString()].Texto;
-            btnSalir.Text = traducciones[btnSalir.Tag.ToString()].Texto;
-            btnUsuarios.Text = traducciones[btnUsuarios.Tag.ToString()].Texto;
+            Session.traducciones = traductorService.ObtenerTraducciones(idioma);
+            btnAlquilar.Text =  Session.traducciones[btnAlquilar.Tag.ToString()].Texto;
+            btnPerfil.Text =    Session.traducciones[btnPerfil.Tag.ToString()].Texto;
+            btnSalir.Text =     Session.traducciones[btnSalir.Tag.ToString()].Texto;
+            btnUsuarios.Text = Session.traducciones[btnUsuarios.Tag.ToString()].Texto;
+            btnGestionIdioma.Text = Session.traducciones[btnGestionIdioma.Tag.ToString()].Texto;
+            LenguajeLabel.Text = Session.traducciones[LenguajeLabel.Tag.ToString()].Texto;
 
         }
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
+            lblUserName.Text = Session.GetInstance().usuario.alias;
+            var user = Session.GetInstance().usuario.rol;
+            if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("administrador"))
+            {
+                btnPerfil.Visible = true;
+                btnUsuarios.Visible = true;
+                btnGestionIdioma.Visible = true;
+            }
             if (Session.IsLogged())
                 Traducir(Session.GetInstance().usuario.idioma);
             else
                 Traducir(); //trae el idioma por default
+            Session.SuscribirObservador(this);
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
@@ -94,9 +116,32 @@ namespace Campo_TPFinal_UI
 
         private void btnPerfil_Click(object sender, EventArgs e)
         {
-            var form1 = administracionPerfiles;
-            bitacoraService.GuardarBitacoraDefault("Ingreso a administracion de Usuarios");
-            form1.ShowDialog();
+            try
+            {
+                var form1 = administracionPerfiles;
+                bitacoraService.GuardarBitacoraDefault("Ingreso a administracion de Usuarios");
+                form1.ShowDialog();
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void LenguajeLabel_Click(object sender, EventArgs e)
+        {
+            cambioIdioma.ShowDialog();
+        }
+
+        private void btnGestionIdioma_Click(object sender, EventArgs e)
+        {
+            gestionIdioma.ShowDialog();
         }
     }
 }
