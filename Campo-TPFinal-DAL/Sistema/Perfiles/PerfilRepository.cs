@@ -52,7 +52,7 @@ namespace Campo_TPFinal_DAL.Sistema.Perfiles
                 }
                 else
                 {
-                    _list.Add(getFamilia((int)item["id_patente"]));
+                    _list.Add(getAllFamiliaPorId((int)item["id_patente"]));
                 }
             }
             return _list;

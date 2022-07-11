@@ -24,7 +24,7 @@ namespace Campo_TPFinal_BLL.Sistema.Perfil
 
         public Rol getRolForUser(int rolId)
         {
-            return perfilRepository.getFamilia(rolId);
+            return perfilRepository.getAllFamiliaPorId(rolId);
         }
         public List<Rol> getRoles()
         {

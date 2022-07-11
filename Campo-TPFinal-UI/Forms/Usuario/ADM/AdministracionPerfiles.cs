@@ -47,7 +47,6 @@ namespace Campo_TPFinal_UI
 
             labelNombre.Text = traducciones[labelNombre.Tag.ToString()].Texto;
             btnCrear.Text = traducciones[btnCrear.Tag.ToString()].Texto;
-            btnEditar.Text = traducciones[btnEditar.Tag.ToString()].Texto;
             btnBorrar.Text = traducciones[btnBorrar.Tag.ToString()].Texto;
             lblTipo.Text = traducciones[lblTipo.Tag.ToString()].Texto;
             lblRoles.Text = traducciones[lblRoles.Tag.ToString()].Texto;

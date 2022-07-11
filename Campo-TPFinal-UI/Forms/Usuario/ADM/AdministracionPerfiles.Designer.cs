@@ -33,7 +33,6 @@
             this.lblFamilia = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnCrear = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.lstPatente = new System.Windows.Forms.ListBox();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
@@ -84,17 +83,6 @@
             this.btnCrear.Text = "button1";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(138, 380);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 5;
-            this.btnEditar.Tag = "btnEditar";
-            this.btnEditar.Text = "button2";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnBorrar
             // 
@@ -196,7 +184,6 @@
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.lstPatente);
             this.Controls.Add(this.btnBorrar);
-            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblFamilia);
@@ -218,7 +205,6 @@
         private Label lblFamilia;
         private TextBox textBox1;
         private Button btnCrear;
-        private Button btnEditar;
         private Button btnBorrar;
         private ListBox lstPatente;
         private ComboBox cmbTipo;

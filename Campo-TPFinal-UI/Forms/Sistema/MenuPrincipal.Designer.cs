@@ -52,6 +52,7 @@
             // 
             this.btnAlquilar.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAlquilar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAlquilar.Enabled = false;
             this.btnAlquilar.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.btnAlquilar.FlatAppearance.BorderSize = 0;
             this.btnAlquilar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;

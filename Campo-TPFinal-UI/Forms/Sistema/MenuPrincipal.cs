@@ -42,7 +42,7 @@ namespace Campo_TPFinal_UI
                 Traducir(); //trae el idioma por default
             this.cambioIdioma = cambioIdioma;
             this.gestionIdioma = gestionIdioma;
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -80,9 +80,9 @@ namespace Campo_TPFinal_UI
         {
 
             Session.traducciones = traductorService.ObtenerTraducciones(idioma);
-            btnAlquilar.Text =  Session.traducciones[btnAlquilar.Tag.ToString()].Texto;
-            btnPerfil.Text =    Session.traducciones[btnPerfil.Tag.ToString()].Texto;
-            btnSalir.Text =     Session.traducciones[btnSalir.Tag.ToString()].Texto;
+            btnAlquilar.Text = Session.traducciones[btnAlquilar.Tag.ToString()].Texto;
+            btnPerfil.Text = Session.traducciones[btnPerfil.Tag.ToString()].Texto;
+            btnSalir.Text = Session.traducciones[btnSalir.Tag.ToString()].Texto;
             btnUsuarios.Text = Session.traducciones[btnUsuarios.Tag.ToString()].Texto;
             btnGestionIdioma.Text = Session.traducciones[btnGestionIdioma.Tag.ToString()].Texto;
             LenguajeLabel.Text = Session.traducciones[LenguajeLabel.Tag.ToString()].Texto;
@@ -98,6 +98,10 @@ namespace Campo_TPFinal_UI
                 btnPerfil.Visible = true;
                 btnUsuarios.Visible = true;
                 btnGestionIdioma.Visible = true;
+            }
+            if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("alquilar"))
+            {
+                btnAlquilar.Enabled = true;
             }
             if (Session.IsLogged())
                 Traducir(Session.GetInstance().usuario.idioma);
