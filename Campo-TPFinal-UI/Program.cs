@@ -38,20 +38,29 @@ namespace Campo_TPFinal_UI
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            var services = new ServiceCollection();
-
-            ConfigureServices(services);
-
-            using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+            try
             {
-                var form1 = serviceProvider.GetRequiredService<Login>();
-                Application.Run(form1);
-            }
+                Application.SetHighDpiMode(HighDpiMode.SystemAware);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
 
+                var services = new ServiceCollection();
+
+                ConfigureServices(services);
+
+                using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+                {
+                    var form1 = serviceProvider.GetRequiredService<Login>();
+                    Application.Run(form1);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         private static void ConfigureServices(ServiceCollection services)

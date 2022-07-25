@@ -189,7 +189,7 @@ namespace Campo_TPFinal_DAL.Sistema.Perfiles
         }
         public void DeleteRol(Rol rol)
         {
-            string _commandText = string.Format("DELETE FROM patente_familia WHERE id_{0} = {1}", rol.GetType().Name == "Familia" ? "familia" : "patente", rol.id);
+            string _commandText = string.Format("DELETE FROM patente_familia WHERE id_Familia = {0} or id_patente = {0}", rol.id);
             _dataAccess.ExecuteNonQuery(_commandText);
 
              _commandText = string.Format("DELETE FROM {0} WHERE id = {1}", rol.GetType().Name == "Familia" ? "familia" : "patente", rol.id);

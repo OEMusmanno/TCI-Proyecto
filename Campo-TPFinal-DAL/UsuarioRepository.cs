@@ -1,5 +1,6 @@
 ﻿using Campo_TPFinal_BE.Sistema.Perfil;
 using Campo_TPFinal_BE.Usuario;
+using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.Perfiles;
@@ -51,6 +52,10 @@ namespace Campo_TPFinal_DAL
         public Usuario ObtenerPorAlias(string alias)
         {
             var list = _dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[Usuario] WHERE usuario = '" + alias + "'");
+            if (list.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception(Session.traducciones["ErrorLogin"].Texto);
+            }
             Usuario usuario = new Usuario();
             ValorizarEntidad(usuario, list.Tables[0].Rows[0]);
             return usuario;

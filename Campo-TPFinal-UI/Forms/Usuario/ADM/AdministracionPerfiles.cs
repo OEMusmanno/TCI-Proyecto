@@ -56,6 +56,8 @@ namespace Campo_TPFinal_UI
         private void limpiar()
         {
             textBox1.Text = "";
+            lstFamilia.DataSource = null;
+            lstPatente.DataSource= null;
 
             lstFamilia.DataSource = perfilService.GetFamilias();
             lstPatente.DataSource = perfilService.getRoles();
