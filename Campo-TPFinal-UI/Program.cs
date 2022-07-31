@@ -57,7 +57,6 @@ namespace Campo_TPFinal_UI
             }
             catch (Exception)
             {
-
                 throw;
             }
            

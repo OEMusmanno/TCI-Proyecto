@@ -64,8 +64,8 @@ namespace Campo_TPFinal_UI
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
-        {           
-            Usuario user = new Usuario() { alias = txtUsuario.Text , password = CryptographyHelper.encrypt(txtContraseña.Text), rol = (Rol)comboBox1.SelectedItem};
+        {
+            Usuario user = new Usuario() { alias = txtUsuario.Text, password = CryptographyHelper.encrypt(txtContraseña.Text), rol = (Rol)comboBox1.SelectedItem };
             usuarioService.AgregarUsuario(user);
             limpiar();
         }
@@ -85,7 +85,8 @@ namespace Campo_TPFinal_UI
             limpiar();
         }
 
-        void limpiar() {
+        void limpiar()
+        {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             txtUsuario.Text = "";
@@ -100,14 +101,17 @@ namespace Campo_TPFinal_UI
             {
                 listBox2.Items.Add(item.alias);
             }
-            comboBox1.DataSource= perfilService.GetFamilias();
+            comboBox1.DataSource = perfilService.GetFamilias();
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var user = usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());
-            txtUsuario.Text = user.alias;
-            txtContraseña.Text = CryptographyHelper.decrypt(user.password);
-            label2.Text = user.Id.ToString();
+            if (listBox1.SelectedItem != null)
+            {
+                var user = usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());
+                txtUsuario.Text = user.alias;
+                txtContraseña.Text = CryptographyHelper.decrypt(user.password);
+                label2.Text = user.Id.ToString();
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -140,7 +144,7 @@ namespace Campo_TPFinal_UI
                 var user = usuarioService.ObtenerPorAlias(listBox2.SelectedItem.ToString());
                 usuarioService.desbloquear(user.Id);
                 limpiar();
-            }           
+            }
         }
     }
 }

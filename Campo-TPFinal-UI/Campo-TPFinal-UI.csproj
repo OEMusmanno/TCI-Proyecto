@@ -7,7 +7,14 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>car_vehicle_transport_icon_144665.ico</ApplicationIcon>
+    <StartupObject>Campo_TPFinal_UI.Program</StartupObject>
+    <AssemblyName>Tutu-Carsharing</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="car_vehicle_transport_icon_144665.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
