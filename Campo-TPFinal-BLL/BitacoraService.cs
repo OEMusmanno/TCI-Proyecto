@@ -1,4 +1,5 @@
-﻿using Campo_TPFinal_BLL.Seguridad;
+﻿using Campo_TPFinal_BE.Sistema;
+using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_DALContracts;
 using System;
@@ -17,14 +18,14 @@ namespace Campo_TPFinal_BLL
         {
             this.bitacoraRepository = bitacoraRepository;
         }
-        public void GuardarBitacora(string descripcion)
+        public void GuardarBitacora(string descripcion, string riesgo)
         {
-            bitacoraRepository.GuardarBitacora(descripcion);
+            bitacoraRepository.GuardarBitacora(descripcion, riesgo);
         }
-        
-        public void GuardarBitacoraDefault(string descripcion)
+        public List<BitacoraLog> Listar()
         {
-            bitacoraRepository.GuardarBitacora("El usuario: " + Session.GetInstance().usuario.alias +" - "+ descripcion);
+            return bitacoraRepository.Listar();
         }
+
     }
 }

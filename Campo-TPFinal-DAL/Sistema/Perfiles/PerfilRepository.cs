@@ -197,5 +197,11 @@ namespace Campo_TPFinal_DAL.Sistema.Perfiles
             
              
         }
+
+        public void FirstRun() { 
+            
+            
+        
+        }
     }
 }

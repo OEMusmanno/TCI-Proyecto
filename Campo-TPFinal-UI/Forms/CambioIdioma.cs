@@ -37,7 +37,7 @@ namespace Campo_TPFinal_UI.Forms.Idioma
         private void btnEditar_Click(object sender, EventArgs e)
         {
             var lenguaje = (Lenguaje)cmbLenguaje.SelectedItem;
-            bitacoraService.GuardarBitacora("se cambio el lenguaje a : " + lenguaje.Nombre);
+            bitacoraService.GuardarBitacora("se cambio el lenguaje a : " + lenguaje.Nombre, "Bajo");
             Session.traducciones = traductorService.ObtenerTraducciones(lenguaje);
             Session.CambiarIdioma(lenguaje);
             this.Close();

@@ -25,12 +25,12 @@ namespace Campo_TPFinal_BLL.Sistema
         {
             if (logManager.log(user, pass, intentos))
             {
-                bitacoraService.GuardarBitacoraDefault("Log in");
+                bitacoraService.GuardarBitacora("Log in", "Bajo");
             }
             else
             {
                 intentos += 1;
-                bitacoraService.GuardarBitacora("Numero de intentos de login: " + intentos + " del usuario: " + user);
+                bitacoraService.GuardarBitacora("Numero de intentos de login: " + intentos + " del usuario: " + user , "Alto");
                 throw new Exception(Session.traducciones["ErrorLogin"].Texto);
             }
 

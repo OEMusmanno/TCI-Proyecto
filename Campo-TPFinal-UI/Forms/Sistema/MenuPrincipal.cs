@@ -1,8 +1,12 @@
 ﻿using Campo_TPFinal_BE.Sistema.Idioma;
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
+using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
+using Campo_TPFinal_DAL.Sistema.DB;
+using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_UI.Forms.Idioma;
+using Campo_TPFinal_UI.Forms.Sistema;
 
 namespace Campo_TPFinal_UI
 {
@@ -14,8 +18,10 @@ namespace Campo_TPFinal_UI
         private readonly AdministracionPerfiles administracionPerfiles;
         private readonly IBitacoraService bitacoraService;
         private readonly ITraductorService traductorService;
+        private readonly IBackupService backup;
         private readonly CambioIdioma cambioIdioma;
         private readonly GestionIdioma gestionIdioma;
+        private readonly Bitacora bitacora;
 
 
         public MenuPrincipal(
@@ -26,7 +32,9 @@ namespace Campo_TPFinal_UI
             AdministracionDeUsuarios administrarUsuarios,
             AdministracionPerfiles administracionPerfiles,
             CambioIdioma cambioIdioma,
-            GestionIdioma gestionIdioma)
+            GestionIdioma gestionIdioma,
+            IBackupService backup,
+            Bitacora bitacora)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
@@ -42,13 +50,14 @@ namespace Campo_TPFinal_UI
                 Traducir(); //trae el idioma por default
             this.cambioIdioma = cambioIdioma;
             this.gestionIdioma = gestionIdioma;
-
+            this.backup = backup;
+            this.bitacora = bitacora;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             var form1 = registrarAlquiler;
-            bitacoraService.GuardarBitacoraDefault("Ingreso a registrar alquiler");
+            bitacoraService.GuardarBitacora("Ingreso a registrar alquiler", "Bajo");
             form1.ShowDialog();
         }
 
@@ -59,7 +68,7 @@ namespace Campo_TPFinal_UI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            bitacoraService.GuardarBitacoraDefault("Log out");
+            bitacoraService.GuardarBitacora("Log out", "Bajo");
             Session.CloseSession();
             this.Close();
             Application.Exit();
@@ -68,7 +77,7 @@ namespace Campo_TPFinal_UI
         private void button2_Click(object sender, EventArgs e)
         {
             var form1 = aplicarPenalidad;
-            bitacoraService.GuardarBitacoraDefault("Ingreso a Penalidades");
+            bitacoraService.GuardarBitacora("Ingreso a Penalidades", "Bajo");
             form1.ShowDialog();
         }
 
@@ -98,6 +107,9 @@ namespace Campo_TPFinal_UI
                 btnPerfil.Visible = true;
                 btnUsuarios.Visible = true;
                 btnGestionIdioma.Visible = true;
+                btnRestore.Visible = true;
+                btnBackup.Visible = true;
+                btnLog.Visible = true;
             }
             if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("alquilar"))
             {
@@ -113,7 +125,7 @@ namespace Campo_TPFinal_UI
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             var form1 = administrarUsuarios;
-            bitacoraService.GuardarBitacoraDefault("Ingreso a administracion de Usuarios");
+            bitacoraService.GuardarBitacora("Ingreso a administracion de Usuarios", "Alto");
             form1.ShowDialog();
         }
 
@@ -122,7 +134,7 @@ namespace Campo_TPFinal_UI
             try
             {
                 var form1 = administracionPerfiles;
-                bitacoraService.GuardarBitacoraDefault("Ingreso a administracion de Usuarios");
+                bitacoraService.GuardarBitacora("Ingreso a administracion de Usuarios", "Alto");
                 form1.ShowDialog();
             }
             catch
@@ -145,6 +157,35 @@ namespace Campo_TPFinal_UI
         private void btnGestionIdioma_Click(object sender, EventArgs e)
         {
             gestionIdioma.ShowDialog();
+        }
+
+        private void Backup_Click(object sender, EventArgs e)
+        {
+            var folder = new FolderBrowserDialog();
+            folder.ShowDialog();
+            backup.Backup(folder.SelectedPath);
+            MessageBox.Show(Session.traducciones["BackupRegistrado"].Texto, "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnRestore_Click(object sender, EventArgs e)
+        {
+            var openFolder = new OpenFileDialog
+            {
+                Filter = "Database backups (*.bak)|*.bak",
+                Title = "Open database backup"
+            };
+            if (openFolder.ShowDialog() == DialogResult.OK)
+            {
+                backup.Restore(openFolder.FileName);
+            }
+            this.UseWaitCursor = true;
+            MessageBox.Show(Session.traducciones["RestoreCompletado"].Texto, "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.UseWaitCursor = false;
+        }
+
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            bitacora.ShowDialog();
         }
     }
 }

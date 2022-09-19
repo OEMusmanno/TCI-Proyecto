@@ -19,5 +19,6 @@ namespace Campo_TPFinal_DALContracts
         void bloquear(int userId);
         void desbloquear(int userId);
         List<Usuario> ListarBloqueados();
+        Usuario ObtenerPorId(int Id);
     }
 }

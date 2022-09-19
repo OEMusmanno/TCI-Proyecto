@@ -25,7 +25,7 @@ namespace Campo_TPFinal_BLL.Penalidades
         {
             var idPenalidad = penalidadRepository.ObtenerPenalidad(penalidad);
             penalidadRepository.AplicarPenalidad(idPenalidad, idUsuario);
-            bitacoraService.GuardarBitacoraDefault("aplico una sancion");
+            //bitacoraService.GuardarBitacora("aplico una sancion");
         }
     }
 }

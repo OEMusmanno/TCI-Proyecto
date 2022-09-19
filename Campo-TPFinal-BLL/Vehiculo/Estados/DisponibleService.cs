@@ -21,7 +21,7 @@ namespace Campo_TPFinal_BLL.Vehiculo.Estados
 
         public void cambioDeEstado(bool estado, Auto auto)
         {
-            bitacoraService.GuardarBitacoraDefault(String.Format("Cambio de estado a {0}", (estado == false? "Disponible":"Ocupado")));
+            bitacoraService.GuardarBitacora(String.Format("Cambio de estado a {0}", (estado == false? "Disponible":"Ocupado")), "Bajo");
             auto.Estado = estado;
         }
 

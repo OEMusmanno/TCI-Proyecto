@@ -61,6 +61,18 @@ namespace Campo_TPFinal_DAL
             return usuario;
         }
 
+        public Usuario ObtenerPorId(int Id)
+        {
+            var list = _dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[Usuario] WHERE id = '" + Id + "'");
+            if (list.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception(Session.traducciones["ErrorLogin"].Texto);
+            }
+            Usuario usuario = new Usuario();
+            ValorizarEntidad(usuario, list.Tables[0].Rows[0]);
+            return usuario;
+        }
+
         void ValorizarEntidad(Usuario _usuario, DataRow pDataRow)
         {
             _usuario.alias = pDataRow["usuario"].ToString();

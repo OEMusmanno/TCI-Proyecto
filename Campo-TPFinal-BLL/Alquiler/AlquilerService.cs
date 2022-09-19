@@ -32,11 +32,11 @@ namespace Campo_TPFinal_BLL.Alquiler
             if (!validarReservasAnteriores())
             {
                 alquilerRepository.RegistrarReserva(id);
-                bitacoraService.GuardarBitacoraDefault("Se registro la reserva con el auto: " + marca + " " + modelo);
+                bitacoraService.GuardarBitacora("Se registro la reserva con el auto: " + marca + " " + modelo , "Bajo");
             }
             else
             {
-                bitacoraService.GuardarBitacoraDefault("Error de Validacion de reserva: Reserva Activa");
+                bitacoraService.GuardarBitacora("Error de Validacion de reserva: Reserva Activa", "Medio");
                 throw new Exception("Se encuentra una reserva activa");
             }
 

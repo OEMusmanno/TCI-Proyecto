@@ -32,8 +32,8 @@ namespace Campo_TPFinal_BLL.Seguridad
             if (intentos == 3)
             {
                 usuarioService.bloquear(bdUser.Id);
-                bitacoraService.GuardarBitacora("El usuario: " + name + " ingreso 3 veces mal la contraseña");
-                bitacoraService.GuardarBitacora("El usuario: " + name + " ha sido bloqueado");
+                bitacoraService.GuardarBitacora("El usuario: " + name + " ingreso 3 veces mal la contraseña", "Alto");
+                bitacoraService.GuardarBitacora("El usuario: " + name + " ha sido bloqueado", "Alto");
                 throw new Exception(Session.traducciones["Error3Intento"].Texto);
             }
 

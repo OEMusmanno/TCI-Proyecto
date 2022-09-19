@@ -42,6 +42,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnGestionIdioma = new System.Windows.Forms.Button();
+            this.btnBackup = new System.Windows.Forms.Button();
+            this.btnRestore = new System.Windows.Forms.Button();
+            this.btnLog = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -96,7 +99,7 @@
             this.btnPerfil.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPerfil.Image = ((System.Drawing.Image)(resources.GetObject("btnPerfil.Image")));
             this.btnPerfil.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPerfil.Location = new System.Drawing.Point(230, 166);
+            this.btnPerfil.Location = new System.Drawing.Point(270, 166);
             this.btnPerfil.Name = "btnPerfil";
             this.btnPerfil.Size = new System.Drawing.Size(183, 68);
             this.btnPerfil.TabIndex = 3;
@@ -114,7 +117,7 @@
             this.btnUsuarios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUsuarios.Location = new System.Drawing.Point(489, 166);
+            this.btnUsuarios.Location = new System.Drawing.Point(537, 166);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(183, 68);
             this.btnUsuarios.TabIndex = 4;
@@ -194,7 +197,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(404, 0);
+            this.label1.Location = new System.Drawing.Point(350, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(174, 86);
             this.label1.TabIndex = 6;
@@ -206,7 +209,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(404, 77);
+            this.label2.Location = new System.Drawing.Point(350, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(181, 45);
             this.label2.TabIndex = 7;
@@ -216,7 +219,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(591, 30);
+            this.pictureBox2.Location = new System.Drawing.Point(537, 30);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(81, 83);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -230,7 +233,7 @@
             this.btnGestionIdioma.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnGestionIdioma.Image = ((System.Drawing.Image)(resources.GetObject("btnGestionIdioma.Image")));
             this.btnGestionIdioma.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGestionIdioma.Location = new System.Drawing.Point(230, 287);
+            this.btnGestionIdioma.Location = new System.Drawing.Point(270, 298);
             this.btnGestionIdioma.Name = "btnGestionIdioma";
             this.btnGestionIdioma.Size = new System.Drawing.Size(183, 68);
             this.btnGestionIdioma.TabIndex = 9;
@@ -241,12 +244,69 @@
             this.btnGestionIdioma.Visible = false;
             this.btnGestionIdioma.Click += new System.EventHandler(this.btnGestionIdioma_Click);
             // 
+            // btnBackup
+            // 
+            this.btnBackup.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnBackup.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnBackup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBackup.Image = ((System.Drawing.Image)(resources.GetObject("btnBackup.Image")));
+            this.btnBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBackup.Location = new System.Drawing.Point(270, 434);
+            this.btnBackup.Name = "btnBackup";
+            this.btnBackup.Size = new System.Drawing.Size(183, 68);
+            this.btnBackup.TabIndex = 10;
+            this.btnBackup.Tag = "btnBackup";
+            this.btnBackup.Text = "Backup";
+            this.btnBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBackup.UseVisualStyleBackColor = false;
+            this.btnBackup.Visible = false;
+            this.btnBackup.Click += new System.EventHandler(this.Backup_Click);
+            // 
+            // btnRestore
+            // 
+            this.btnRestore.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnRestore.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRestore.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRestore.Image = ((System.Drawing.Image)(resources.GetObject("btnRestore.Image")));
+            this.btnRestore.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRestore.Location = new System.Drawing.Point(537, 434);
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.Size = new System.Drawing.Size(183, 68);
+            this.btnRestore.TabIndex = 11;
+            this.btnRestore.Tag = "btnRestore";
+            this.btnRestore.Text = "Restore";
+            this.btnRestore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRestore.UseVisualStyleBackColor = false;
+            this.btnRestore.Visible = false;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
+            // 
+            // btnLog
+            // 
+            this.btnLog.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnLog.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLog.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLog.Image = ((System.Drawing.Image)(resources.GetObject("btnLog.Image")));
+            this.btnLog.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLog.Location = new System.Drawing.Point(537, 298);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(183, 68);
+            this.btnLog.TabIndex = 12;
+            this.btnLog.Tag = "btnLog";
+            this.btnLog.Text = "Log";
+            this.btnLog.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLog.UseVisualStyleBackColor = false;
+            this.btnLog.Visible = false;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(795, 538);
+            this.Controls.Add(this.btnLog);
+            this.Controls.Add(this.btnRestore);
+            this.Controls.Add(this.btnBackup);
             this.Controls.Add(this.btnGestionIdioma);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
@@ -285,5 +345,8 @@
         private PictureBox pictureBox2;
         private Button LenguajeLabel;
         private Button btnGestionIdioma;
+        private Button btnBackup;
+        private Button btnRestore;
+        private Button btnLog;
     }
 }

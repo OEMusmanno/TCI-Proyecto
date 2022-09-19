@@ -13,5 +13,10 @@ namespace Campo_TPFinal_BE.Usuario
         public List<Penalidad> Penalidades{ get; set; }
 
         public Rol rol { get; set; }
+
+        public override string ToString()
+        {
+            return alias;
+        }
     }
 }

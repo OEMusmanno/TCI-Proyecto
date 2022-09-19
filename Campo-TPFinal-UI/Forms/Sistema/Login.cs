@@ -45,7 +45,7 @@ namespace Campo_TPFinal_UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                bitacoraService.GuardarBitacora(ex.Message);
+                bitacoraService.GuardarBitacora(ex.Message, "Alto");
                 if (ex.Message == Session.traducciones["Error3Intento"].Texto)
                 {
                     this.Close();

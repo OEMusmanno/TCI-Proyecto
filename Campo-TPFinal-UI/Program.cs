@@ -10,6 +10,7 @@ using Campo_TPFinal_BLL.Vehiculo.Estados;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Alquiler;
 using Campo_TPFinal_BLLContracts.Penalidad;
+using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
 using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
@@ -25,6 +26,7 @@ using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.Perfiles;
 using Campo_TPFinal_DALContracts.Vehiculo;
 using Campo_TPFinal_UI.Forms.Idioma;
+using Campo_TPFinal_UI.Forms.Sistema;
 using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -87,6 +89,8 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IEstadoService, ReservadoService>()
               .AddSingleton<ILoginService, LoginService>()              
               .AddSingleton<ITraductorService, TraductorService>()              
+              .AddSingleton<IBackupRepository, BackupRepository>()              
+              .AddSingleton<IBackupService, BackupService>()              
               .AddSingleton<Login>()
               .AddSingleton<MenuPrincipal>()
               .AddSingleton<LogManager>()
@@ -96,6 +100,7 @@ namespace Campo_TPFinal_UI
               .AddSingleton<GestionIdioma>()
               .AddSingleton<AdministracionDeUsuarios>()
               .AddSingleton<AdministracionPerfiles>()
+              .AddSingleton<Bitacora>()
               .BuildServiceProvider();
 
         }
