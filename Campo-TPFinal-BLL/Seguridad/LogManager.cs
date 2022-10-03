@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_BLLContracts;
+using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
 using Campo_TPFinal_DALContracts;
@@ -14,15 +15,21 @@ namespace Campo_TPFinal_BLL.Seguridad
     {
         private readonly IUsuarioService usuarioService;
         private readonly IBitacoraService bitacoraService;
-        public LogManager(IUsuarioService usuarioService, IBitacoraService bitacoraService)
+        private readonly IDigitoVerificadorService digitoVerificadorService;
+        public LogManager(IUsuarioService usuarioService, IBitacoraService bitacoraService, IDigitoVerificadorService digitoVerificadorService)
         {
             this.usuarioService = usuarioService;
             this.bitacoraService = bitacoraService;
+            this.digitoVerificadorService = digitoVerificadorService;
         }
 
         public bool log(string name, string pass, int intentos)
         {
             var sesion = Session.GetInstance();
+            if (!digitoVerificadorService.CheckDigitoVerificador())
+            {
+                throw new Exception(Session.traducciones["errorDv"].Texto);
+            }
             if (name == "" || pass == "") { throw new Exception(Session.traducciones["ErrorCampoVacio"].Texto); }
             var bdUser = usuarioService.ObtenerPorAlias(name);
 

@@ -16,9 +16,9 @@ namespace Campo_TPFinal_BLL.Sistema
             backupRepository.backUp(path);
         }
 
-        public void Restore( string nombreDeArchivo)
+        public void Restore( string path)
         {
-            backupRepository.restore(nombreDeArchivo);
+            backupRepository.restore(path);
         }
 
         public void FirstRun() {

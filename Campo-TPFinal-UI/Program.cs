@@ -91,6 +91,10 @@ namespace Campo_TPFinal_UI
               .AddSingleton<ITraductorService, TraductorService>()              
               .AddSingleton<IBackupRepository, BackupRepository>()              
               .AddSingleton<IBackupService, BackupService>()              
+              .AddSingleton<IDigitoVerificadorService, DigitoVerificadorService>()              
+              .AddSingleton<IDigitoVerificadorRepository, DigitoVerificadorRepository>()              
+              .AddSingleton<IControlCambioRepository, ControlCambioRepository>()              
+              .AddSingleton<IControlCambioService, ControlCambioService>()              
               .AddSingleton<Login>()
               .AddSingleton<MenuPrincipal>()
               .AddSingleton<LogManager>()
@@ -100,6 +104,7 @@ namespace Campo_TPFinal_UI
               .AddSingleton<GestionIdioma>()
               .AddSingleton<AdministracionDeUsuarios>()
               .AddSingleton<AdministracionPerfiles>()
+              .AddSingleton<ControlCambios>()
               .AddSingleton<Bitacora>()
               .BuildServiceProvider();
 

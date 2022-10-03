@@ -34,14 +34,12 @@ namespace Campo_TPFinal_UI.Forms.Sistema
         }
 
         private void Bitacora_Load(object sender, EventArgs e)
-        {
-
-            cmbRisk.DataSource = new List<string>() { "Alto", "Medio", "Bajo" };
-            Actualizar();
+        {          
             if (Session.IsLogged())
                 Traducir(Session.GetInstance().usuario.idioma);
             else
                 Traducir();
+            Actualizar();
 
             Session.SuscribirObservador(this);
             grdBitacora.RowHeadersVisible = false;
@@ -54,9 +52,13 @@ namespace Campo_TPFinal_UI.Forms.Sistema
 
         private void Actualizar()
         {
-            grdBitacora.DataSource = bitacoras;
             cmbUser.DataSource = usuarioService.Listar();
             cmbRisk.DataSource = new List<string>() { "Alto", "Medio", "Bajo" };
+            grdBitacora.DataSource = bitacoras;
+            grdBitacora.Columns["riesgo"].HeaderText = traducciones["lblRisk"].Texto;
+            grdBitacora.Columns["descripcion"].HeaderText = traducciones["lblDescripcion"].Texto;
+            grdBitacora.Columns["usuario"].HeaderText = traducciones["userLabel"].Texto;
+            grdBitacora.Columns["fecha"].HeaderText = traducciones["lblDate"].Texto;
         }
 
         public void ActualizarLenguaje(Lenguaje idioma)
@@ -84,10 +86,10 @@ namespace Campo_TPFinal_UI.Forms.Sistema
         private void filtrar()
         {
             grdBitacora.DataSource = bitacoras;
-            grdBitacora.DataSource = ((List<BitacoraLog>)grdBitacora.DataSource).Where(x => x.usuario.alias == cmbUser.SelectedItem.ToString()).ToList();
+            grdBitacora.DataSource = ((List<BitacoraLog>)grdBitacora.DataSource).Where(x => x.usuario.alias == (cmbUser.SelectedItem?.ToString() ?? "Admin")).ToList();
             grdBitacora.DataSource = ((List<BitacoraLog>)grdBitacora.DataSource).Where(x => x.fecha <= dateTimePicker2.Value).ToList();
             grdBitacora.DataSource = ((List<BitacoraLog>)grdBitacora.DataSource).Where(x => x.fecha >= dateTimePicker1.Value).ToList();
-            grdBitacora.DataSource = ((List<BitacoraLog>)grdBitacora.DataSource).Where(x => x.riesgo == cmbRisk.SelectedItem.ToString()).ToList();
+            grdBitacora.DataSource = ((List<BitacoraLog>)grdBitacora.DataSource).Where(x => x.riesgo == (cmbRisk.SelectedItem?.ToString() ?? "Alto")).ToList() ;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -97,17 +99,18 @@ namespace Campo_TPFinal_UI.Forms.Sistema
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            Actualizar();
             dateTimePicker1.ResetText();
             dateTimePicker2.ResetText();
+            cmbRisk.DataSource = null;
+            cmbUser.DataSource = null;
+            Actualizar();
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             filtrar();
         }
-
-        private void cmbRisk_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbRisk_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             filtrar();
         }

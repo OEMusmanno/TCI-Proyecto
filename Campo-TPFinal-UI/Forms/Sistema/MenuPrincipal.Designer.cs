@@ -45,6 +45,7 @@
             this.btnBackup = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnLog = new System.Windows.Forms.Button();
+            this.btnControlCambios = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -233,7 +234,7 @@
             this.btnGestionIdioma.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnGestionIdioma.Image = ((System.Drawing.Image)(resources.GetObject("btnGestionIdioma.Image")));
             this.btnGestionIdioma.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGestionIdioma.Location = new System.Drawing.Point(270, 298);
+            this.btnGestionIdioma.Location = new System.Drawing.Point(270, 240);
             this.btnGestionIdioma.Name = "btnGestionIdioma";
             this.btnGestionIdioma.Size = new System.Drawing.Size(183, 68);
             this.btnGestionIdioma.TabIndex = 9;
@@ -251,7 +252,7 @@
             this.btnBackup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnBackup.Image = ((System.Drawing.Image)(resources.GetObject("btnBackup.Image")));
             this.btnBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBackup.Location = new System.Drawing.Point(270, 434);
+            this.btnBackup.Location = new System.Drawing.Point(270, 314);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(183, 68);
             this.btnBackup.TabIndex = 10;
@@ -269,7 +270,7 @@
             this.btnRestore.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnRestore.Image = ((System.Drawing.Image)(resources.GetObject("btnRestore.Image")));
             this.btnRestore.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRestore.Location = new System.Drawing.Point(537, 434);
+            this.btnRestore.Location = new System.Drawing.Point(537, 314);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(183, 68);
             this.btnRestore.TabIndex = 11;
@@ -287,7 +288,7 @@
             this.btnLog.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnLog.Image = ((System.Drawing.Image)(resources.GetObject("btnLog.Image")));
             this.btnLog.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLog.Location = new System.Drawing.Point(537, 298);
+            this.btnLog.Location = new System.Drawing.Point(537, 240);
             this.btnLog.Name = "btnLog";
             this.btnLog.Size = new System.Drawing.Size(183, 68);
             this.btnLog.TabIndex = 12;
@@ -298,12 +299,31 @@
             this.btnLog.Visible = false;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
+            // btnControlCambios
+            // 
+            this.btnControlCambios.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnControlCambios.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnControlCambios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnControlCambios.Image = ((System.Drawing.Image)(resources.GetObject("btnControlCambios.Image")));
+            this.btnControlCambios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnControlCambios.Location = new System.Drawing.Point(270, 388);
+            this.btnControlCambios.Name = "btnControlCambios";
+            this.btnControlCambios.Size = new System.Drawing.Size(183, 68);
+            this.btnControlCambios.TabIndex = 13;
+            this.btnControlCambios.Tag = "btnControlCambios";
+            this.btnControlCambios.Text = "Cambios";
+            this.btnControlCambios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnControlCambios.UseVisualStyleBackColor = false;
+            this.btnControlCambios.Visible = false;
+            this.btnControlCambios.Click += new System.EventHandler(this.btnControlCambios_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(795, 538);
+            this.Controls.Add(this.btnControlCambios);
             this.Controls.Add(this.btnLog);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.btnBackup);
@@ -348,5 +368,6 @@
         private Button btnBackup;
         private Button btnRestore;
         private Button btnLog;
+        private Button btnControlCambios;
     }
 }

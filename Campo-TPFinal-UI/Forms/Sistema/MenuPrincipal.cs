@@ -22,6 +22,7 @@ namespace Campo_TPFinal_UI
         private readonly CambioIdioma cambioIdioma;
         private readonly GestionIdioma gestionIdioma;
         private readonly Bitacora bitacora;
+        private readonly ControlCambios controlCambios;
 
 
         public MenuPrincipal(
@@ -34,7 +35,8 @@ namespace Campo_TPFinal_UI
             CambioIdioma cambioIdioma,
             GestionIdioma gestionIdioma,
             IBackupService backup,
-            Bitacora bitacora)
+            Bitacora bitacora,
+            ControlCambios controlCambios)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
@@ -52,6 +54,7 @@ namespace Campo_TPFinal_UI
             this.gestionIdioma = gestionIdioma;
             this.backup = backup;
             this.bitacora = bitacora;
+            this.controlCambios = controlCambios;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -110,6 +113,7 @@ namespace Campo_TPFinal_UI
                 btnRestore.Visible = true;
                 btnBackup.Visible = true;
                 btnLog.Visible = true;
+                btnControlCambios.Visible = true;
             }
             if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("alquilar"))
             {
@@ -186,6 +190,11 @@ namespace Campo_TPFinal_UI
         private void btnLog_Click(object sender, EventArgs e)
         {
             bitacora.ShowDialog();
+        }
+
+        private void btnControlCambios_Click(object sender, EventArgs e)
+        {
+            controlCambios.ShowDialog();
         }
     }
 }

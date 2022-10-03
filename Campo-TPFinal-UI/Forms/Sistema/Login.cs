@@ -1,7 +1,9 @@
 ﻿using Campo_TPFinal_BE.Sistema.Idioma;
 using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
+using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
+using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using Campo_TPFinal_UI.Forms.Idioma;
 

@@ -59,7 +59,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(107, 23);
             this.dateTimePicker1.TabIndex = 1;
-            this.dateTimePicker1.Value = new System.DateTime(2022, 9, 17, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2022, 9, 20, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
@@ -69,7 +69,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(107, 23);
             this.dateTimePicker2.TabIndex = 2;
-            this.dateTimePicker2.Value = new System.DateTime(2022, 9, 18, 23, 15, 25, 0);
+            this.dateTimePicker2.Value = new System.DateTime(2022, 9, 20, 11, 21, 58, 0);
             this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // label1
@@ -160,6 +160,7 @@
             this.cmbRisk.Name = "cmbRisk";
             this.cmbRisk.Size = new System.Drawing.Size(121, 23);
             this.cmbRisk.TabIndex = 14;
+            this.cmbRisk.SelectedIndexChanged += new System.EventHandler(this.cmbRisk_SelectedIndexChanged_1);
             // 
             // Bitacora
             // 

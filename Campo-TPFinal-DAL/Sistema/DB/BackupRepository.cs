@@ -19,7 +19,7 @@ namespace Campo_TPFinal_DAL.Sistema.DB
 		{
 			try
 			{
-				string dateFormat = "yyyy-MM-dd";
+				string dateFormat = "yyyy-MM-dd-HH-mm-ss";
 				string bkpPath = path + "\\bkp" + DateTime.Now.ToString(dateFormat) + ".bak";
 				string _commandText = "BACKUP DATABASE Campo TO  DISK = '" + bkpPath + "'";
 				File.Delete(bkpPath);
