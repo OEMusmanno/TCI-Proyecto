@@ -1,6 +1,9 @@
-﻿using Campo_TPFinal_BE;
+﻿using Campo_TPFinal_BE.Usuario;
+using Campo_TPFinal_BE.Vehiculo;
+using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Vehiculo;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +21,30 @@ namespace Campo_TPFinal_DAL.Vehiculo
         public EstacionamientoRepository(IDataAccess dataAccess)
         {
             this.dataAccess = dataAccess;
+        }
+
+        public void Actualizar(string id, string ubicacion, int espacios)
+        {
+            string _commandText = $"UPDATE [dbo].[Estacionamiento] SET [ubicacion] = '{ubicacion}' ,[espacios] ={espacios} WHERE id = {id}";
+            dataAccess.ExecuteNonQuery(_commandText);
+        }
+
+        public void Borrar(int idEstacionamiento)
+        {
+            string _commandText = "DELETE FROM [dbo].[Estacionamiento] WHERE id = " + idEstacionamiento;
+            dataAccess.ExecuteNonQuery(_commandText);
+        }
+
+        public void Crear(string ubicacion, int espacios)
+        {
+            string _commandText = $"INSERT INTO estacionamiento (ubicacion,espacios) VALUES ('{ubicacion}','{espacios}' )";
+            dataAccess.ExecuteNonQuery(_commandText);
+        }
+
+        public void liberarEspacio(int idEstacionamiento)
+        {
+            string _commandText = $"UPDATE [dbo].[Estacionamiento] SET [espaciosLibres] = (espaciosLibres +1)  WHERE id =  {idEstacionamiento}";
+            dataAccess.ExecuteNonQuery(_commandText);
         }
 
         public List<Estacionamiento> Listar()
@@ -42,11 +69,26 @@ namespace Campo_TPFinal_DAL.Vehiculo
             return _estacionamiento;
         }
 
+        public void OcuparEspacio(int id)
+        {
+            string _commandText = $"UPDATE [dbo].[Estacionamiento] SET [espaciosLibres] = (espaciosLibres -1)  WHERE id =  {id}";
+            dataAccess.ExecuteNonQuery(_commandText);
+        }
+
         void ValorizarEntidad(Estacionamiento _estacionamiento, DataRow pDataRow)
         {
             _estacionamiento.ubicacion = pDataRow["ubicacion"].ToString();
             _estacionamiento.Id = int.Parse(pDataRow["Id"].ToString());
+            _estacionamiento.espaciosTotal = int.Parse(pDataRow["espaciosTotal"].ToString());
+            _estacionamiento.espaciosLibres = int.Parse(pDataRow["espaciosLibres"].ToString());
 
         }
+
+        public int ObtenerTotalEspaciosLibres()
+        {
+            return (int)dataAccess.ExecuteScalar($"SELECT SUM(espaciosLibres) FROM [Campo].[dbo].[Estacionamiento]");
+
+        }
+        
     }
 }

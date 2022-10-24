@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campo_TPFinal_BE.Auto
+namespace Campo_TPFinal_BE.Vehiculo
 {
     public class TipoVehiculo
     {
-        public string Nombre { get; set; }    
+        public string Nombre { get; set; }
         public double MinutoRecorrido { get; set; }
         public double MinutoDetenido { get; set; }
         public double PrecioHora { get; set; }
@@ -28,6 +28,11 @@ namespace Campo_TPFinal_BE.Auto
 
         public TipoVehiculo()
         {
+        }
+
+        public override string ToString()
+        {
+            return Nombre;
         }
     }
 }
