@@ -10,6 +10,7 @@ namespace Campo_TPFinal_BLLContracts.Vehiculo
         void liberarEspacio(int idEstacionamiento);
         public List<Estacionamiento> Listar();
         public Estacionamiento ObtenerPorId(int id);
+        int ObtenerTotalEspaciosLibres();
         void OcuparEspacio(int id);
     }
 }

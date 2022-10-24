@@ -5,6 +5,7 @@ using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLL.Sistema;
 using Campo_TPFinal_BLL.Sistema.Idioma;
 using Campo_TPFinal_BLL.Sistema.Perfil;
+using Campo_TPFinal_BLL.SolicitudDeCompra;
 using Campo_TPFinal_BLL.Vehiculo;
 using Campo_TPFinal_BLL.Vehiculo.Estados;
 using Campo_TPFinal_BLLContracts;
@@ -13,6 +14,7 @@ using Campo_TPFinal_BLLContracts.Penalidad;
 using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
+using Campo_TPFinal_BLLContracts.SolicitudDeCompra;
 using Campo_TPFinal_BLLContracts.Vehiculo;
 using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
 using Campo_TPFinal_DAL;
@@ -20,17 +22,20 @@ using Campo_TPFinal_DAL.Alquiler;
 using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DAL.Sistema.Idioma;
 using Campo_TPFinal_DAL.Sistema.Perfiles;
+using Campo_TPFinal_DAL.SolicitudDeCompra;
 using Campo_TPFinal_DAL.Vehiculo;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Alquiler;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.Perfiles;
+using Campo_TPFinal_DALContracts.SolicitudDeCompra;
 using Campo_TPFinal_DALContracts.Vehiculo;
 using Campo_TPFinal_UI.Forms.Estacionamiento;
 using Campo_TPFinal_UI.Forms.Idioma;
 using Campo_TPFinal_UI.Forms.Negocio;
 using Campo_TPFinal_UI.Forms.Sistema;
+using Campo_TPFinal_UI.Forms.SolicitudDeCompra;
 using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -99,6 +104,8 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IDigitoVerificadorRepository, DigitoVerificadorRepository>()              
               .AddSingleton<IControlCambioRepository, ControlCambioRepository>()              
               .AddSingleton<IControlCambioService, ControlCambioService>()              
+              .AddSingleton<ISolicitudDeCompraService, SolicitudDeCompraService>()              
+              .AddSingleton<ISolicitudDeCompraRepository, SolicitudDeCompraRepository>()              
               .AddSingleton<Login>()
               .AddSingleton<MenuPrincipal>()
               .AddSingleton<LogManager>()
@@ -111,6 +118,8 @@ namespace Campo_TPFinal_UI
               .AddSingleton<ControlCambios>()
               .AddSingleton<ABMEstacionamiento>()
               .AddSingleton<ABMAuto>()
+              .AddSingleton<RevisionDeCompra>()
+              .AddSingleton<SolicitudDeCompra>()
               .AddSingleton<Bitacora>()
               .BuildServiceProvider();
 

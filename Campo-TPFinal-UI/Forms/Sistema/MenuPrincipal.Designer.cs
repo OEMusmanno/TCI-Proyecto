@@ -34,7 +34,7 @@
             this.btnPerfil = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCompra = new System.Windows.Forms.Button();
             this.LenguajeLabel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -135,7 +135,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnCompra);
             this.panel1.Controls.Add(this.LenguajeLabel);
             this.panel1.Controls.Add(this.btnSalir);
             this.panel1.Controls.Add(this.panel2);
@@ -147,26 +147,26 @@
             this.panel1.TabIndex = 5;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button1
+            // btnCompra
             // 
-            this.button1.BackColor = System.Drawing.Color.SeaGreen;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Enabled = false;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Green;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.button1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(0, 196);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(183, 62);
-            this.button1.TabIndex = 6;
-            this.button1.Tag = "btnAlquilar";
-            this.button1.Text = "Solicitud de Compra";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnCompra.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnCompra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCompra.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnCompra.FlatAppearance.BorderSize = 0;
+            this.btnCompra.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnCompra.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCompra.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnCompra.Image")));
+            this.btnCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCompra.Location = new System.Drawing.Point(0, 196);
+            this.btnCompra.Name = "btnCompra";
+            this.btnCompra.Size = new System.Drawing.Size(183, 62);
+            this.btnCompra.TabIndex = 6;
+            this.btnCompra.Tag = "btnCompra";
+            this.btnCompra.Text = "btnCompra";
+            this.btnCompra.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCompra.UseVisualStyleBackColor = false;
+            this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
             // 
             // LenguajeLabel
             // 
@@ -432,7 +432,7 @@
         private Button btnRestore;
         private Button btnLog;
         private Button btnControlCambios;
-        private Button button1;
+        private Button btnCompra;
         private Button btnEstacionamiento;
         private Button btnGestionAuto;
     }

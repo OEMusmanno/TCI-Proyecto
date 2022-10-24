@@ -9,6 +9,7 @@ using Campo_TPFinal_UI.Forms.Estacionamiento;
 using Campo_TPFinal_UI.Forms.Idioma;
 using Campo_TPFinal_UI.Forms.Negocio;
 using Campo_TPFinal_UI.Forms.Sistema;
+using Campo_TPFinal_UI.Forms.SolicitudDeCompra;
 
 namespace Campo_TPFinal_UI
 {
@@ -27,6 +28,8 @@ namespace Campo_TPFinal_UI
         private readonly ControlCambios controlCambios;
         private readonly ABMEstacionamiento aBMEstacionamiento;
         private readonly ABMAuto aBMAuto;
+        private readonly RevisionDeCompra  revisionDeCompra;
+        private readonly SolicitudDeCompra solicitudDeCompra;
 
 
         public MenuPrincipal(
@@ -42,7 +45,9 @@ namespace Campo_TPFinal_UI
             Bitacora bitacora,
             ControlCambios controlCambios,
             ABMEstacionamiento aBMEstacionamiento,
-            ABMAuto aBMAuto)
+            ABMAuto aBMAuto,
+            RevisionDeCompra revisionDeCompra,
+            SolicitudDeCompra solicitudDeCompra)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
@@ -63,6 +68,8 @@ namespace Campo_TPFinal_UI
             this.controlCambios = controlCambios;
             this.aBMEstacionamiento = aBMEstacionamiento;
             this.aBMAuto = aBMAuto;
+            this.revisionDeCompra = revisionDeCompra;
+            this.solicitudDeCompra = solicitudDeCompra;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,6 +115,7 @@ namespace Campo_TPFinal_UI
             btnEstacionamiento.Text = Session.traducciones[btnEstacionamiento.Tag.ToString()].Texto;
             btnGestionIdioma.Text = Session.traducciones[btnGestionIdioma.Tag.ToString()].Texto;
             LenguajeLabel.Text = Session.traducciones[LenguajeLabel.Tag.ToString()].Texto;
+            btnCompra.Text = Session.traducciones[btnCompra.Tag.ToString()].Texto;
 
         }
 
@@ -117,6 +125,7 @@ namespace Campo_TPFinal_UI
             var user = Session.GetInstance().usuario.rol;
             if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("administrador"))
             {
+                btnCompra.Visible = true;
                 btnPerfil.Visible = true;
                 btnUsuarios.Visible = true;
                 btnGestionIdioma.Visible = true;
@@ -126,6 +135,10 @@ namespace Campo_TPFinal_UI
                 btnControlCambios.Visible = true;
                 btnEstacionamiento.Visible = true;
                 btnGestionAuto.Visible = true;
+            }
+            if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("contador"))
+            {
+                btnCompra.Visible = true;
             }
             if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("alquilar"))
             {
@@ -217,6 +230,18 @@ namespace Campo_TPFinal_UI
         private void btnGestionAuto_Click(object sender, EventArgs e)
         {
             aBMAuto.ShowDialog();
+        }
+
+        private void btnCompra_Click(object sender, EventArgs e)
+        {
+            if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("contador"))
+            {
+                revisionDeCompra.ShowDialog();
+            }
+            if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("administrador"))
+            {                
+                solicitudDeCompra.ShowDialog();
+            }
         }
     }
 }

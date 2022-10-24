@@ -10,6 +10,7 @@ namespace Campo_TPFinal_DALContracts.Vehiculo
         void liberarEspacio(int idEstacionamiento);
         List<Estacionamiento> Listar();
         Estacionamiento ObtenerPorId(int id);
+        int ObtenerTotalEspaciosLibres();
         void OcuparEspacio(int id);
     }
 }

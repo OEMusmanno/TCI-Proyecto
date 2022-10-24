@@ -53,6 +53,11 @@ namespace Campo_TPFinal_BLL.Vehiculo
             return estacionamientoRepository.ObtenerPorId(id);
         }
 
+        public int ObtenerTotalEspaciosLibres()
+        {
+            return estacionamientoRepository.ObtenerTotalEspaciosLibres();
+        }
+
         public void OcuparEspacio(int id)
         {
             estacionamientoRepository.OcuparEspacio(id);

@@ -83,5 +83,12 @@ namespace Campo_TPFinal_DAL.Vehiculo
             _estacionamiento.espaciosLibres = int.Parse(pDataRow["espaciosLibres"].ToString());
 
         }
+
+        public int ObtenerTotalEspaciosLibres()
+        {
+            return (int)dataAccess.ExecuteScalar($"SELECT SUM(espaciosLibres) FROM [Campo].[dbo].[Estacionamiento]");
+
+        }
+        
     }
 }
