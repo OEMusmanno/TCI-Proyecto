@@ -13,10 +13,12 @@ using Campo_TPFinal_BLLContracts.Penalidad;
 using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
+using Campo_TPFinal_BLLContracts.Vehiculo;
 using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
 using Campo_TPFinal_DAL;
 using Campo_TPFinal_DAL.Alquiler;
 using Campo_TPFinal_DAL.Sistema.DB;
+using Campo_TPFinal_DAL.Sistema.Idioma;
 using Campo_TPFinal_DAL.Sistema.Perfiles;
 using Campo_TPFinal_DAL.Vehiculo;
 using Campo_TPFinal_DALContracts;
@@ -25,7 +27,9 @@ using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.Perfiles;
 using Campo_TPFinal_DALContracts.Vehiculo;
+using Campo_TPFinal_UI.Forms.Estacionamiento;
 using Campo_TPFinal_UI.Forms.Idioma;
+using Campo_TPFinal_UI.Forms.Negocio;
 using Campo_TPFinal_UI.Forms.Sistema;
 using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
@@ -105,6 +109,8 @@ namespace Campo_TPFinal_UI
               .AddSingleton<AdministracionDeUsuarios>()
               .AddSingleton<AdministracionPerfiles>()
               .AddSingleton<ControlCambios>()
+              .AddSingleton<ABMEstacionamiento>()
+              .AddSingleton<ABMAuto>()
               .AddSingleton<Bitacora>()
               .BuildServiceProvider();
 

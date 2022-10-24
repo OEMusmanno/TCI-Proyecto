@@ -1,5 +1,5 @@
-﻿using Campo_TPFinal_BE.Auto;
-using Campo_TPFinal_BLLContracts;
+﻿using Campo_TPFinal_BE.Vehiculo;
+using Campo_TPFinal_BLLContracts.Vehiculo;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Vehiculo;
 using System;

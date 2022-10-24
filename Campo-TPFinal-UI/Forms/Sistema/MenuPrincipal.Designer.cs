@@ -34,6 +34,7 @@
             this.btnPerfil = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.LenguajeLabel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnLog = new System.Windows.Forms.Button();
             this.btnControlCambios = new System.Windows.Forms.Button();
+            this.btnEstacionamiento = new System.Windows.Forms.Button();
+            this.btnGestionAuto = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -83,7 +86,7 @@
             this.btnSalir.ForeColor = System.Drawing.Color.White;
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalir.Location = new System.Drawing.Point(0, 486);
+            this.btnSalir.Location = new System.Drawing.Point(0, 508);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(186, 52);
             this.btnSalir.TabIndex = 2;
@@ -132,6 +135,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.LenguajeLabel);
             this.panel1.Controls.Add(this.btnSalir);
             this.panel1.Controls.Add(this.panel2);
@@ -139,9 +143,30 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(186, 538);
+            this.panel1.Size = new System.Drawing.Size(186, 560);
             this.panel1.TabIndex = 5;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SeaGreen;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.button1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(0, 196);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(183, 62);
+            this.button1.TabIndex = 6;
+            this.button1.Tag = "btnAlquilar";
+            this.button1.Text = "Solicitud de Compra";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // LenguajeLabel
             // 
@@ -152,7 +177,7 @@
             this.LenguajeLabel.ForeColor = System.Drawing.Color.White;
             this.LenguajeLabel.Image = ((System.Drawing.Image)(resources.GetObject("LenguajeLabel.Image")));
             this.LenguajeLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.LenguajeLabel.Location = new System.Drawing.Point(0, 434);
+            this.LenguajeLabel.Location = new System.Drawing.Point(0, 456);
             this.LenguajeLabel.Name = "LenguajeLabel";
             this.LenguajeLabel.Size = new System.Drawing.Size(186, 52);
             this.LenguajeLabel.TabIndex = 5;
@@ -317,12 +342,50 @@
             this.btnControlCambios.Visible = false;
             this.btnControlCambios.Click += new System.EventHandler(this.btnControlCambios_Click);
             // 
+            // btnEstacionamiento
+            // 
+            this.btnEstacionamiento.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnEstacionamiento.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEstacionamiento.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEstacionamiento.Image = ((System.Drawing.Image)(resources.GetObject("btnEstacionamiento.Image")));
+            this.btnEstacionamiento.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEstacionamiento.Location = new System.Drawing.Point(537, 388);
+            this.btnEstacionamiento.Name = "btnEstacionamiento";
+            this.btnEstacionamiento.Size = new System.Drawing.Size(183, 68);
+            this.btnEstacionamiento.TabIndex = 14;
+            this.btnEstacionamiento.Tag = "btnEstacionamiento";
+            this.btnEstacionamiento.Text = "Estacionamiento";
+            this.btnEstacionamiento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEstacionamiento.UseVisualStyleBackColor = false;
+            this.btnEstacionamiento.Visible = false;
+            this.btnEstacionamiento.Click += new System.EventHandler(this.btnEstacionamiento_Click);
+            // 
+            // btnGestionAuto
+            // 
+            this.btnGestionAuto.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnGestionAuto.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnGestionAuto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGestionAuto.Image = ((System.Drawing.Image)(resources.GetObject("btnGestionAuto.Image")));
+            this.btnGestionAuto.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGestionAuto.Location = new System.Drawing.Point(270, 462);
+            this.btnGestionAuto.Name = "btnGestionAuto";
+            this.btnGestionAuto.Size = new System.Drawing.Size(183, 68);
+            this.btnGestionAuto.TabIndex = 15;
+            this.btnGestionAuto.Tag = "btnGestionAuto";
+            this.btnGestionAuto.Text = "btnGestionAuto";
+            this.btnGestionAuto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGestionAuto.UseVisualStyleBackColor = false;
+            this.btnGestionAuto.Visible = false;
+            this.btnGestionAuto.Click += new System.EventHandler(this.btnGestionAuto_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
-            this.ClientSize = new System.Drawing.Size(795, 538);
+            this.ClientSize = new System.Drawing.Size(795, 560);
+            this.Controls.Add(this.btnGestionAuto);
+            this.Controls.Add(this.btnEstacionamiento);
             this.Controls.Add(this.btnControlCambios);
             this.Controls.Add(this.btnLog);
             this.Controls.Add(this.btnRestore);
@@ -369,5 +432,8 @@
         private Button btnRestore;
         private Button btnLog;
         private Button btnControlCambios;
+        private Button button1;
+        private Button btnEstacionamiento;
+        private Button btnGestionAuto;
     }
 }

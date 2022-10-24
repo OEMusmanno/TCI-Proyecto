@@ -2,8 +2,10 @@
 using Campo_TPFinal_BE.Sistema.Perfil;
 using Campo_TPFinal_BE.Usuario;
 using Campo_TPFinal_BLL.Seguridad;
+using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,16 +23,15 @@ namespace Campo_TPFinal_UI
         private readonly ITraductorService traductorService;
         private readonly IUsuarioService usuarioService;
         private readonly IPerfilService perfilService;
-        private readonly LogManager logManager;
-        public AdministracionDeUsuarios(ITraductorService traductorService, IUsuarioService usuarioService, IPerfilService perfilService)
+        private readonly IControlCambioService controlCambioService;
+        public AdministracionDeUsuarios(ITraductorService traductorService, IUsuarioService usuarioService, IPerfilService perfilService, IControlCambioService controlCambioService)
         {
             this.traductorService = traductorService;
             this.usuarioService = usuarioService;
             InitializeComponent();
             this.perfilService = perfilService;
+            this.controlCambioService = controlCambioService;
         }
-
-
 
         public void ActualizarLenguaje(Lenguaje idioma)
         {
@@ -118,10 +119,23 @@ namespace Campo_TPFinal_UI
         {
             if (listBox1.SelectedItem != null)
             {
-                var user = usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());
-                user.alias = txtUsuario.Text;
-                user.password = CryptographyHelper.encrypt(txtContraseña.Text);
-                user.rol = (Rol)comboBox1.SelectedItem;
+                var user = usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());       
+                string descripcion = Interaction.InputBox("Agregue una descripcion","Control de cambios", " - ");
+                if (user.alias != txtUsuario.Text)
+                {
+                    user.alias = txtUsuario.Text;
+                    controlCambioService.AgregarVersionado(user.Id, user.alias, "usuario", descripcion);
+                }
+                if (user.password != CryptographyHelper.encrypt(txtContraseña.Text))
+                {
+                    user.password = CryptographyHelper.encrypt(txtContraseña.Text);
+                    controlCambioService.AgregarVersionado(user.Id, user.password, "contraseña", descripcion);
+                }
+                if (user.rol != (Rol)comboBox1.SelectedItem)
+                {
+                    user.rol = (Rol)comboBox1.SelectedItem;
+                    controlCambioService.AgregarVersionado(user.Id, user.rol.id.ToString(), "rol", descripcion);
+                }
                 usuarioService.ActualizarUsuario(user);
                 limpiar();
             }

@@ -5,7 +5,9 @@ using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DALContracts.Sistema.DB;
+using Campo_TPFinal_UI.Forms.Estacionamiento;
 using Campo_TPFinal_UI.Forms.Idioma;
+using Campo_TPFinal_UI.Forms.Negocio;
 using Campo_TPFinal_UI.Forms.Sistema;
 
 namespace Campo_TPFinal_UI
@@ -23,6 +25,8 @@ namespace Campo_TPFinal_UI
         private readonly GestionIdioma gestionIdioma;
         private readonly Bitacora bitacora;
         private readonly ControlCambios controlCambios;
+        private readonly ABMEstacionamiento aBMEstacionamiento;
+        private readonly ABMAuto aBMAuto;
 
 
         public MenuPrincipal(
@@ -36,7 +40,9 @@ namespace Campo_TPFinal_UI
             GestionIdioma gestionIdioma,
             IBackupService backup,
             Bitacora bitacora,
-            ControlCambios controlCambios)
+            ControlCambios controlCambios,
+            ABMEstacionamiento aBMEstacionamiento,
+            ABMAuto aBMAuto)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
@@ -55,6 +61,8 @@ namespace Campo_TPFinal_UI
             this.backup = backup;
             this.bitacora = bitacora;
             this.controlCambios = controlCambios;
+            this.aBMEstacionamiento = aBMEstacionamiento;
+            this.aBMAuto = aBMAuto;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,6 +104,8 @@ namespace Campo_TPFinal_UI
             btnPerfil.Text = Session.traducciones[btnPerfil.Tag.ToString()].Texto;
             btnSalir.Text = Session.traducciones[btnSalir.Tag.ToString()].Texto;
             btnUsuarios.Text = Session.traducciones[btnUsuarios.Tag.ToString()].Texto;
+            btnGestionAuto.Text = Session.traducciones[btnGestionAuto.Tag.ToString()].Texto;
+            btnEstacionamiento.Text = Session.traducciones[btnEstacionamiento.Tag.ToString()].Texto;
             btnGestionIdioma.Text = Session.traducciones[btnGestionIdioma.Tag.ToString()].Texto;
             LenguajeLabel.Text = Session.traducciones[LenguajeLabel.Tag.ToString()].Texto;
 
@@ -114,6 +124,8 @@ namespace Campo_TPFinal_UI
                 btnBackup.Visible = true;
                 btnLog.Visible = true;
                 btnControlCambios.Visible = true;
+                btnEstacionamiento.Visible = true;
+                btnGestionAuto.Visible = true;
             }
             if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("alquilar"))
             {
@@ -195,6 +207,16 @@ namespace Campo_TPFinal_UI
         private void btnControlCambios_Click(object sender, EventArgs e)
         {
             controlCambios.ShowDialog();
+        }
+
+        private void btnEstacionamiento_Click(object sender, EventArgs e)
+        {
+            aBMEstacionamiento.ShowDialog();
+        }
+
+        private void btnGestionAuto_Click(object sender, EventArgs e)
+        {
+            aBMAuto.ShowDialog();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Campo_TPFinal_BE.Auto;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,13 +28,13 @@ namespace Campo_TPFinal_BE.Vehiculo
             Modelo = modelo;
         }
 
-        public Estacionamiento Estacionamiento { get; set; }
-        public bool Estado{ get; set; }
+        public int Id { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
-        public int Id { get; set; }
-
         public TipoVehiculo tipoVehiculo { get; set; }
+        public Estacionamiento Estacionamiento { get; set; }
+        public bool Estado{ get; set; }
+
         
        
     }

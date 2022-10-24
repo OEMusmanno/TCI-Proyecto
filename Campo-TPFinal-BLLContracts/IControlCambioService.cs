@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_BE.Sistema;
+using Campo_TPFinal_BE.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace Campo_TPFinal_BLLContracts
 {
     public interface IControlCambioService
     {
-        void AgregarVersionado(string version, string descripcion);
+        void AgregarVersionado(int UsuarioId, string value, string property, string descripcion);
         List<ControlCambio> Listar();
+        void RestaurarVersion(string id);
     }
 }

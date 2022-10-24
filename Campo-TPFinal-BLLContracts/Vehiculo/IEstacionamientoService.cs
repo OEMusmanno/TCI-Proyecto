@@ -1,15 +1,15 @@
-﻿using Campo_TPFinal_BE;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Campo_TPFinal_BE.Vehiculo;
 
-namespace Campo_TPFinal_BLLContracts
+namespace Campo_TPFinal_BLLContracts.Vehiculo
 {
     public interface IEstacionamientoService
     {
+        void Actualizar(string id,string ubicacion, int espacios);
+        void Borrar(int idEstacionamiento);
+        void Crear(string ubicacion, int espacios);
+        void liberarEspacio(int idEstacionamiento);
         public List<Estacionamiento> Listar();
         public Estacionamiento ObtenerPorId(int id);
+        void OcuparEspacio(int id);
     }
 }

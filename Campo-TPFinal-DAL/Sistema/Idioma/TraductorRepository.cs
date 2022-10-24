@@ -1,8 +1,9 @@
 ﻿using Campo_TPFinal_BE.Sistema.Idioma;
 using Campo_TPFinal_DALContracts.Sistema.DB;
+using Campo_TPFinal_DALContracts.Sistema.Idioma;
 using System.Data;
 
-namespace Campo_TPFinal_DALContracts.Sistema.Idioma
+namespace Campo_TPFinal_DAL.Sistema.Idioma
 {
     public class TraductorRepository : ITraductorRepository
     {
@@ -24,13 +25,13 @@ namespace Campo_TPFinal_DALContracts.Sistema.Idioma
                 lenguaje.Default = (bool)item["Default"];
                 lenguaje.Nombre = item["Nombre"].ToString();
                 lenguaje.id = (int)item["Id"];
-                
+
                 _list.Add(lenguaje);
             }
             return _list;
         }
 
-        public  Lenguaje ObtenerIdiomaDefault() => ObtenerIdiomas().FirstOrDefault(i => i.Default);
+        public Lenguaje ObtenerIdiomaDefault() => ObtenerIdiomas().FirstOrDefault(i => i.Default);
 
         public Lenguaje ObtenerIdioma(string nombre) => ObtenerIdiomas().FirstOrDefault(i => i.Nombre == nombre);
 
@@ -50,7 +51,7 @@ namespace Campo_TPFinal_DALContracts.Sistema.Idioma
                 Traduccion traduccion = new Traduccion();
                 traduccion.Id = int.Parse(item["id"].ToString());
                 traduccion.Etiqueta = item["Tag"].ToString();
-                traduccion.Texto = item["Texto"].ToString();  
+                traduccion.Texto = item["Texto"].ToString();
                 _traducciones.Add(traduccion.Etiqueta, traduccion);
             }
             return _traducciones;
@@ -62,13 +63,14 @@ namespace Campo_TPFinal_DALContracts.Sistema.Idioma
             _dataAccess.ExecuteNonQuery(_commandText);
         }
 
-        public void CrearTraduccionesVaciasParaNuevoIdioma(int id_Idioma) {
+        public void CrearTraduccionesVaciasParaNuevoIdioma(int id_Idioma)
+        {
 
-            var _commandText= new System.Text.StringBuilder(); 
+            var _commandText = new System.Text.StringBuilder();
 
             foreach (var item in ObtenerTraducciones(ObtenerIdiomaDefault()).Keys)
             {
-                _commandText.AppendLine( string.Format("\nINSERT INTO Traduccion (id_Idioma, tag, texto) VALUES ({0},'{1}', '')", id_Idioma, item));
+                _commandText.AppendLine(string.Format("\nINSERT INTO Traduccion (id_Idioma, tag, texto) VALUES ({0},'{1}', '')", id_Idioma, item));
 
             }
             _dataAccess.ExecuteNonQuery(_commandText.ToString());
@@ -80,10 +82,10 @@ namespace Campo_TPFinal_DALContracts.Sistema.Idioma
             _dataAccess.ExecuteNonQuery(_commandText);
         }
 
-        public void EditarTraduccion(string texto ,int id)
+        public void EditarTraduccion(string texto, int id)
         {
-            string _commandText = string.Format("UPDATE TRADUCCION SET TEXTO = '{0}' WHERE ID = {1}", texto ,id);
+            string _commandText = string.Format("UPDATE TRADUCCION SET TEXTO = '{0}' WHERE ID = {1}", texto, id);
             _dataAccess.ExecuteNonQuery(_commandText);
         }
-    }   
+    }
 }

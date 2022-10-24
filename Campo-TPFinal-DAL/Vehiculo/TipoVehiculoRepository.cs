@@ -1,4 +1,4 @@
-﻿using Campo_TPFinal_BE.Auto;
+﻿using Campo_TPFinal_BE.Vehiculo;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_DALContracts.Vehiculo;
 using System;
@@ -22,7 +22,7 @@ namespace Campo_TPFinal_DAL.Vehiculo
 
         public List<TipoVehiculo> Listar()
         {
-            var list = dataAccess.ExecuteDataSet("SELECT * FROM[Campo].[dbo].[Estacionamiento]");
+            var list = dataAccess.ExecuteDataSet("SELECT * FROM[Campo].[dbo].[TipoVehiculo]");
             var _list = new List<TipoVehiculo>();
             foreach (DataRow item in list.Tables[0].Rows)
             {

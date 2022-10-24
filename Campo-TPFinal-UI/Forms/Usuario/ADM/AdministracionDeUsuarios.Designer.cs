@@ -69,7 +69,7 @@
             this.btnEditar.Size = new System.Drawing.Size(121, 32);
             this.btnEditar.TabIndex = 25;
             this.btnEditar.Tag = "btnEditar";
-            this.btnEditar.Text = "button2";
+            this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 

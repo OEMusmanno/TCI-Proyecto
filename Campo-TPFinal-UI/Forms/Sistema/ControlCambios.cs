@@ -50,11 +50,12 @@ namespace Campo_TPFinal_UI.Forms.Sistema
         private void Actualizar()
         {
             grdListado.DataSource = controlCambioService.Listar();
-            grdListado.Columns["descripcion"].HeaderText = Session.traducciones["lblDescripcion"].Texto;
+            grdListado.Columns["property"].HeaderText = Session.traducciones["lblPropiedad"].Texto;
+            grdListado.Columns["value"].HeaderText = Session.traducciones["lblValue"].Texto;
             grdListado.Columns["usuario"].HeaderText = Session.traducciones["userLabel"].Texto;
             grdListado.Columns["fecha"].HeaderText = Session.traducciones["lblDate"].Texto;
-            txtVersionado.Text = "";
-            txtDescripcion.Text = "";
+            grdListado.Columns["descripcion"].HeaderText = Session.traducciones["lblDescripcion"].Texto;
+            grdListado.Columns["descripcion"].Width =200;
         }
 
         public void ActualizarLenguaje(Lenguaje idioma)
@@ -63,31 +64,15 @@ namespace Campo_TPFinal_UI.Forms.Sistema
         }
         private void Traducir(Lenguaje idioma = null)
         {
-
             Session.traducciones = traductorService.ObtenerTraducciones(idioma);
-            lblDescripcion.Text = Session.traducciones[lblDescripcion.Tag.ToString()].Texto;
             lblListado.Text = Session.traducciones[lblListado.Tag.ToString()].Texto;
-
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            controlCambioService.AgregarVersionado(txtVersionado.Text, txtDescripcion.Text);
+            var id = grdListado.SelectedRows[0]?.Cells["id"].Value.ToString() ?? "";
+            controlCambioService.RestaurarVersion(id);
             Actualizar();            
-        }
-
-        private void grdListado_SelectionChanged(object sender, EventArgs e)
-        {
-            if (grdListado.SelectedRows.Count != 0)
-            {
-                descripcionText.Text = grdListado.SelectedRows[0]?.Cells["descripcion"].Value.ToString() ?? "";
-
-            }
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            Actualizar();
         }
     }
 }
