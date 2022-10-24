@@ -47,7 +47,7 @@ namespace Campo_TPFinal_BLL.Sistema
         }
 
         public bool CheckDigitoVerificador() { 
-            return CheckDigitoVerificadorVertical() || CheckDigitoVerificadorHorizontal();
+            return CheckDigitoVerificadorHorizontal() && CheckDigitoVerificadorVertical() ;
         }
 
         public void CalcularDigitoVerificador()

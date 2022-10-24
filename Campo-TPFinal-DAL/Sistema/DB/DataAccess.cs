@@ -56,6 +56,25 @@ namespace Campo_TPFinal_DAL.Sistema.DB
             }
         }
 
+        public object ExecuteDataReader(string pCommandText)
+        {
+            try
+            {
+                SqlCommand mCom = new SqlCommand(pCommandText, mCon);
+                mCon.Open();
+                return mCom.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (mCon.State != ConnectionState.Closed)
+                    mCon.Close();
+            }
+        }
+
         public object ExecuteScalar(string pCommandText)
         {
             try

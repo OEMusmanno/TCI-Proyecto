@@ -121,10 +121,19 @@ namespace Campo_TPFinal_UI.Forms.SolicitudDeCompra
         private void btnSolicitar_Click(object sender, EventArgs e)
         {
             solicitudDeCompra.Total = Total;
-            solicitudDeCompraService.Crear(solicitudDeCompra);
-            Actualizar();
-            MessageBox.Show(traducciones["textCreacion"].Texto, "OK");
-            this.Close();
+            try
+            {
+                solicitudDeCompraService.Crear(solicitudDeCompra);
+                Actualizar();
+                MessageBox.Show(traducciones["textCreacion"].Texto, "OK");
+                this.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Cuidado!",MessageBoxButtons.OK);
+            }
+          
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -3,7 +3,9 @@ using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -30,12 +32,10 @@ namespace Campo_TPFinal_DAL.Sistema.DB
                 for (int i = 0; i < item.ItemArray.Length - 1; i++)
                 {
                     properties += item[i];
-                    var dvh = CryptographyHelper.hash(properties);
-                    string _commandText = $"UPDATE usuario SET dvh='{dvh.Replace("'", "\"")}' WHERE id='{item["id"]}'";
+                    string _commandText = $"UPDATE usuario SET dvh='{properties}' WHERE id='{item["id"]}'";
                     dataAccess.ExecuteNonQuery(_commandText);
                 }
             }
-
         }
         public void CalcularDigitoVerificadorVertical()
         {
@@ -49,14 +49,51 @@ namespace Campo_TPFinal_DAL.Sistema.DB
                 }
             }
 
-            var dvh = CryptographyHelper.hash(properties);
-            string _commandText = $"UPDATE dvv SET dvv='{dvh.Replace("'", "\"")}' WHERE tabla='usuario'";
+            string _commandText = $"UPDATE dvv SET dvv='{properties}' WHERE tabla='usuario'";
             dataAccess.ExecuteNonQuery(_commandText);
         }
 
-        public bool CheckDigitoVerificadorHorizontal() { return true; }
+        public bool CheckDigitoVerificadorHorizontal()
+        {
+            var dvh = "";
+            string properties = "";
+            var data = dataAccess.ExecuteDataSet("SELECT * FROM [Usuario]");
+            foreach (DataRow item in data.Tables[0].Rows)
+            {
+                for (int i = 0; i < item.ItemArray.Length - 1; i++)
+                {
+                    properties += item[i];
+                    dvh = CryptographyHelper.hash(properties);
+                }
+                var discrepancy = properties != item["dvh"].ToString();
+                if (discrepancy) return true;
+            }
+            return true;         
+        }
 
-        public bool CheckDigitoVerificadorVertical() { return true; }
+        public bool CheckDigitoVerificadorVertical()
+        {
+            var result = "";
+            var discrepancy = false;
+            var data = dataAccess.ExecuteDataSet("SELECT * FROM [Usuario]");
+            foreach (DataRow item in data.Tables[0].Rows)
+            {
+                for (int i = 0; i < item.ItemArray.Length - 1; i++)
+                {
+                    result += item["dvh"];
+                }
+            }
+
+            data = dataAccess.ExecuteDataSet($"SELECT * FROM dvv WHERE tabla='usuario'");
+            foreach (DataRow item in data.Tables[0].Rows)
+            {
+                for (int i = 0; i < item.ItemArray.Length - 1; i++)
+                {
+                    discrepancy = (result.Replace("'", "\"") != item["dvv"].ToString());
+                }
+            }
+            return discrepancy;
+        }
 
     }
 }

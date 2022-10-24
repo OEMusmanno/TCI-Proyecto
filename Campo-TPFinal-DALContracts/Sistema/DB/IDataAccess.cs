@@ -4,6 +4,7 @@ namespace Campo_TPFinal_DALContracts.Sistema.DB
 {
     public interface IDataAccess
     {
+        object ExecuteDataReader(string pCommandText);
         public DataSet ExecuteDataSet(string pCommandText);
 
         public int ExecuteNonQuery(string pCommandText);

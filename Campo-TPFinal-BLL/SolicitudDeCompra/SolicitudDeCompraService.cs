@@ -57,7 +57,7 @@ namespace Campo_TPFinal_BLL.SolicitudDeCompra
             };
             if (espaciosAOcupar > espaciosLibres)
             {
-                throw new Exception("se excede el limite");
+                throw new Exception("se excede el limite de espacio de estacionamientos disponibles, reduzca la cantidad!");
             }
 
         }
