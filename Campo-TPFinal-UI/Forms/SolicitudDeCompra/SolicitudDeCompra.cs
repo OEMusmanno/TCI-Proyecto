@@ -94,6 +94,7 @@ namespace Campo_TPFinal_UI.Forms.SolicitudDeCompra
             btnCancelar.Text = traducciones[btnCancelar.Tag.ToString()].Texto;
             txtAgregar.Text = traducciones[txtAgregar.Tag.ToString()].Texto;
             btnLimpiar.Text = traducciones[btnLimpiar.Tag.ToString()].Texto;
+            grpPago.Text = traducciones[grpPago.Tag.ToString()].Texto;
 
         }
 

@@ -29,7 +29,6 @@ namespace Campo_TPFinal_UI
         private readonly ABMEstacionamiento aBMEstacionamiento;
         private readonly ABMAuto aBMAuto;
         private readonly RevisionDeCompra  revisionDeCompra;
-        private readonly SolicitudDeCompra solicitudDeCompra;
 
 
         public MenuPrincipal(
@@ -46,8 +45,7 @@ namespace Campo_TPFinal_UI
             ControlCambios controlCambios,
             ABMEstacionamiento aBMEstacionamiento,
             ABMAuto aBMAuto,
-            RevisionDeCompra revisionDeCompra,
-            SolicitudDeCompra solicitudDeCompra)
+            RevisionDeCompra revisionDeCompra)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
@@ -69,7 +67,6 @@ namespace Campo_TPFinal_UI
             this.aBMEstacionamiento = aBMEstacionamiento;
             this.aBMAuto = aBMAuto;
             this.revisionDeCompra = revisionDeCompra;
-            this.solicitudDeCompra = solicitudDeCompra;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -234,14 +231,7 @@ namespace Campo_TPFinal_UI
 
         private void btnCompra_Click(object sender, EventArgs e)
         {
-            if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("contador"))
-            {
-                revisionDeCompra.ShowDialog();
-            }
-            if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("administrador"))
-            {                
-                solicitudDeCompra.ShowDialog();
-            }
+            revisionDeCompra.ShowDialog();            
         }
     }
 }

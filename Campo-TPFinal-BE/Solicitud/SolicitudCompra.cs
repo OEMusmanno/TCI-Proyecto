@@ -13,10 +13,11 @@ namespace Campo_TPFinal_BE.Solicitud
         public double Total { get; set; }
         public DateTime fechaDeSolicitud { get; set; }
         public Campo_TPFinal_BE.Usuario.Usuario Usuario { get; set; }
+        public Estado estado { get; set; }
 
         public override string ToString()
         {
-            return Id +" - "+ Usuario.alias;
+            return "Solicitud N°: " + Id +" - Usuario: "+ Usuario.alias + " - Estado: " + estado;
         }
     }
 
@@ -32,6 +33,13 @@ namespace Campo_TPFinal_BE.Solicitud
         public TipoCambio TipoCambio { get; set; }
         public TipoPago TipoPago { get; set; }
 
+    }
+
+    public enum Estado
+    {
+        Aprobado =1,
+        Rechazado = 2,
+        Pendiente = 3
     }
 
     public enum TipoCambio 

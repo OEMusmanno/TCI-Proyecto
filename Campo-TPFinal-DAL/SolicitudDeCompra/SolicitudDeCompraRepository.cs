@@ -34,12 +34,12 @@ namespace Campo_TPFinal_DAL.SolicitudDeCompra
         {
             var fechaHora = DateTime.Now;
             string format = "yyyy-MM-dd HH:mm:ss.FFF";
-            string _commandText = $"INSERT INTO SolicitudDeCompra ([total],[fechaDeSolicitud],[id_usuario]) VALUES ('{solicitudDeCompra.Total}','{fechaHora.ToString(format)}','{(Session.GetInstance()?.usuario?.Id ?? 102)}' )";
+            string _commandText = $"INSERT INTO SolicitudDeCompra ([total],[fechaDeSolicitud],[id_usuario],[estado]) VALUES ('{solicitudDeCompra.Total}','{fechaHora.ToString(format)}','{(Session.GetInstance()?.usuario?.Id ?? 102)}' ,3)";
             dataAccess.ExecuteNonQuery(_commandText);
             var id_Solicitud = $"(SELECT [Id] FROM [Campo].[dbo].[SolicitudDeCompra] WHERE fechaDeSolicitud = '{fechaHora.ToString(format)}' AND id_usuario ={(Session.GetInstance()?.usuario?.Id ?? 102)})";            
             foreach (var item in solicitudDeCompra.itemDeCompras)
             {
-                _commandText = $"INSERT INTO ItemSolicitudCompra ([Marca],[Modelo],[precioUnitario],[cantidad],[tipoCambio],[tipoPago],[id_SolicitudDeCompra]) VALUES ('{item.Marca}','{item.Modelo}',{item.precioUnitario},{item.cantidad},{(int)item.TipoCambio},{(int)item.TipoPago},{id_Solicitud} )";
+                _commandText = $"INSERT INTO ItemSolicitudCompra ([Marca],[Modelo],[tipoVehiculo],[precioUnitario],[cantidad],[tipoCambio],[tipoPago],[id_SolicitudDeCompra]) VALUES ('{item.Marca}','{item.Modelo}',{item.tipoVehiculo.Id},{item.precioUnitario},{item.cantidad},{(int)item.TipoCambio},{(int)item.TipoPago},{id_Solicitud} )";
                 dataAccess.ExecuteNonQuery(_commandText);
             }                        
         }
@@ -47,7 +47,7 @@ namespace Campo_TPFinal_DAL.SolicitudDeCompra
 
         public SolicitudCompra ObtenerPorId(int id)
         {
-            var list = dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[ItemSolicitudCompra] WHERE [id_SolicitudDeCompra] = " + id);
+            var list = dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[SolicitudDeCompra] WHERE [id] = " + id);            
             SolicitudCompra solicitudCompra = new SolicitudCompra();
             ValorizarEntidad(solicitudCompra, list.Tables[0].Rows[0]);
             return solicitudCompra;
@@ -84,11 +84,11 @@ namespace Campo_TPFinal_DAL.SolicitudDeCompra
         void ValorizarEntidad(SolicitudCompra solicitudCompra, DataRow pDataRow)
         {
             solicitudCompra.Id = int.Parse(pDataRow["Id"].ToString());
-            solicitudCompra.Usuario = usuarioRepository.ObtenerPorId( int.Parse(pDataRow["Id_usuario"].ToString()));
+            solicitudCompra.Usuario = usuarioRepository.ObtenerPorId( int.Parse(pDataRow["id_usuario"].ToString()));
             solicitudCompra.itemDeCompras = Listar(solicitudCompra.Id);
             solicitudCompra.Total = double.Parse(pDataRow["Total"].ToString());
             solicitudCompra.fechaDeSolicitud = DateTime.Parse(pDataRow["fechaDeSolicitud"].ToString());
-
+            solicitudCompra.estado = (Estado)pDataRow["Estado"];
         }
 
         void ValorizarEntidad(ItemDeCompra itemDeCompra, DataRow pDataRow)
@@ -104,5 +104,16 @@ namespace Campo_TPFinal_DAL.SolicitudDeCompra
 
         }
 
+        public void Aprobar(int id)
+        {
+            string _commandText = $"UPDATE [dbo].[SolicitudDeCompra] SET [estado] = 1 WHERE id = {id}";
+            dataAccess.ExecuteNonQuery(_commandText);
+        }
+
+        public void Rechazar(int id)
+        {
+            string _commandText = $"UPDATE [dbo].[SolicitudDeCompra] SET [estado] = 2 WHERE id = {id}";
+            dataAccess.ExecuteNonQuery(_commandText);
+        }
     }
 }

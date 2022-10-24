@@ -21,6 +21,11 @@ namespace Campo_TPFinal_BLL.SolicitudDeCompra
             this.estacionamientoService = estacionamientoService;
         }
 
+        public void Aprobar(int id)
+        {
+            solicitudDeCompraRepository.Aprobar(id);
+        }
+
         public void Crear(SolicitudCompra solicitudDeCompra)
         {
             ValidarDisponibilidadDeEspacios(solicitudDeCompra);
@@ -35,6 +40,11 @@ namespace Campo_TPFinal_BLL.SolicitudDeCompra
         public SolicitudCompra ObtenerPorId(int id)
         {
             return solicitudDeCompraRepository.ObtenerPorId(id);
+        }
+
+        public void Rechazar(int id)
+        {
+            solicitudDeCompraRepository.Rechazar(id);
         }
 
         void ValidarDisponibilidadDeEspacios(SolicitudCompra solicitudDeCompra) 

@@ -74,7 +74,7 @@
             this.cmbTipo.Location = new System.Drawing.Point(302, 52);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(142, 23);
-            this.cmbTipo.TabIndex = 57;
+            this.cmbTipo.TabIndex = 3;
             // 
             // lblTipoVehiculo
             // 
@@ -105,7 +105,7 @@
             this.MarcaTxt.Location = new System.Drawing.Point(6, 52);
             this.MarcaTxt.Name = "MarcaTxt";
             this.MarcaTxt.Size = new System.Drawing.Size(142, 23);
-            this.MarcaTxt.TabIndex = 54;
+            this.MarcaTxt.TabIndex = 1;
             // 
             // lblModelo
             // 
@@ -124,7 +124,7 @@
             this.modeloTxt.Location = new System.Drawing.Point(154, 52);
             this.modeloTxt.Name = "modeloTxt";
             this.modeloTxt.Size = new System.Drawing.Size(142, 23);
-            this.modeloTxt.TabIndex = 50;
+            this.modeloTxt.TabIndex = 2;
             // 
             // txtCantidad
             // 
@@ -143,7 +143,7 @@
             this.precioUnitarioText.Location = new System.Drawing.Point(7, 43);
             this.precioUnitarioText.Name = "precioUnitarioText";
             this.precioUnitarioText.Size = new System.Drawing.Size(142, 23);
-            this.precioUnitarioText.TabIndex = 58;
+            this.precioUnitarioText.TabIndex = 4;
             // 
             // groupBox1
             // 
@@ -170,7 +170,7 @@
             this.txtAgregar.Location = new System.Drawing.Point(683, 169);
             this.txtAgregar.Name = "txtAgregar";
             this.txtAgregar.Size = new System.Drawing.Size(215, 64);
-            this.txtAgregar.TabIndex = 60;
+            this.txtAgregar.TabIndex = 8;
             this.txtAgregar.Tag = "txtAgregar";
             this.txtAgregar.Text = "txtAgregar";
             this.txtAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -194,7 +194,7 @@
             this.cantidadText.Location = new System.Drawing.Point(173, 43);
             this.cantidadText.Name = "cantidadText";
             this.cantidadText.Size = new System.Drawing.Size(57, 23);
-            this.cantidadText.TabIndex = 61;
+            this.cantidadText.TabIndex = 5;
             // 
             // cmbTipoCambio
             // 
@@ -202,7 +202,7 @@
             this.cmbTipoCambio.Location = new System.Drawing.Point(262, 43);
             this.cmbTipoCambio.Name = "cmbTipoCambio";
             this.cmbTipoCambio.Size = new System.Drawing.Size(142, 23);
-            this.cmbTipoCambio.TabIndex = 64;
+            this.cmbTipoCambio.TabIndex = 6;
             // 
             // txtTipoCambio
             // 
@@ -252,7 +252,7 @@
             this.cmbTipoPago.Location = new System.Drawing.Point(422, 43);
             this.cmbTipoPago.Name = "cmbTipoPago";
             this.cmbTipoPago.Size = new System.Drawing.Size(142, 23);
-            this.cmbTipoPago.TabIndex = 66;
+            this.cmbTipoPago.TabIndex = 7;
             // 
             // btnLimpiar
             // 
@@ -293,7 +293,7 @@
             this.btnSolicitar.Location = new System.Drawing.Point(462, 598);
             this.btnSolicitar.Name = "btnSolicitar";
             this.btnSolicitar.Size = new System.Drawing.Size(215, 64);
-            this.btnSolicitar.TabIndex = 68;
+            this.btnSolicitar.TabIndex = 9;
             this.btnSolicitar.Tag = "btnSolicitar";
             this.btnSolicitar.Text = "btnSolicitar";
             this.btnSolicitar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -310,7 +310,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(683, 598);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(215, 64);
-            this.btnCancelar.TabIndex = 69;
+            this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Tag = "btnCancelar";
             this.btnCancelar.Text = "btnCancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
