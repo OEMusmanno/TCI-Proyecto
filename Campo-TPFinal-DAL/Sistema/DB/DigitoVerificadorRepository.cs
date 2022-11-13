@@ -1,5 +1,6 @@
 ﻿using Campo_TPFinal_BE.Usuario;
 using Campo_TPFinal_BLL.Seguridad;
+using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using System;
@@ -9,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,25 +19,57 @@ namespace Campo_TPFinal_DAL.Sistema.DB
     public class DigitoVerificadorRepository : IDigitoVerificadorRepository
     {
         private readonly IDataAccess dataAccess;
+        private readonly IUsuarioRepository usuarioRepository;
 
-        public DigitoVerificadorRepository(IDataAccess dataAccess)
+
+        public DigitoVerificadorRepository(IDataAccess dataAccess, IUsuarioRepository usuarioRepository)
         {
             this.dataAccess = dataAccess;
+            this.usuarioRepository = usuarioRepository;
         }
 
         public void CalcularDigitoVerificadorHorizontal()
         {
-            var list = dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[Usuario]");
-            foreach (DataRow item in list.Tables[0].Rows)
+            var list = usuarioRepository.Listar();
+            foreach (Usuario DataUsuario in list)
             {
-                var properties = "";
-                for (int i = 0; i < item.ItemArray.Length - 1; i++)
+                var digito = CalculoDvh(DataUsuario);
+                usuarioRepository.ActualizarDvh(DataUsuario.Id , digito);                
+            }
+        }
+
+        private string CalculoDvh(Usuario DataUsuario)
+        {
+            Type t = DataUsuario.GetType();
+            string dvh = string.Empty;
+            var props = t.GetProperties();
+            foreach (var propiedad in props)
+            {
+                if (propiedad.PropertyType.FullName.Equals(typeof(DateTime).FullName))
                 {
-                    properties += item[i];
-                    string _commandText = $"UPDATE usuario SET dvh='{properties}' WHERE id='{item["id"]}'";
-                    dataAccess.ExecuteNonQuery(_commandText);
+                    DateTime a = (DateTime)propiedad.GetValue(DataUsuario);
+                    dvh += a.ToString("ddmmyyyyhhmmss");
+                }
+                else
+                {
+                    dvh += propiedad.GetValue(DataUsuario).ToString();
                 }
             }
+            return GetMd5Hash(dvh);
+        }
+
+        static string GetMd5Hash(string input)
+        {
+            StringBuilder sBuilder = new StringBuilder();
+            using (var md5 = MD5.Create())
+            {
+                byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+            }
+            return sBuilder.ToString();
         }
         public void CalcularDigitoVerificadorVertical()
         {
@@ -48,51 +82,48 @@ namespace Campo_TPFinal_DAL.Sistema.DB
                     properties += item["dvh"];
                 }
             }
-
-            string _commandText = $"UPDATE dvv SET dvv='{properties}' WHERE tabla='usuario'";
+            var digito = GetMd5Hash(properties);
+            string _commandText = $"UPDATE dvv SET dvv='{digito}' WHERE tabla='usuario'";
             dataAccess.ExecuteNonQuery(_commandText);
         }
 
         public bool CheckDigitoVerificadorHorizontal()
         {
-            var dvh = "";
-            string properties = "";
-            var data = dataAccess.ExecuteDataSet("SELECT * FROM [Usuario]");
-            foreach (DataRow item in data.Tables[0].Rows)
+            var list = usuarioRepository.Listar();
+            var listadoDvh = usuarioRepository.ListarDvh();
+            foreach (Usuario DataUsuario in list)
             {
-                for (int i = 0; i < item.ItemArray.Length - 1; i++)
-                {
-                    properties += item[i];
-                    dvh = CryptographyHelper.hash(properties);
-                }
-                var discrepancy = properties != item["dvh"].ToString();
-                if (discrepancy) return true;
+                var digito = CalculoDvh(DataUsuario);
+                var discrepancy = listadoDvh.Exists(x => x == digito);
+                if (!discrepancy) return false;
             }
             return true;         
         }
 
         public bool CheckDigitoVerificadorVertical()
         {
-            var result = "";
-            var discrepancy = false;
-            var data = dataAccess.ExecuteDataSet("SELECT * FROM [Usuario]");
-            foreach (DataRow item in data.Tables[0].Rows)
+            var list = dataAccess.ExecuteDataSet("SELECT * FROM [Usuario]");
+            var properties = "";
+            foreach (DataRow item in list.Tables[0].Rows)
             {
                 for (int i = 0; i < item.ItemArray.Length - 1; i++)
                 {
-                    result += item["dvh"];
+                    properties += item["dvh"];
                 }
             }
+            var digito = GetMd5Hash(properties);
+            bool discrepancy = false;
 
-            data = dataAccess.ExecuteDataSet($"SELECT * FROM dvv WHERE tabla='usuario'");
+            var data = dataAccess.SelectExecuteDataSet("dvv");
             foreach (DataRow item in data.Tables[0].Rows)
             {
                 for (int i = 0; i < item.ItemArray.Length - 1; i++)
                 {
-                    discrepancy = (result.Replace("'", "\"") != item["dvv"].ToString());
+                    discrepancy = digito != item["dvv"].ToString();
                 }
             }
-            return discrepancy;
+            return !discrepancy;
+
         }
 
     }

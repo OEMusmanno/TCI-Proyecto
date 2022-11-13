@@ -10,7 +10,7 @@ namespace Campo_TPFinal_BLLContracts
 {
     public interface IControlCambioService
     {
-        void AgregarVersionado(int UsuarioId, string value, string property, string descripcion);
+        void AgregarVersionado(int UsuarioId, string value, string property, string descripcion, string viejoUsuario, string nuevoUsuario);
         List<ControlCambio> Listar();
         void RestaurarVersion(string id);
     }

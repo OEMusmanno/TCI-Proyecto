@@ -37,6 +37,17 @@ namespace Campo_TPFinal_DAL
             return _list;
         }
 
+        public List<string> ListarDvh()
+        {
+            var list = _dataAccess.ExecuteDataSet("SELECT dvh FROM [Campo].[dbo].[Usuario] where Bloqueado = 0");
+            var _list = new List<string>();
+            foreach (DataRow item in list.Tables[0].Rows)
+            {                
+                _list.Add(item["dvh"].ToString());
+            }
+            return _list;
+        }
+
         public List<Usuario> ListarBloqueados()
         {
             var list = _dataAccess.ExecuteDataSet("SELECT * FROM [Campo].[dbo].[Usuario] where Bloqueado = 1");
@@ -109,6 +120,12 @@ namespace Campo_TPFinal_DAL
         public void bloquear(int userId)
         {
             string _commandText = "UPDATE [dbo].[Usuario]  SET [bloqueado] = 1 WHERE id = " + userId;
+            _dataAccess.ExecuteNonQuery(_commandText);
+        }
+
+        public void ActualizarDvh(int idUsuario, string dvh)
+        {
+            string _commandText = $"UPDATE [dbo].[Usuario] SET [dvh] = '{dvh}' where id = {idUsuario}";
             _dataAccess.ExecuteNonQuery(_commandText);
         }
     }

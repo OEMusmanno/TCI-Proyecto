@@ -32,11 +32,9 @@ namespace Campo_TPFinal_DAL.SolicitudDeCompra
 
         public void Crear(SolicitudCompra solicitudDeCompra)
         {
-            var fechaHora = DateTime.Now;
-            string format = "yyyy-MM-dd HH:mm:ss.FFF";
-            string _commandText = $"INSERT INTO SolicitudDeCompra ([total],[fechaDeSolicitud],[id_usuario],[estado]) VALUES ('{solicitudDeCompra.Total}','{fechaHora.ToString(format)}','{(Session.GetInstance()?.usuario?.Id ?? 102)}' ,3)";
+            string _commandText = $"INSERT INTO SolicitudDeCompra ([total],[fechaDeSolicitud],[id_usuario],[estado]) VALUES ('{solicitudDeCompra.Total}','{DataAccess.FechaHora()}','{(Session.GetInstance()?.usuario?.Id ?? 102)}' ,3)";
             dataAccess.ExecuteNonQuery(_commandText);
-            var id_Solicitud = $"(SELECT [Id] FROM [Campo].[dbo].[SolicitudDeCompra] WHERE fechaDeSolicitud = '{fechaHora.ToString(format)}' AND id_usuario ={(Session.GetInstance()?.usuario?.Id ?? 102)})";            
+            var id_Solicitud = $"(SELECT [Id] FROM [Campo].[dbo].[SolicitudDeCompra] WHERE fechaDeSolicitud = '{DataAccess.FechaHora()}' AND id_usuario ={(Session.GetInstance()?.usuario?.Id ?? 102)})";            
             foreach (var item in solicitudDeCompra.itemDeCompras)
             {
                 _commandText = $"INSERT INTO ItemSolicitudCompra ([Marca],[Modelo],[tipoVehiculo],[precioUnitario],[cantidad],[tipoCambio],[tipoPago],[id_SolicitudDeCompra]) VALUES ('{item.Marca}','{item.Modelo}',{item.tipoVehiculo.Id},{item.precioUnitario},{item.cantidad},{(int)item.TipoCambio},{(int)item.TipoPago},{id_Solicitud} )";

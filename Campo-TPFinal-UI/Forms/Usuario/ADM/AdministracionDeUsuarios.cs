@@ -13,6 +13,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,6 +25,8 @@ namespace Campo_TPFinal_UI
         private readonly IUsuarioService usuarioService;
         private readonly IPerfilService perfilService;
         private readonly IControlCambioService controlCambioService;
+        private List<Usuario> listUsuarios;
+
         public AdministracionDeUsuarios(ITraductorService traductorService, IUsuarioService usuarioService, IPerfilService perfilService, IControlCambioService controlCambioService)
         {
             this.traductorService = traductorService;
@@ -93,7 +96,9 @@ namespace Campo_TPFinal_UI
             txtUsuario.Text = "";
             txtContraseña.Text = "";
             label2.Text = "-";
-            foreach (var item in usuarioService.Listar())
+            listUsuarios = usuarioService.Listar();
+
+            foreach (var item in listUsuarios)
             {
                 listBox1.Items.Add(item.alias);
             }
@@ -108,7 +113,7 @@ namespace Campo_TPFinal_UI
         {
             if (listBox1.SelectedItem != null)
             {
-                var user = usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());
+                var user = listUsuarios.FirstOrDefault(x => x.alias == listBox1.SelectedItem.ToString());// usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());
                 txtUsuario.Text = user.alias;
                 txtContraseña.Text = CryptographyHelper.decrypt(user.password);
                 label2.Text = user.Id.ToString();
@@ -119,22 +124,28 @@ namespace Campo_TPFinal_UI
         {
             if (listBox1.SelectedItem != null)
             {
-                var user = usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());       
+                Usuario user = listUsuarios.FirstOrDefault(x => x.alias == listBox1.SelectedItem.ToString());//usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());       
+                var JsonOldValue = JsonSerializer.Serialize(user);
                 string descripcion = Interaction.InputBox("Agregue una descripcion","Control de cambios", " - ");
+                string JsonNewValue;
+
                 if (user.alias != txtUsuario.Text)
                 {
                     user.alias = txtUsuario.Text;
-                    controlCambioService.AgregarVersionado(user.Id, user.alias, "usuario", descripcion);
+                    JsonNewValue = JsonSerializer.Serialize(user);
+                    controlCambioService.AgregarVersionado(user.Id, user.alias, "usuario", descripcion, JsonOldValue, JsonNewValue);
                 }
                 if (user.password != CryptographyHelper.encrypt(txtContraseña.Text))
                 {
                     user.password = CryptographyHelper.encrypt(txtContraseña.Text);
-                    controlCambioService.AgregarVersionado(user.Id, user.password, "contraseña", descripcion);
+                    JsonNewValue = JsonSerializer.Serialize(user);
+                    controlCambioService.AgregarVersionado(user.Id, user.password, "contraseña", descripcion, JsonOldValue, JsonNewValue);
                 }
                 if (user.rol != (Rol)comboBox1.SelectedItem)
                 {
                     user.rol = (Rol)comboBox1.SelectedItem;
-                    controlCambioService.AgregarVersionado(user.Id, user.rol.id.ToString(), "rol", descripcion);
+                    JsonNewValue = JsonSerializer.Serialize(user);
+                    controlCambioService.AgregarVersionado(user.Id, user.rol.id.ToString(), "rol", descripcion, JsonOldValue, JsonNewValue);
                 }
                 usuarioService.ActualizarUsuario(user);
                 limpiar();

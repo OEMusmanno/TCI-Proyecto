@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_BE.Usuario;
+using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using System.Data;
@@ -16,9 +17,7 @@ namespace Campo_TPFinal_DAL
 
         public void AplicarPenalidad(int idPenalidad, int idUsuario)
         {
-            var fechaHora = DateTime.Now;
-            string format = "yyyy-MM-dd HH:mm:ss.FFF";
-            string _commandText = "INSERT INTO [dbo].[UsuarioPenalidad] ([id_Penalidad] ,[id_usuario] ,[fecha]) VALUES (" + idPenalidad + ", " + idUsuario + ",'" + fechaHora.ToString(format) + "')";
+            string _commandText = "INSERT INTO [dbo].[UsuarioPenalidad] ([id_Penalidad] ,[id_usuario] ,[fecha]) VALUES (" + idPenalidad + ", " + idUsuario + ",'" + DataAccess.FechaHora() + "')";
             _dataAccess.ExecuteNonQuery(_commandText);
         }
 

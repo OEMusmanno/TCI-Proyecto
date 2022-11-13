@@ -102,10 +102,18 @@ namespace Campo_TPFinal_UI.Forms.Negocio
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            int id_Estacionamiento = int.Parse(grdEstacionamiento.SelectedRows[0].Cells[1].Value.ToString());
-            autoService.Crear(marcaTxt.Text,modeloTxt.Text, id_Estacionamiento, ((TipoVehiculo)cmbTipo.SelectedItem).Id);
-            Actualizar();
-            MessageBox.Show(traducciones["textCreacion"].Texto, "OK");
+            try
+            {
+                int id_Estacionamiento = int.Parse(grdEstacionamiento.SelectedRows[0].Cells[1].Value.ToString());
+                autoService.Crear(marcaTxt.Text, modeloTxt.Text, id_Estacionamiento, ((TipoVehiculo)cmbTipo.SelectedItem).Id);
+                Actualizar();
+                MessageBox.Show(traducciones["textCreacion"].Texto, "OK");
+            }
+            catch (Exception ae)
+            {
+
+                throw ae;
+            }           
         }
 
         private void grdAuto_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -138,20 +146,36 @@ namespace Campo_TPFinal_UI.Forms.Negocio
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            int id_Estacionamiento = int.Parse(grdEstacionamiento.SelectedRows[0].Cells[1].Value.ToString());
-            int id_auto = int.Parse(idText.Text); 
-            autoService.Actualizar(id_auto, marcaTxt.Text, modeloTxt.Text, id_Estacionamiento, ((TipoVehiculo)cmbTipo.SelectedItem).Id, txtBloqueado.Checked);
-            Actualizar();
-            MessageBox.Show(traducciones["txtUpdate"].Texto, "OK");
+            try
+            {
+                int id_Estacionamiento = int.Parse(grdEstacionamiento.SelectedRows[0].Cells[1].Value.ToString());
+                int id_auto = int.Parse(idText.Text);
+                autoService.Actualizar(id_auto, marcaTxt.Text, modeloTxt.Text, id_Estacionamiento, ((TipoVehiculo)cmbTipo.SelectedItem).Id, txtBloqueado.Checked);
+                Actualizar();
+                MessageBox.Show(traducciones["txtUpdate"].Texto, "OK");
+            }
+            catch (Exception ae)
+            {
+                MessageBox.Show(ae.Message, "Error"); ;
+            }           
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            int id_Estacionamiento = int.Parse(grdEstacionamiento.SelectedRows[0].Cells[1].Value.ToString());
-            int id_auto = int.Parse(idText.Text);
-            autoService.Borrar(id_auto, id_Estacionamiento);
-            Actualizar();
-            MessageBox.Show(traducciones["txtDelete"].Texto, "OK");
+            try
+            {
+                int id_Estacionamiento = int.Parse(grdEstacionamiento.SelectedRows[0].Cells[1].Value.ToString());
+                int id_auto = int.Parse(idText.Text);
+                autoService.Borrar(id_auto, id_Estacionamiento);
+                Actualizar();
+                MessageBox.Show(traducciones["txtDelete"].Texto, "OK");
+            }
+            catch (Exception ae)
+            {
+
+                throw ae;
+            }
+        
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

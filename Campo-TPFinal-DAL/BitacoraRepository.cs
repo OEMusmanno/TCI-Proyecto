@@ -1,5 +1,6 @@
 ﻿using Campo_TPFinal_BE.Sistema;
 using Campo_TPFinal_BLL.Seguridad;
+using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DALContracts;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using System.Data;
@@ -19,9 +20,7 @@ namespace Campo_TPFinal_DAL
 
         public void GuardarBitacora(string descripcion, string riesgo)
         {
-            var fechaHora = DateTime.Now;
-            string format = "yyyy-MM-dd HH:mm:ss.FFF";
-            string _commandText = "INSERT INTO Bitacora (usuario,descripcion,fechaHora, riesgo) VALUES ('" + (Session.GetInstance()?.usuario?.Id ?? 102 )+ "','" + descripcion + "', '"+ fechaHora.ToString(format) + "', '" + riesgo + "' )";
+            string _commandText = "INSERT INTO Bitacora (usuario,descripcion,fechaHora, riesgo) VALUES ('" + (Session.GetInstance()?.usuario?.Id ?? 102 )+ "','" + descripcion + "', '"+ DataAccess.FechaHora() + "', '" + riesgo + "' )";
             dataAccess.ExecuteNonQuery(_commandText);
         }
 

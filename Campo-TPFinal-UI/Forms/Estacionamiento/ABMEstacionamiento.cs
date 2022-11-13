@@ -61,7 +61,8 @@ namespace Campo_TPFinal_UI.Forms.Estacionamiento
         {
             traducciones = traductorService.ObtenerTraducciones(idioma);
             lstEstacionamiento.Columns["Ubicacion"].HeaderText = traducciones["lblUbicacion"].Texto;
-            lstEstacionamiento.Columns["Espacios"].HeaderText = traducciones["lblEspacio"].Texto;
+            lstEstacionamiento.Columns["EspaciosLibres"].HeaderText = traducciones["lblEspaciosLibres"].Texto;
+            lstEstacionamiento.Columns["EspaciosTotal"].HeaderText = traducciones["lblEspacio"].Texto;
 
             lblUbicacion.Text = traducciones["lblUbicacion"].Texto;
             lblEspacio.Text = traducciones["lblEspacio"].Texto;
@@ -86,10 +87,19 @@ namespace Campo_TPFinal_UI.Forms.Estacionamiento
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            estacionamientoService.Actualizar(idText.Text,ubicacionTxt.Text, int.Parse(espacioTxt.Text));
-            Limpiar();
-            Actualizar();
-            MessageBox.Show(traducciones["txtUpdate"].Texto, "OK");
+            try
+            {
+                estacionamientoService.Actualizar(idText.Text, ubicacionTxt.Text, int.Parse(espacioTxt.Text));
+                Limpiar();
+                Actualizar();
+                MessageBox.Show(traducciones["txtUpdate"].Texto, "OK");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(traducciones["lblMsgNoHayEspacio"].Texto, "Error");
+                throw;
+            }
+           
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)

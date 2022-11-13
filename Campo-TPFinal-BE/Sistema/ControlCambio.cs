@@ -10,6 +10,7 @@ namespace Campo_TPFinal_BE.Sistema
     {
         public string? id { get; set; }
         public Usuario.Usuario usuario { get; set; }
+        public Usuario.Usuario ViejoUsuario { get; set; }
         public string? property { get; set; }
         public string? value { get; set; }
         public string? descripcion { get; set; }

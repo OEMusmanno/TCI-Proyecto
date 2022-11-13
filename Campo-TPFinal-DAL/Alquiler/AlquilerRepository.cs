@@ -1,6 +1,7 @@
 ﻿using Campo_TPFinal_BE.Alquiler;
 using Campo_TPFinal_BE.Vehiculo;
 using Campo_TPFinal_BLL.Seguridad;
+using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DALContracts.Alquiler;
 using Campo_TPFinal_DALContracts.Sistema.DB;
 using System;
@@ -24,7 +25,7 @@ namespace Campo_TPFinal_DAL.Alquiler
         public void FinalizarReserva(int id_auto)
         {
             var fechaHora = DateTime.Now;
-            string format = "yyyy-MM-dd HH:mm:ss.FFF";
+            string format = "yyyy-MM-ddTHH:mm:ss.FFF";
             var query  = string.Format("UPDATE [dbo].[Reserva] SET [fechaFin] = '{0}' where id_auto = {1} and [fechaFin] IS NULL ", fechaHora.ToString(format), id_auto);
             dataAccess.ExecuteNonQuery(query);
             CambiarEstado(id_auto, 0);
@@ -51,10 +52,8 @@ namespace Campo_TPFinal_DAL.Alquiler
         }
 
         public void RegistrarReserva(int id)
-        {
-            var fechaHora = DateTime.Now;
-            string format = "yyyy-MM-dd HH:mm:ss.FFF";
-            string _commandText = "INSERT INTO [dbo].[Reserva] ([id_auto] ,[id_usuario] ,[fechaInicio]) VALUES (" + id+ ", " + Session.GetInstance().usuario.Id + ",'"+ fechaHora.ToString(format) +  "')";
+        {            
+            string _commandText = "INSERT INTO [dbo].[Reserva] ([id_auto] ,[id_usuario] ,[fechaInicio]) VALUES (" + id+ ", " + Session.GetInstance().usuario.Id + ",'"+ DataAccess.FechaHora() +  "')";
             dataAccess.ExecuteNonQuery(_commandText);
             CambiarEstado(id,1);
         }

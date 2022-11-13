@@ -1,4 +1,6 @@
-﻿using Campo_TPFinal_DALContracts.Sistema.DB;
+﻿using Campo_TPFinal_BE.Solicitud;
+using Campo_TPFinal_BLL.Seguridad;
+using Campo_TPFinal_DALContracts.Sistema.DB;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,6 +15,13 @@ namespace Campo_TPFinal_DAL.Sistema.DB
     public class DataAccess : IDataAccess
     {
         SqlConnection mCon = new SqlConnection(ConfigurationManager.ConnectionStrings["StringConexion"].ConnectionString);
+
+        public static string FechaHora()
+        {
+            var fechaHora = DateTime.Now;
+            string format = "yyyy-MM-dd HH:mm:ss.FFF";
+            return fechaHora.ToString(format);
+        }
 
         public DataSet ExecuteDataSet(string pCommandText)
         {
@@ -35,24 +44,62 @@ namespace Campo_TPFinal_DAL.Sistema.DB
                     mCon.Close();
             }
 
-        }      
+        }
+
+        public DataSet SelectExecuteDataSet(string tabla)
+        {
+            var pCommandText = $"SELECT * FROM [{tabla}]";
+            return ExecuteDataSet(pCommandText);
+        }
+
+        public DataSet GetPorIdExecuteDataSet(string tabla, string id)
+        {
+            var pCommandText = $"SELECT * FROM [{tabla}] where id = {id}";
+            return ExecuteDataSet(pCommandText);
+        }
 
         public int ExecuteNonQuery(string pCommandText)
         {
-            try
+            using (SqlCommand mCom = new SqlCommand(pCommandText, mCon))
             {
-                SqlCommand mCom = new SqlCommand(pCommandText, mCon);
-                mCon.Open();
-                return mCom.ExecuteNonQuery();
+                try
+                {                    
+                    mCon.Open();
+                    return mCom.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (mCon.State != ConnectionState.Closed)
+                        mCon.Close();
+                }
             }
-            catch (Exception ex)
+           
+        }        
+
+        public int DeleteExecuteNonQuery(string table, string id)
+        {
+            string _commandText = $"DELETE * FROM {table} where id = {id}";
+
+            using (SqlCommand mCom = new SqlCommand(_commandText, mCon))
             {
-                throw ex;
-            }
-            finally
-            {
-                if (mCon.State != ConnectionState.Closed)
-                    mCon.Close();
+                try
+                {
+                    mCon.Open();
+                    return mCom.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (mCon.State != ConnectionState.Closed)
+                        mCon.Close();
+                }
             }
         }
 

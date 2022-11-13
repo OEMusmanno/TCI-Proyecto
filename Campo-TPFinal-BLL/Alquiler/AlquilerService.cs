@@ -32,7 +32,7 @@ namespace Campo_TPFinal_BLL.Alquiler
             if (!validarReservasAnteriores())
             {
                 alquilerRepository.RegistrarReserva(id);
-                bitacoraService.GuardarBitacora("Se registro la reserva con el auto: " + marca + " " + modelo , "Bajo");
+                bitacoraService.GuardarBitacora("Se registro la reserva con el auto: " + marca + " " + modelo, "Bajo");
             }
             else
             {
@@ -42,20 +42,35 @@ namespace Campo_TPFinal_BLL.Alquiler
 
         }
 
-        public Reserva obtenerAlquiler() {
+        public Reserva obtenerAlquiler()
+        {
             var reserva = alquilerRepository.ObtenerReserva(Session.GetInstance().usuario.Id);
-             reserva.auto=  autoRepository.ObtenerAuto(reserva.id_auto);
+            reserva.auto = autoRepository.ObtenerAuto(reserva.id_auto);
             return reserva;
         }
 
         public bool validarReservasAnteriores()
         {
-            return alquilerRepository.ValidarReservasAnteriores();         
+            return alquilerRepository.ValidarReservasAnteriores();
         }
 
         public void FinalizarReserva(int id_auto)
         {
             alquilerRepository.FinalizarReserva(id_auto);
+
+            int[] result = new int[3];
+
+            foreach (var item in new List<int>())
+            {
+                if (item > 0) result[0]++;
+                if (item < 0) result[1]++;
+                else result[3]++;
+            }
+
+            foreach (var item in result)
+            {
+
+            }
         }
     }
 }

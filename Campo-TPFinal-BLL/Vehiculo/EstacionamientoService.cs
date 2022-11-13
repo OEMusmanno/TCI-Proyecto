@@ -60,7 +60,24 @@ namespace Campo_TPFinal_BLL.Vehiculo
 
         public void OcuparEspacio(int id)
         {
-            estacionamientoRepository.OcuparEspacio(id);
+            try
+            {
+                validarEspacioAOcupar(id);
+                estacionamientoRepository.OcuparEspacio(id);
+            }
+            catch (Exception e )
+            {
+                throw e;
+            }          
+        }
+
+        private void validarEspacioAOcupar(int id)
+        {
+            var estacionamiento = ObtenerPorId(id);
+            if (estacionamiento.espaciosLibres == 0)
+            {
+                throw new ArgumentException("No hay espacio");
+            }          
         }
     }
 }
