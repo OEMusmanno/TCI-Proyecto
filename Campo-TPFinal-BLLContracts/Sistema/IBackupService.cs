@@ -9,7 +9,6 @@ namespace Campo_TPFinal_BLLContracts.Sistema
     public interface IBackupService
     {
         void Backup(string path);
-        void FirstRun();
         void Restore(string nombreDeArchivo);
     }
 }

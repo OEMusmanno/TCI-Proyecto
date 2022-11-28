@@ -9,6 +9,7 @@ namespace Campo_TPFinal_DALContracts.Sistema.DB
     public interface IBackupRepository
     {
         bool backUp(string path);
+        bool PrimeraEjecucion(string path);
         bool restore(string nombreArchivo);
     }
 }

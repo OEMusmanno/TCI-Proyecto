@@ -5,6 +5,7 @@ using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLL.Sistema;
 using Campo_TPFinal_BLL.Sistema.Idioma;
 using Campo_TPFinal_BLL.Sistema.Perfil;
+using Campo_TPFinal_BLL.Sistema.Reportes;
 using Campo_TPFinal_BLL.SolicitudDeCompra;
 using Campo_TPFinal_BLL.Vehiculo;
 using Campo_TPFinal_BLL.Vehiculo.Estados;
@@ -14,6 +15,7 @@ using Campo_TPFinal_BLLContracts.Penalidad;
 using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
+using Campo_TPFinal_BLLContracts.Sistema.Reportes;
 using Campo_TPFinal_BLLContracts.SolicitudDeCompra;
 using Campo_TPFinal_BLLContracts.Vehiculo;
 using Campo_TPFinal_BLLContracts.Vehiculo.Estados;
@@ -36,13 +38,12 @@ using Campo_TPFinal_UI.Forms.Idioma;
 using Campo_TPFinal_UI.Forms.Negocio;
 using Campo_TPFinal_UI.Forms.Sistema;
 using Campo_TPFinal_UI.Forms.SolicitudDeCompra;
-using FluentAssertions.Common;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Campo_TPFinal_UI
 {
     internal static class Program
-    {
+    {      
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -60,27 +61,46 @@ namespace Campo_TPFinal_UI
                 ConfigureServices(services);
 
                 using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-                {
+                {                    
                     var form1 = serviceProvider.GetRequiredService<Login>();
                     Application.Run(form1);
                 }
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
-            }
-           
-        }
+                if (ex.Message.Contains("Cannot open database"))
+                {
+                    MessageBox.Show("No se encontro base de datos, elija el archivo de primera ejecucion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var backupRepository = new BackupRepository(new DataAccess());
+                    var backup = new BackupService(backupRepository);
+                    var openFolder = new OpenFileDialog
+                    {
+                        Filter = "Database backups (*.bak)|*.bak",
+                        Title = "Open database backup"
+                    };
+                    if (openFolder.ShowDialog() == DialogResult.OK)
+                    {
+                        backup.primeraEjecucion(openFolder.FileName);
+                    }
+                }
+                else
+                {
+                    throw ex;
+                }
+            }           
+        }    
 
         private static void ConfigureServices(ServiceCollection services)
         {
             services
+              .AddSingleton<Login>()
+              .AddSingleton<ILoginService, LoginService>()              
+              .AddSingleton<IReporteService, ReporteService>()              
+              .AddSingleton<IUsuarioService, UsuarioService>()
               .AddSingleton<IDataAccess, DataAccess>()
               .AddSingleton<IAutoService, AutoService>()
               .AddSingleton<IEstacionamientoService, EstacionamientoService>()
               .AddSingleton<ITipoVehiculoService, TipoVehiculoService>()
-              .AddSingleton<IUsuarioService, UsuarioService>()
               .AddSingleton<IUsuarioRepository, UsuarioRepository>()
               .AddSingleton<IAutoRepository, AutoRepository>()
               .AddSingleton<IEstacionamientoRepository, EstacionamientoRepository>()
@@ -96,18 +116,17 @@ namespace Campo_TPFinal_UI
               .AddSingleton<IPerfilService, PerfilService>()              
               .AddSingleton<IEstadoService, DisponibleService>()              
               .AddSingleton<IEstadoService, ReservadoService>()
-              .AddSingleton<ILoginService, LoginService>()              
               .AddSingleton<ITraductorService, TraductorService>()              
               .AddSingleton<IBackupRepository, BackupRepository>()              
               .AddSingleton<IBackupService, BackupService>()              
-              .AddSingleton<IDigitoVerificadorService, DigitoVerificadorService>()              
+              .AddSingleton<IDigitoVerificadorService, DigitoVerificadorService>()            
               .AddSingleton<IDigitoVerificadorRepository, DigitoVerificadorRepository>()              
               .AddSingleton<IControlCambioRepository, ControlCambioRepository>()              
               .AddSingleton<IControlCambioService, ControlCambioService>()              
               .AddSingleton<ISolicitudDeCompraService, SolicitudDeCompraService>()              
               .AddSingleton<ISolicitudDeCompraRepository, SolicitudDeCompraRepository>()              
-              .AddSingleton<Login>()
               .AddSingleton<MenuPrincipal>()
+              .AddSingleton<Reporte>()
               .AddSingleton<LogManager>()
               .AddSingleton<AplicarPenalidad>()
               .AddSingleton<RegistrarAlquiler>()
@@ -122,7 +141,6 @@ namespace Campo_TPFinal_UI
               .AddSingleton<SolicitudDeCompra>()
               .AddSingleton<Bitacora>()
               .BuildServiceProvider();
-
         }
     }
 }

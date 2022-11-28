@@ -29,6 +29,7 @@ namespace Campo_TPFinal_UI
         private readonly ABMEstacionamiento aBMEstacionamiento;
         private readonly ABMAuto aBMAuto;
         private readonly RevisionDeCompra  revisionDeCompra;
+        private readonly Reporte reporte;
 
 
         public MenuPrincipal(
@@ -45,7 +46,8 @@ namespace Campo_TPFinal_UI
             ControlCambios controlCambios,
             ABMEstacionamiento aBMEstacionamiento,
             ABMAuto aBMAuto,
-            RevisionDeCompra revisionDeCompra)
+            RevisionDeCompra revisionDeCompra,
+            Reporte reporte)
         {
             this.bitacoraService = bitacoraService;
             this.registrarAlquiler = registrarAlquiler;
@@ -67,6 +69,7 @@ namespace Campo_TPFinal_UI
             this.aBMEstacionamiento = aBMEstacionamiento;
             this.aBMAuto = aBMAuto;
             this.revisionDeCompra = revisionDeCompra;
+            this.reporte = reporte;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -112,7 +115,8 @@ namespace Campo_TPFinal_UI
             btnEstacionamiento.Text = Session.traducciones[btnEstacionamiento.Tag.ToString()].Texto;
             btnGestionIdioma.Text = Session.traducciones[btnGestionIdioma.Tag.ToString()].Texto;
             LenguajeLabel.Text = Session.traducciones[LenguajeLabel.Tag.ToString()].Texto;
-            btnCompra.Text = Session.traducciones[btnCompra.Tag.ToString()].Texto;
+            btnCompra.Text = Session.traducciones[btnCompra.Tag.ToString()].Texto;            
+            btnReporte.Text = Session.traducciones[btnReporte.Tag.ToString()].Texto;
 
         }
 
@@ -232,6 +236,16 @@ namespace Campo_TPFinal_UI
         private void btnCompra_Click(object sender, EventArgs e)
         {
             revisionDeCompra.ShowDialog();            
+        }
+
+        private void btnReporte_Click_1(object sender, EventArgs e)
+        {
+            reporte.ShowDialog();
+        }
+
+        private void btnSerializacion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

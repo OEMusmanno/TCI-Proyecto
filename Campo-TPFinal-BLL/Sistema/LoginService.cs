@@ -1,11 +1,7 @@
 ﻿using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
+using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Campo_TPFinal_BLL.Sistema
 {
@@ -33,7 +29,6 @@ namespace Campo_TPFinal_BLL.Sistema
                 bitacoraService.GuardarBitacora("Numero de intentos de login: " + intentos + " del usuario: " + user , "Alto");
                 throw new Exception(Session.traducciones["ErrorLogin"].Texto);
             }
-
-        }
+        }       
     }
 }

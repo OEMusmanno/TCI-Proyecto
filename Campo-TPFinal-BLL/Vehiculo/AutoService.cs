@@ -58,7 +58,7 @@ namespace Campo_TPFinal_BLL.Vehiculo
 
         public void Actualizar(int id_auto,string marca, string modelo, int estacionamiento, int tipoVehiculo, bool bloqueado)
         {
-            _autoRepository.Actualizar(id_auto, marca, modelo, estacionamiento, tipoVehiculo, bloqueado);
+            _autoRepository.Actualizar(id_auto, marca, modelo, estacionamiento, tipoVehiculo, bloqueado);            
             estacionamientoService.OcuparEspacio(estacionamiento);
             bitacoraService.GuardarBitacora("Se actualizo un auto", "Bajo");
         }

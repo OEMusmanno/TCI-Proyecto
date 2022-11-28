@@ -79,6 +79,6 @@ namespace Campo_TPFinal_UI
             btnLogIn.Text = Session.traducciones[btnLogIn.Tag.ToString()].Texto;
 
         }
-
+       
     }
 }

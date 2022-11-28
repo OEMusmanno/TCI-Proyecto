@@ -12,5 +12,6 @@ namespace Campo_TPFinal_BLLContracts.Sistema.Perfil
         List<Usuario> Listar();
         Usuario ObtenerPorAlias(string name);
         List<Usuario> ListarBloqueados();
+        Usuario ObtenerPorId(int id);
     }
 }

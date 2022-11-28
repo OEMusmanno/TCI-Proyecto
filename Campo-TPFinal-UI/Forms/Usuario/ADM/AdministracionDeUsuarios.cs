@@ -113,7 +113,7 @@ namespace Campo_TPFinal_UI
         {
             if (listBox1.SelectedItem != null)
             {
-                var user = listUsuarios.FirstOrDefault(x => x.alias == listBox1.SelectedItem.ToString());// usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());
+                var user = listUsuarios.FirstOrDefault(x => x.alias == listBox1.SelectedItem.ToString());
                 txtUsuario.Text = user.alias;
                 txtContraseña.Text = CryptographyHelper.decrypt(user.password);
                 label2.Text = user.Id.ToString();
@@ -124,10 +124,10 @@ namespace Campo_TPFinal_UI
         {
             if (listBox1.SelectedItem != null)
             {
-                Usuario user = listUsuarios.FirstOrDefault(x => x.alias == listBox1.SelectedItem.ToString());//usuarioService.ObtenerPorAlias(listBox1.SelectedItem.ToString());       
+                Usuario user = listUsuarios.FirstOrDefault(x => x.alias == listBox1.SelectedItem.ToString());
                 var JsonOldValue = JsonSerializer.Serialize(user);
                 string descripcion = Interaction.InputBox("Agregue una descripcion","Control de cambios", " - ");
-                string JsonNewValue;
+                string JsonNewValue;                
 
                 if (user.alias != txtUsuario.Text)
                 {

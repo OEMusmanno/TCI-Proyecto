@@ -14,5 +14,7 @@ namespace Campo_TPFinal_DALContracts.Alquiler
        public bool ValidarReservasAnteriores();
        Reserva ObtenerReserva(int idReserva);
         void FinalizarReserva(int id_auto);
+        List<Reserva> Listar();
+        List<Reserva> ListarPorPeriodo(DateTime fechaInicio, DateTime fechaFin);
     }
 }

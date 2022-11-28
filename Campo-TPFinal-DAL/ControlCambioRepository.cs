@@ -39,6 +39,10 @@ namespace Campo_TPFinal_DAL
         {
             var list = dataAccess.SelectExecuteDataSet("ControlCambio");
             var _list = new List<ControlCambio>();
+            if (list.Tables[0].Rows.Count == 0)
+            {
+                return _list;
+            }            
             foreach (DataRow item in list.Tables[0].Rows)
             {
                 ControlCambio control = new ControlCambio();

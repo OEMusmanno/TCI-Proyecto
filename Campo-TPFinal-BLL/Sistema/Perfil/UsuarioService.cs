@@ -2,11 +2,6 @@
 using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
 using Campo_TPFinal_DALContracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Campo_TPFinal_BLL.Sistema.Perfil
 {
@@ -14,11 +9,13 @@ namespace Campo_TPFinal_BLL.Sistema.Perfil
     {
         readonly IUsuarioRepository usuarioRepository;
         readonly IDigitoVerificadorService digitoVerificadorService;
+        readonly IBackupService backupService;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, IDigitoVerificadorService digitoVerificadorService)
+        public UsuarioService(IUsuarioRepository usuarioRepository, IDigitoVerificadorService digitoVerificadorService, IBackupService backupService)
         {
             this.usuarioRepository = usuarioRepository;
             this.digitoVerificadorService = digitoVerificadorService;
+            this.backupService = backupService;         
         }
 
         public void AgregarUsuario(Usuario user)
@@ -63,6 +60,11 @@ namespace Campo_TPFinal_BLL.Sistema.Perfil
         {
             return usuarioRepository.ObtenerPorAlias(name);
             digitoVerificadorService.CalcularDigitoVerificador();
+        }
+
+        public Usuario ObtenerPorId( int id)
+        {
+            return usuarioRepository.ObtenerPorId(id);            
         }
     }
 }

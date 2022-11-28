@@ -72,5 +72,14 @@ namespace Campo_TPFinal_BLL.Alquiler
 
             }
         }
+
+        public List<Reserva> Listar() {
+            return alquilerRepository.Listar();
+        }
+
+        public List<Reserva> ListarPorPeriodo(DateTime fechaInicio, DateTime fechaFin)
+        {
+            return alquilerRepository.ListarPorPeriodo(fechaInicio,fechaFin);
+        }
     }
 }

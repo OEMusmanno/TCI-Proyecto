@@ -1,5 +1,6 @@
 ﻿using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_DALContracts.Sistema.DB;
+using System.IO;
 
 namespace Campo_TPFinal_BLL.Sistema
 {
@@ -8,6 +9,11 @@ namespace Campo_TPFinal_BLL.Sistema
         private readonly IBackupRepository backupRepository ;
 
         public BackupService(IBackupRepository backupRepository)
+        {
+            this.backupRepository = backupRepository;
+        }
+
+        public BackupService()
         {
             this.backupRepository = backupRepository;
         }
@@ -21,9 +27,9 @@ namespace Campo_TPFinal_BLL.Sistema
             backupRepository.restore(path);
         }
 
-        public void FirstRun() {
-            Directory.CreateDirectory(Directory.GetCurrentDirectory() + "Backups");
+        public void primeraEjecucion(string path)
+        {
+            backupRepository.PrimeraEjecucion(path);
         }
-
     }
 }

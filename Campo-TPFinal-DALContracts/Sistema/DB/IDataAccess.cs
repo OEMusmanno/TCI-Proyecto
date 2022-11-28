@@ -10,5 +10,6 @@ namespace Campo_TPFinal_DALContracts.Sistema.DB
         object ExecuteScalar(string pCommandText);
         DataSet SelectExecuteDataSet(string tabla);
         DataSet GetPorIdExecuteDataSet(string tabla, string id);
+        int FirstRun(string pCommandText);
     }
 }

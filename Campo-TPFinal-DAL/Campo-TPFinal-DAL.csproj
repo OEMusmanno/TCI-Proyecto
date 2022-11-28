@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Campo-TPFinal-DALContracts\Campo-TPFinal-DALContracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Estacionamiento\" />
-  </ItemGroup>
-
 </Project>

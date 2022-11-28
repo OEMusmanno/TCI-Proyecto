@@ -14,5 +14,7 @@ namespace Campo_TPFinal_BLLContracts.Alquiler
         void RegistrarReserva(int id, string marca, string modelo);
         bool validarReservasAnteriores();
         void FinalizarReserva(int id_auto);
+        List<Reserva> Listar();
+        List<Reserva> ListarPorPeriodo(DateTime fechaInicio, DateTime fechaFin);
     }
 }

@@ -15,6 +15,7 @@ namespace Campo_TPFinal_DAL.Sistema.DB
     public class DataAccess : IDataAccess
     {
         SqlConnection mCon = new SqlConnection(ConfigurationManager.ConnectionStrings["StringConexion"].ConnectionString);
+        SqlConnection mConDefault = new SqlConnection(ConfigurationManager.ConnectionStrings["StringConexionDefault"].ConnectionString);
 
         public static string FechaHora()
         {
@@ -78,7 +79,29 @@ namespace Campo_TPFinal_DAL.Sistema.DB
                 }
             }
            
-        }        
+        }
+
+        public int FirstRun(string pCommandText)
+        {
+            using (SqlCommand mCom = new SqlCommand(pCommandText, mConDefault))
+            {
+                try
+                {
+                    mConDefault.Open();
+                    return mCom.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (mConDefault.State != ConnectionState.Closed)
+                        mConDefault.Close();
+                }
+            }
+
+        }
 
         public int DeleteExecuteNonQuery(string table, string id)
         {

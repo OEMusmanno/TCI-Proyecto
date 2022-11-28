@@ -1,6 +1,10 @@
 ﻿using Campo_TPFinal_BE.Alquiler;
+using Campo_TPFinal_BE.Sistema;
 using Campo_TPFinal_BE.Vehiculo;
 using Campo_TPFinal_BLL.Seguridad;
+using Campo_TPFinal_BLLContracts.Alquiler;
+using Campo_TPFinal_BLLContracts.Sistema.Perfil;
+using Campo_TPFinal_BLLContracts.Vehiculo;
 using Campo_TPFinal_DAL.Sistema.DB;
 using Campo_TPFinal_DALContracts.Alquiler;
 using Campo_TPFinal_DALContracts.Sistema.DB;
@@ -16,10 +20,16 @@ namespace Campo_TPFinal_DAL.Alquiler
     public class AlquilerRepository: IAlquilerRepository
     {
         private readonly IDataAccess dataAccess;
+        private readonly IUsuarioService usuarioService;
+        private readonly IAutoService autoService;
 
-        public AlquilerRepository(IDataAccess dataAccess)
+
+
+        public AlquilerRepository(IDataAccess dataAccess, IUsuarioService usuarioService, IAutoService autoService)
         {
             this.dataAccess = dataAccess;
+            this.usuarioService = usuarioService;
+            this.autoService = autoService;
         }
 
         public void FinalizarReserva(int id_auto)
@@ -76,7 +86,47 @@ namespace Campo_TPFinal_DAL.Alquiler
                 return (bool)value;
             }
         }
+
+        public List<Reserva> Listar() 
+        {
+            var list = dataAccess.ExecuteDataSet("Reserva");
+            var _list = new List<Reserva>();
+            if (list.Tables[0].Rows.Count == 0)
+            {
+                return _list;
+            }
+            foreach (DataRow item in list.Tables[0].Rows)
+            {
+                Reserva reserva = new Reserva();
+                reserva.id = (int)item["Id"];
+                reserva.id_auto = (int)item["Id_auto"];
+                reserva.fechaFin = (DateTime)item["FechaInicio"];
+                reserva.fechaInicio = (DateTime)item["FechaFin"];
+                _list.Add(reserva);
+            }
+            return _list;
+        }
+
+        public List<Reserva> ListarPorPeriodo(DateTime fechaInicio, DateTime fechaFin)
+        {
+            string dateFormat = "yyyy-MM-dd";
+            var list = dataAccess.ExecuteDataSet($"SELECT * FROM Reserva WHERE FECHAINICIO BETWEEN '{fechaInicio.ToString(dateFormat)}' AND '{fechaFin.ToString(dateFormat)}'");
+            var _list = new List<Reserva>();
+            if (list.Tables[0].Rows.Count == 0)
+            {
+                return _list;
+            }
+            foreach (DataRow item in list.Tables[0].Rows)
+            {
+                Reserva reserva = new Reserva();
+                reserva.id = (int)item["Id"];
+                reserva.auto = autoService.ObtenerPorId((int)item["Id_auto"]);
+                reserva.usuario = usuarioService.ObtenerPorId((int)item["Id_Usuario"]);
+                reserva.fechaFin = (DateTime)item["FechaFin"];
+                reserva.fechaInicio = (DateTime)item["FechaInicio"];
+                _list.Add(reserva);
+            }
+            return _list;
+        }
     }
-
-
 }

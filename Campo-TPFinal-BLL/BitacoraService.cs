@@ -18,10 +18,11 @@ namespace Campo_TPFinal_BLL
         {
             this.bitacoraRepository = bitacoraRepository;
         }
+
         public void GuardarBitacora(string descripcion, string riesgo)
         {
             bitacoraRepository.GuardarBitacora(descripcion, riesgo);
-        }
+        }        
         public List<BitacoraLog> Listar()
         {
             return bitacoraRepository.Listar();

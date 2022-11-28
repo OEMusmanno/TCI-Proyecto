@@ -34,6 +34,7 @@
             this.btnPerfil = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReporte = new System.Windows.Forms.Button();
             this.btnCompra = new System.Windows.Forms.Button();
             this.LenguajeLabel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -49,6 +50,7 @@
             this.btnControlCambios = new System.Windows.Forms.Button();
             this.btnEstacionamiento = new System.Windows.Forms.Button();
             this.btnGestionAuto = new System.Windows.Forms.Button();
+            this.btnSerializacion = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -135,6 +137,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.Controls.Add(this.btnReporte);
             this.panel1.Controls.Add(this.btnCompra);
             this.panel1.Controls.Add(this.LenguajeLabel);
             this.panel1.Controls.Add(this.btnSalir);
@@ -146,6 +149,27 @@
             this.panel1.Size = new System.Drawing.Size(186, 560);
             this.panel1.TabIndex = 5;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnReporte
+            // 
+            this.btnReporte.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnReporte.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnReporte.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnReporte.FlatAppearance.BorderSize = 0;
+            this.btnReporte.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnReporte.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnReporte.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnReporte.Image")));
+            this.btnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReporte.Location = new System.Drawing.Point(0, 264);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(183, 62);
+            this.btnReporte.TabIndex = 7;
+            this.btnReporte.Tag = "btnReporte";
+            this.btnReporte.Text = "btnReporte";
+            this.btnReporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReporte.UseVisualStyleBackColor = false;
+            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click_1);
             // 
             // btnCompra
             // 
@@ -378,12 +402,31 @@
             this.btnGestionAuto.Visible = false;
             this.btnGestionAuto.Click += new System.EventHandler(this.btnGestionAuto_Click);
             // 
+            // btnSerializacion
+            // 
+            this.btnSerializacion.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnSerializacion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSerializacion.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSerializacion.Image = ((System.Drawing.Image)(resources.GetObject("btnSerializacion.Image")));
+            this.btnSerializacion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSerializacion.Location = new System.Drawing.Point(537, 462);
+            this.btnSerializacion.Name = "btnSerializacion";
+            this.btnSerializacion.Size = new System.Drawing.Size(183, 68);
+            this.btnSerializacion.TabIndex = 16;
+            this.btnSerializacion.Tag = "btnSerializacion";
+            this.btnSerializacion.Text = "btnSerializacion";
+            this.btnSerializacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSerializacion.UseVisualStyleBackColor = false;
+            this.btnSerializacion.Visible = false;
+            this.btnSerializacion.Click += new System.EventHandler(this.btnSerializacion_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(795, 560);
+            this.Controls.Add(this.btnSerializacion);
             this.Controls.Add(this.btnGestionAuto);
             this.Controls.Add(this.btnEstacionamiento);
             this.Controls.Add(this.btnControlCambios);
@@ -435,5 +478,7 @@
         private Button btnCompra;
         private Button btnEstacionamiento;
         private Button btnGestionAuto;
+        private Button btnSerializacion;
+        private Button btnReporte;
     }
 }
