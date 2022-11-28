@@ -136,10 +136,12 @@ namespace Campo_TPFinal_UI
                 btnControlCambios.Visible = true;
                 btnEstacionamiento.Visible = true;
                 btnGestionAuto.Visible = true;
+                btnReporte.Visible = true;
             }
             if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("contador"))
             {
                 btnCompra.Visible = true;
+                btnReporte.Visible = true;
             }
             if (Session.GetInstance().usuario.rol != null && Session.GetInstance().usuario.rol.tienePermiso("alquilar"))
             {

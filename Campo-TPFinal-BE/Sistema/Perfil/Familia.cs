@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Campo_TPFinal_BE.Sistema.Perfil
 {
+    
+    [Serializable]
     public class Familia :Rol
     {
         public List<Rol> patentes = new List<Rol>();

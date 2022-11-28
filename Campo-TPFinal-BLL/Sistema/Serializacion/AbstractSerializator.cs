@@ -8,7 +8,7 @@ namespace Campo_TPFinal_BLL.Sistema.Serializacion
 {
     public abstract class AbstractSerializator
     {
-        public abstract object Deserializar(Stream str);
+        public abstract object Deserializar(string str);
         public abstract object Serializar(object obj, string path);
     }
 }

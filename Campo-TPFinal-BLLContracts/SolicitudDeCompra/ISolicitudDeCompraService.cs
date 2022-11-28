@@ -14,5 +14,7 @@ namespace Campo_TPFinal_BLLContracts.SolicitudDeCompra
         void Crear(SolicitudCompra solicitudDeCompra);
         List<SolicitudCompra> Listar();
         SolicitudCompra ObtenerPorId(int id);
+        void ExportarXML(SolicitudCompra solicitudCompra, string selectedPath);
+        SolicitudCompra ImportarXML(string selectedPath);
     }
 }

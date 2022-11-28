@@ -38,6 +38,8 @@
             this.txtPendiente = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
             this.txtEstado = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.btnImportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdSolicitud)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,7 +110,7 @@
             this.txtAprobar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtAprobar.Image = ((System.Drawing.Image)(resources.GetObject("txtAprobar.Image")));
             this.txtAprobar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.txtAprobar.Location = new System.Drawing.Point(760, 523);
+            this.txtAprobar.Location = new System.Drawing.Point(844, 521);
             this.txtAprobar.Name = "txtAprobar";
             this.txtAprobar.Size = new System.Drawing.Size(215, 64);
             this.txtAprobar.TabIndex = 72;
@@ -154,12 +156,48 @@
             this.txtEstado.Tag = "";
             this.txtEstado.Text = "txtEstado";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnExportar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExportar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExportar.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.Image")));
+            this.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportar.Location = new System.Drawing.Point(336, 521);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(215, 64);
+            this.btnExportar.TabIndex = 78;
+            this.btnExportar.Tag = "btnExportar";
+            this.btnExportar.Text = "btnExportar";
+            this.btnExportar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportar.UseVisualStyleBackColor = false;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnImportar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnImportar.Image = ((System.Drawing.Image)(resources.GetObject("btnImportar.Image")));
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImportar.Location = new System.Drawing.Point(557, 521);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(215, 64);
+            this.btnImportar.TabIndex = 79;
+            this.btnImportar.Tag = "btnImportar";
+            this.btnImportar.Text = "btnImportar";
+            this.btnImportar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
             // RevisionDeCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(1311, 599);
+            this.Controls.Add(this.btnImportar);
+            this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.txtEstado);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.txtPendiente);
@@ -190,5 +228,7 @@
         private Label txtPendiente;
         private Label lblEstado;
         private Label txtEstado;
+        private Button btnExportar;
+        private Button btnImportar;
     }
 }

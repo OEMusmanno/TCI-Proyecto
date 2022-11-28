@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_BE.Usuario;
+using Campo_TPFinal_BLL.Sistema.Serializacion;
 using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Perfil;
 using Campo_TPFinal_DALContracts;
@@ -65,6 +66,6 @@ namespace Campo_TPFinal_BLL.Sistema.Perfil
         public Usuario ObtenerPorId( int id)
         {
             return usuarioRepository.ObtenerPorId(id);            
-        }
+        }       
     }
 }

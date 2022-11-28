@@ -1,4 +1,5 @@
 ﻿using Campo_TPFinal_BE.Solicitud;
+using Campo_TPFinal_BLL.Sistema.Serializacion;
 using Campo_TPFinal_BLLContracts.SolicitudDeCompra;
 using Campo_TPFinal_BLLContracts.Vehiculo;
 using Campo_TPFinal_DALContracts.SolicitudDeCompra;
@@ -14,11 +15,13 @@ namespace Campo_TPFinal_BLL.SolicitudDeCompra
     {
         readonly ISolicitudDeCompraRepository solicitudDeCompraRepository;
         readonly IEstacionamientoService estacionamientoService;
+        XMLSerializator<SolicitudCompra> xMLSerializator;
 
         public SolicitudDeCompraService(ISolicitudDeCompraRepository solicitudDeCompraRepository, IEstacionamientoService estacionamientoService)
         {
             this.solicitudDeCompraRepository = solicitudDeCompraRepository;
             this.estacionamientoService = estacionamientoService;
+            xMLSerializator = new XMLSerializator<SolicitudCompra>();
         }
 
         public void Aprobar(int id)
@@ -30,6 +33,16 @@ namespace Campo_TPFinal_BLL.SolicitudDeCompra
         {
             ValidarDisponibilidadDeEspacios(solicitudDeCompra);
             solicitudDeCompraRepository.Crear(solicitudDeCompra);
+        }
+
+        public void ExportarXML(SolicitudCompra solicitudCompra, string selectedPath)
+        {           
+            xMLSerializator.Serializar(solicitudCompra,selectedPath);
+        }
+
+        public SolicitudCompra ImportarXML(string selectedPath)
+        {            
+            return (SolicitudCompra)xMLSerializator.Deserializar(selectedPath);
         }
 
         public List<SolicitudCompra> Listar()
