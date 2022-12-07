@@ -125,27 +125,22 @@ namespace Campo_TPFinal_UI
             if (listBox1.SelectedItem != null)
             {
                 Usuario user = listUsuarios.FirstOrDefault(x => x.alias == listBox1.SelectedItem.ToString());
-                var JsonOldValue = JsonSerializer.Serialize(user);
                 string descripcion = Interaction.InputBox("Agregue una descripcion","Control de cambios", " - ");
-                string JsonNewValue;                
 
                 if (user.alias != txtUsuario.Text)
                 {
                     user.alias = txtUsuario.Text;
-                    JsonNewValue = JsonSerializer.Serialize(user);
-                    controlCambioService.AgregarVersionado(user.Id, user.alias, "usuario", descripcion, JsonOldValue, JsonNewValue);
+                    controlCambioService.AgregarVersionado(user.Id.ToString(), user.alias, "usuario", descripcion);
                 }
                 if (user.password != CryptographyHelper.encrypt(txtContraseña.Text))
                 {
                     user.password = CryptographyHelper.encrypt(txtContraseña.Text);
-                    JsonNewValue = JsonSerializer.Serialize(user);
-                    controlCambioService.AgregarVersionado(user.Id, user.password, "contraseña", descripcion, JsonOldValue, JsonNewValue);
+                    controlCambioService.AgregarVersionado(user.Id.ToString(), user.password, "contraseña", descripcion);
                 }
                 if (user.rol != (Rol)comboBox1.SelectedItem)
                 {
                     user.rol = (Rol)comboBox1.SelectedItem;
-                    JsonNewValue = JsonSerializer.Serialize(user);
-                    controlCambioService.AgregarVersionado(user.Id, user.rol.id.ToString(), "rol", descripcion, JsonOldValue, JsonNewValue);
+                    controlCambioService.AgregarVersionado(user.Id.ToString(), user.rol.id.ToString(), "id_rol", descripcion);
                 }
                 usuarioService.ActualizarUsuario(user);
                 limpiar();

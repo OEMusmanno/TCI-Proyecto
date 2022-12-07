@@ -9,7 +9,7 @@ namespace Campo_TPFinal_DALContracts
 {
     public interface IControlCambioRepository
     {
-        void GuardarCambios(int UsuarioId, string value, string property, string descripcion, string viejoUsuario, string nuevoUsuario);
+        void GuardarCambios(string UsuarioId, string value, string property, string descripcion);
         List<ControlCambio> Listar();
         void RestaurarVersion(string id);
     }

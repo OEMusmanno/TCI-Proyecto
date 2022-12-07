@@ -22,9 +22,9 @@ namespace Campo_TPFinal_BLL
             this.digitoVerificadorService = digitoVerificadorService;
         }
 
-        public void AgregarVersionado(int UsuarioId, string value, string property, string descripcion, string viejoUsuario, string nuevoUsuario)
+        public void AgregarVersionado(string UsuarioId, string value, string property, string descripcion)
         {
-            controlCambioRepository.GuardarCambios(UsuarioId, value, property, descripcion, viejoUsuario , nuevoUsuario);
+            controlCambioRepository.GuardarCambios(UsuarioId, value, property, descripcion);
         }
 
         public List<ControlCambio> Listar()

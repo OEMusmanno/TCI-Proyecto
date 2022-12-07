@@ -29,9 +29,9 @@ namespace Campo_TPFinal_DAL
             this.usuarioRepository = usuarioRepository;
         }
 
-        public void GuardarCambios(int UsuarioId, string value, string property, string descripcion, string viejoUsuario, string nuevoUsuario)
+        public void GuardarCambios(string UsuarioId, string value, string property, string descripcion)
         {            
-            string _commandText = $"INSERT INTO ControlCambio (usuario,descripcion,fechaHora, property,value, viejaInstancia, nuevaInstancia) VALUES ('{UsuarioId}','{descripcion}', '{DataAccess.FechaHora()}', '{property}', '{value}', '{viejoUsuario}', '{nuevoUsuario}' )";
+            string _commandText = $"INSERT INTO ControlCambio (usuario,descripcion,fechaHora, property,value) VALUES ('{UsuarioId}','{descripcion}', '{DataAccess.FechaHora()}', '{property}', '{value}')";
             dataAccess.ExecuteNonQuery(_commandText);
         }
 
@@ -54,7 +54,7 @@ namespace Campo_TPFinal_DAL
 
         private ControlCambio ObtenerPorId(string id)
         {
-            var list = dataAccess.GetPorIdExecuteDataSet("[ControlCambio]", id);
+            var list = dataAccess.GetPorIdExecuteDataSet("ControlCambio", id);
             var _list = new ControlCambio();
             foreach (DataRow item in list.Tables[0].Rows)
             {
@@ -66,19 +66,34 @@ namespace Campo_TPFinal_DAL
         public void RestaurarVersion(string id)
         {
             var cambio = ObtenerPorId(id);
-            var usuario = cambio.ViejoUsuario;
-            usuarioRepository.ActualizarUsuario(usuario);
-            var jsonOldValue = JsonSerializer.Serialize(cambio.usuario);
-            var jsonNewValue = JsonSerializer.Serialize(cambio.ViejoUsuario);
-            GuardarCambios(cambio.usuario.Id, cambio.value, cambio.property, "Se restaura a una version anterior", jsonOldValue, jsonNewValue);
+            string _commandText = $"Update Usuario SET {cambio.property}";
+            switch (cambio.property)
+            {
+                case "id_rol":
+                    _commandText += $" = {int.Parse(cambio.value)}";
+                    break;
+                case "Contraseña":
+                    _commandText += $" = '{cambio.value}'";
+                    break;
+                case "bloqueado":
+                    _commandText += $" = {byte.Parse(cambio.value)}";
+                    break;
+                case "usuario":
+                    _commandText += $" = '{cambio.value}'";
+                    break;
+                default:
+                    break;
+            }
+            _commandText += $" Where id = {cambio.Usuario.Id}";
+            dataAccess.ExecuteNonQuery(_commandText);
+            GuardarCambios(cambio.Usuario.Id.ToString(), cambio.value, cambio.property, "Se restaura a una version anterior");
         }
 
         private void ValorizarEntidad(ControlCambio control, DataRow item)
         {
             control.id = item["id"].ToString();
             control.value = item["value"].ToString();
-            control.usuario = JsonSerializer.Deserialize<Usuario>( item["NuevaInstancia"].ToString());
-            control.ViejoUsuario = JsonSerializer.Deserialize<Usuario>( item["ViejaInstancia"].ToString());
+            control.Usuario = usuarioRepository.ObtenerPorId(int.Parse(item["usuario"].ToString()));
             control.property = item["property"].ToString();
             control.descripcion = item["descripcion"].ToString();
             control.fecha = DateTime.Parse(item["fechaHora"].ToString());
