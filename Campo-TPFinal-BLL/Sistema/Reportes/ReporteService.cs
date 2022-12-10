@@ -31,8 +31,8 @@ namespace Campo_TPFinal_BLL.Sistema.Reportes
         {
             string dateFormat = "-yyyy-MM-dd-HH-mm-ss";
             string archivoPath = path + "\\ReporteDeGanancias" + DateTime.Now.ToString(dateFormat) + ".pdf";
-            FileStream fs = new FileStream(archivoPath, FileMode.Create);
             Document document = new Document(PageSize.A4, 25, 25, 30, 30);
+            FileStream fs = new FileStream(archivoPath, FileMode.Create);
             PdfWriter writer = PdfWriter.GetInstance(document, fs);
             Font titleFont = FontFactory.GetFont("Arial", 32);
             Font regularFont = FontFactory.GetFont("Arial", 36);
@@ -75,8 +75,8 @@ namespace Campo_TPFinal_BLL.Sistema.Reportes
             document.Add(new Paragraph("   "));
             document.Add(table);
             document.Close();
-            writer.Close();
             fs.Close();
+            writer.Close();
 
         }
 

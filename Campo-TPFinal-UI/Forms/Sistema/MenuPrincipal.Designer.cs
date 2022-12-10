@@ -50,7 +50,6 @@
             this.btnControlCambios = new System.Windows.Forms.Button();
             this.btnEstacionamiento = new System.Windows.Forms.Button();
             this.btnGestionAuto = new System.Windows.Forms.Button();
-            this.btnSerializacion = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -402,31 +401,12 @@
             this.btnGestionAuto.Visible = false;
             this.btnGestionAuto.Click += new System.EventHandler(this.btnGestionAuto_Click);
             // 
-            // btnSerializacion
-            // 
-            this.btnSerializacion.BackColor = System.Drawing.Color.SeaGreen;
-            this.btnSerializacion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSerializacion.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSerializacion.Image = ((System.Drawing.Image)(resources.GetObject("btnSerializacion.Image")));
-            this.btnSerializacion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSerializacion.Location = new System.Drawing.Point(537, 462);
-            this.btnSerializacion.Name = "btnSerializacion";
-            this.btnSerializacion.Size = new System.Drawing.Size(183, 68);
-            this.btnSerializacion.TabIndex = 16;
-            this.btnSerializacion.Tag = "btnSerializacion";
-            this.btnSerializacion.Text = "btnSerializacion";
-            this.btnSerializacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSerializacion.UseVisualStyleBackColor = false;
-            this.btnSerializacion.Visible = false;
-            this.btnSerializacion.Click += new System.EventHandler(this.btnSerializacion_Click);
-            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(795, 560);
-            this.Controls.Add(this.btnSerializacion);
             this.Controls.Add(this.btnGestionAuto);
             this.Controls.Add(this.btnEstacionamiento);
             this.Controls.Add(this.btnControlCambios);
@@ -478,7 +458,6 @@
         private Button btnCompra;
         private Button btnEstacionamiento;
         private Button btnGestionAuto;
-        private Button btnSerializacion;
         private Button btnReporte;
     }
 }

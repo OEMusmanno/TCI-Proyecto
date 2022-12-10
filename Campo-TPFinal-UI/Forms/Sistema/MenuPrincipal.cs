@@ -243,11 +243,6 @@ namespace Campo_TPFinal_UI
         private void btnReporte_Click_1(object sender, EventArgs e)
         {
             reporte.ShowDialog();
-        }
-
-        private void btnSerializacion_Click(object sender, EventArgs e)
-        {
-
-        }
+        }      
     }
 }
