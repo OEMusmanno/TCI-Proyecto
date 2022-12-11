@@ -66,6 +66,7 @@ namespace Campo_TPFinal_UI.Forms.Sistema
         {
             Session.traducciones = traductorService.ObtenerTraducciones(idioma);
             lblListado.Text = Session.traducciones[lblListado.Tag.ToString()].Texto;
+            btnRestaurar.Text = Session.traducciones[btnRestaurar.Tag.ToString()].Texto;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)

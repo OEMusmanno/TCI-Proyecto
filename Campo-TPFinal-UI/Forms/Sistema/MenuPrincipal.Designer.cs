@@ -34,6 +34,7 @@
             this.btnPerfil = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnManual = new System.Windows.Forms.Button();
             this.btnReporte = new System.Windows.Forms.Button();
             this.btnCompra = new System.Windows.Forms.Button();
             this.LenguajeLabel = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@
             this.btnControlCambios = new System.Windows.Forms.Button();
             this.btnEstacionamiento = new System.Windows.Forms.Button();
             this.btnGestionAuto = new System.Windows.Forms.Button();
+            this.btnAyuda = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -136,6 +138,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.Controls.Add(this.btnAyuda);
+            this.panel1.Controls.Add(this.btnManual);
             this.panel1.Controls.Add(this.btnReporte);
             this.panel1.Controls.Add(this.btnCompra);
             this.panel1.Controls.Add(this.LenguajeLabel);
@@ -148,6 +152,25 @@
             this.panel1.Size = new System.Drawing.Size(186, 560);
             this.panel1.TabIndex = 5;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnManual
+            // 
+            this.btnManual.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnManual.CausesValidation = false;
+            this.btnManual.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnManual.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnManual.ForeColor = System.Drawing.Color.White;
+            this.btnManual.Image = ((System.Drawing.Image)(resources.GetObject("btnManual.Image")));
+            this.btnManual.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnManual.Location = new System.Drawing.Point(0, 404);
+            this.btnManual.Name = "btnManual";
+            this.btnManual.Size = new System.Drawing.Size(186, 52);
+            this.btnManual.TabIndex = 8;
+            this.btnManual.Tag = "btnManual";
+            this.btnManual.Text = "btnManual";
+            this.btnManual.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnManual.UseVisualStyleBackColor = false;
+            this.btnManual.Click += new System.EventHandler(this.btnManual_Click);
             // 
             // btnReporte
             // 
@@ -168,6 +191,7 @@
             this.btnReporte.Text = "btnReporte";
             this.btnReporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReporte.UseVisualStyleBackColor = false;
+            this.btnReporte.Visible = false;
             this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click_1);
             // 
             // btnCompra
@@ -189,6 +213,7 @@
             this.btnCompra.Text = "btnCompra";
             this.btnCompra.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCompra.UseVisualStyleBackColor = false;
+            this.btnCompra.Visible = false;
             this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
             // 
             // LenguajeLabel
@@ -401,6 +426,25 @@
             this.btnGestionAuto.Visible = false;
             this.btnGestionAuto.Click += new System.EventHandler(this.btnGestionAuto_Click);
             // 
+            // btnAyuda
+            // 
+            this.btnAyuda.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnAyuda.CausesValidation = false;
+            this.btnAyuda.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAyuda.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAyuda.ForeColor = System.Drawing.Color.White;
+            this.btnAyuda.Image = ((System.Drawing.Image)(resources.GetObject("btnAyuda.Image")));
+            this.btnAyuda.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAyuda.Location = new System.Drawing.Point(0, 352);
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(186, 52);
+            this.btnAyuda.TabIndex = 9;
+            this.btnAyuda.Tag = "btnAyuda";
+            this.btnAyuda.Text = "btnAyuda";
+            this.btnAyuda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAyuda.UseVisualStyleBackColor = false;
+            this.btnAyuda.Click += new System.EventHandler(this.btnAyuda_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -459,5 +503,7 @@
         private Button btnEstacionamiento;
         private Button btnGestionAuto;
         private Button btnReporte;
+        private Button btnManual;
+        private Button btnAyuda;
     }
 }

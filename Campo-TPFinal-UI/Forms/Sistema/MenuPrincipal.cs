@@ -3,13 +3,14 @@ using Campo_TPFinal_BLL.Seguridad;
 using Campo_TPFinal_BLLContracts;
 using Campo_TPFinal_BLLContracts.Sistema;
 using Campo_TPFinal_BLLContracts.Sistema.Idioma;
-using Campo_TPFinal_DAL.Sistema.DB;
-using Campo_TPFinal_DALContracts.Sistema.DB;
 using Campo_TPFinal_UI.Forms.Estacionamiento;
 using Campo_TPFinal_UI.Forms.Idioma;
 using Campo_TPFinal_UI.Forms.Negocio;
 using Campo_TPFinal_UI.Forms.Sistema;
 using Campo_TPFinal_UI.Forms.SolicitudDeCompra;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Diagnostics;
+using Application = System.Windows.Forms.Application;
 
 namespace Campo_TPFinal_UI
 {
@@ -28,7 +29,7 @@ namespace Campo_TPFinal_UI
         private readonly ControlCambios controlCambios;
         private readonly ABMEstacionamiento aBMEstacionamiento;
         private readonly ABMAuto aBMAuto;
-        private readonly RevisionDeCompra  revisionDeCompra;
+        private readonly RevisionDeCompra revisionDeCompra;
         private readonly Reporte reporte;
 
 
@@ -115,8 +116,10 @@ namespace Campo_TPFinal_UI
             btnEstacionamiento.Text = Session.traducciones[btnEstacionamiento.Tag.ToString()].Texto;
             btnGestionIdioma.Text = Session.traducciones[btnGestionIdioma.Tag.ToString()].Texto;
             LenguajeLabel.Text = Session.traducciones[LenguajeLabel.Tag.ToString()].Texto;
-            btnCompra.Text = Session.traducciones[btnCompra.Tag.ToString()].Texto;            
+            btnCompra.Text = Session.traducciones[btnCompra.Tag.ToString()].Texto;
             btnReporte.Text = Session.traducciones[btnReporte.Tag.ToString()].Texto;
+            btnManual.Text = Session.traducciones[btnManual.Tag.ToString()].Texto;
+            btnAyuda.Text = Session.traducciones[btnAyuda.Tag.ToString()].Texto;
 
         }
 
@@ -209,10 +212,10 @@ namespace Campo_TPFinal_UI
             if (openFolder.ShowDialog() == DialogResult.OK)
             {
                 backup.Restore(openFolder.FileName);
+                this.UseWaitCursor = true;
+                MessageBox.Show(Session.traducciones["RestoreCompletado"].Texto, "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.UseWaitCursor = false;
             }
-            this.UseWaitCursor = true;
-            MessageBox.Show(Session.traducciones["RestoreCompletado"].Texto, "OK!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.UseWaitCursor = false;
         }
 
         private void btnLog_Click(object sender, EventArgs e)
@@ -237,12 +240,36 @@ namespace Campo_TPFinal_UI
 
         private void btnCompra_Click(object sender, EventArgs e)
         {
-            revisionDeCompra.ShowDialog();            
+            revisionDeCompra.ShowDialog();
         }
 
         private void btnReporte_Click_1(object sender, EventArgs e)
         {
             reporte.ShowDialog();
-        }      
+        }
+
+        private void btnManual_Click(object sender, EventArgs e)
+        {
+            using (var p = new Process())
+            {
+                p.StartInfo = new ProcessStartInfo("ManualUsuario.pdf")
+                {
+                    UseShellExecute = true
+                };
+                p.Start();
+            }
+        }
+
+        private void btnAyuda_Click(object sender, EventArgs e)
+        {
+            using (var p = new Process())
+            {
+                p.StartInfo = new ProcessStartInfo($"mailto:soporte@tutu.carSharing.com?&subject=Solicitud de soporte - {Session.GetInstance().usuario.alias}&body=Message Content")
+                {
+                    UseShellExecute = true
+                };
+                p.Start();
+            }
+        }
     }
 }

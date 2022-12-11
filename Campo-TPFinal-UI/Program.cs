@@ -85,7 +85,7 @@ namespace Campo_TPFinal_UI
                 }
                 else
                 {
-                    throw ex;
+                    MessageBox.Show(ex.Message, "Problem", MessageBoxButtons.OK);                    
                 }
             }           
         }    
